@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_bnv_follow"
+        android:title="@string/bnv_follow" />
+    <item
+        android:id="@+id/main_bnv_mymap"
+        android:title="@string/bnv_mymap" />
+    <item
+        android:id="@+id/main_bnv_home"
+        android:title="@string/bnv_home" />
+    <item
+        android:id="@+id/main_bnv_myreview"
+        android:title="@string/bnv_myreview" />
+</menu>
