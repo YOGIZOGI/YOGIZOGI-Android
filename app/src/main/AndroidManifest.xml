@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".YogizogiApplication"
+        android:name=".YoGiZoGiApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,15 +14,18 @@
         android:theme="@style/Theme.YOGIZOGIAndroid"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainActivity"
-            android:theme="@style/Theme.App.Starting"
-            android:exported="true">
+            android:name=".ui.view.auth.AuthActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity
+            android:name=".ui.view.main.MainActivity"
+            android:exported="true" />
+    </application>
 </manifest>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/followFragment"
+        android:name="org.shop.yogizogi_android.ui.view.main.follow.FollowFragment"
+        android:label="FollowFragment"
+        tools:layout="@layout/fragment_follow">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="org.shop.yogizogi_android.ui.view.main.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="org.shop.yogizogi_android.ui.view.main.map.MapFragment"
+        android:label="MapFragment"
+        tools:layout="@layout/fragment_map">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="org.shop.yogizogi_android.ui.view.main.review.ReviewFragment"
+        android:label="ReviewFragment"
+        tools:layout="@layout/fragment_review">
+
+    </fragment>
+</navigation>

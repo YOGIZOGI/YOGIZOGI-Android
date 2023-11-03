@@ -1,6 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+        splashVersion = '1.1.0-alpha02'
+        navigationVersion = '2.7.4'
+        hiltVersion = '2.48'
+        roomVersion = '2.6.0'
+    }
+}
+
 plugins {
     id 'com.android.application' version '8.1.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.9.0' apply false
-    id 'com.google.dagger.hilt.android' version '2.44' apply false
+    id 'com.google.dagger.hilt.android' version "$hiltVersion" apply false
+    id 'com.google.devtools.ksp' version '1.9.20-1.0.14' apply false
 }
