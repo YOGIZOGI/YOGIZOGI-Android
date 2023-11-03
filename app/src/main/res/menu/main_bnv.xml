@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/main_bnv_follow"
+        android:id="@+id/followFragment"
         android:title="@string/bnv_follow" />
     <item
-        android:id="@+id/main_bnv_mymap"
-        android:title="@string/bnv_mymap" />
-    <item
-        android:id="@+id/main_bnv_home"
+        android:id="@+id/homeFragment"
         android:title="@string/bnv_home" />
     <item
-        android:id="@+id/main_bnv_myreview"
+        android:id="@+id/mapFragment"
+        android:title="@string/bnv_mymap" />
+    <item
+        android:id="@+id/reviewFragment"
         android:title="@string/bnv_myreview" />
 </menu>
