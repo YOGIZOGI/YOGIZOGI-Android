@@ -17,9 +17,16 @@ class InitialFragment : BaseFragment<FragmentInitialBinding, InitialViewModel>(
             val intent = Intent(requireActivity(), MainActivity::class.java)
             startActivity(intent)
         }
+        binding.tvTestSend.setOnClickListener {
+            viewModel.getVerifyCode("01012345678")
+        }
     }
 
     override fun initAfterBinding() {
+        observeData()
+    }
+
+    private fun observeData() {
 
     }
 }
