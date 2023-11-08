@@ -9,11 +9,6 @@ class AuthRemoteData @Inject constructor(private val authService: AuthService) :
     AuthRemoteDataSource {
 
     override suspend fun getVerifyCode(phoneNumber: String): Resource<VerifyCodeSendResDTO> {
-        val response = authService.getVerifyCode(phoneNumber)
-        return if (response.isSuccessful) {
-            Resource.Success(response.body()!!)
-        } else {
-            Resource.Error(response.message(), null)
-        }
+        return processCall { authService.getVerifyCode(phoneNumber) }
     }
 }

@@ -1,5 +1,6 @@
 package org.shop.yogizogi_android.ui.view.auth.initial
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,6 +25,7 @@ class InitialViewModel @Inject constructor(private val authRepository: AuthRepos
             _codeProcess.value = Resource.Loading()
             authRepository.getVerifyCode(phoneNumber).collect {
                 _codeProcess.value = it
+                Log.d("InitialViewModel-codeProcess", codeProcess.value.toString())
             }
         }
     }
