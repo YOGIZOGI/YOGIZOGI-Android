@@ -10,6 +10,16 @@
         android:name="org.shop.yogizogi_android.ui.view.auth.initial.InitialFragment"
         android:label="InitialFragment"
         tools:layout="@layout/fragment_initial">
+        <action
+            android:id="@+id/action_initialFragment_to_InputNumFragment"
+            app:destination="@id/inputNumFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/inputNumFragment"
+        android:name="org.shop.yogizogi_android.ui.view.auth.signup.InputNumFragment"
+        android:label="InputNumFragment"
+        tools:layout="@layout/fragment_input_num">
 
     </fragment>
 </navigation>

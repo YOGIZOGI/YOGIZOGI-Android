@@ -1,7 +1,7 @@
 package org.shop.yogizogi_android.ui.view.auth
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
@@ -20,11 +20,12 @@ class AuthActivity : AppCompatActivity() {
                 lifecycleOwner = this@AuthActivity
             }
 
-//        initView()
-    }
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container_auth) as NavHostFragment
+        val navController = navHostFragment.navController
+        val navGraph = navController.navInflater.inflate(R.navigation.nav_auth)
 
-    private fun initView(){
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_auth) as NavHostFragment
-        binding.fragmentContainerAuth.addView(navHostFragment.view)
+        navGraph.setStartDestination(R.id.initialFragment)
+        navController.graph = navGraph
     }
 }

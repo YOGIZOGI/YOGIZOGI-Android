@@ -7,6 +7,21 @@
     <string name="bnv_myreview">내 리뷰</string>
     <string name="bnv_mymap">내 지도</string>
 
+    <!-- Login -->
+    <string name="login_app_description">나만의 입맛대로 맛집을 찾고 싶다면!</string>
+    <string name="login_with_phone">전화번호로 로그인하기</string>
+    <string name="login_with_kakao">카카오로 시작하기</string>
+    <string name="login_with_naver">네이버로 시작하기</string>
+    <string name="login">로그인</string>
+    <string name="login_phonenumber">전화번호</string>
+    <string name="login_password">비밀번호</string>
+    <string name="login_phonenumber_hint">- 제외 전화번호 입력</string>
+    <string name="login_password_hint">비밀번호를 입력해주세요</string>
+    <string name="login_find_password">비밀번호를 잊어버리셨나요?</string>
+    <string name="login_save">로그인정보 저장하기</string>
+    <string name="login_do">로그인 하기</string>
+    <string name="signup">회원가입</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
