@@ -6,7 +6,7 @@
     <string name="bnv_follow">팔로우</string>
     <string name="bnv_myreview">내 리뷰</string>
     <string name="bnv_mymap">내 지도</string>
-    
+
     <!-- Login -->
     <string name="login_app_description">나만의 입맛대로 맛집을 찾고 싶다면!</string>
     <string name="login_with_phone">전화번호로 로그인하기</string>
