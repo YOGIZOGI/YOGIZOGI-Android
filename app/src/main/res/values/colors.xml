@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main_background">#413938</color>
+    <color name="login_app_description">#9A8483</color>
+    <color name="login_signup">#E9E9E9</color>
 </resources>

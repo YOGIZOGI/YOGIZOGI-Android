@@ -5,48 +5,174 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="org.shop.yogizogi_android.ui.view.auth.initial.InitialViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_background"
         tools:context=".ui.view.auth.initial.InitialFragment">
 
-        <TextView
-            android:id="@+id/tv_test"
+        <View
+            android:id="@+id/iv_login_left"
+            android:layout_width="177dp"
+            android:layout_height="252dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-40dp"
+            android:layout_marginTop="77dp"
+            android:background="@drawable/login_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_login_center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="AuthActivity InitialFragment"
-            android:textSize="50sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="114dp"
+            android:src="@drawable/login_center"
+            app:layout_constraintEnd_toStartOf="@id/iv_login_right"
+            app:layout_constraintStart_toEndOf="@id/iv_login_left"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_login_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:src="@drawable/login_right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_login_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="95dp"
+            android:src="@drawable/logo_login_phone"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_test_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:padding="8dp"
-            android:text="Send Request"
-            android:textSize="20sp"
+        <View
+            android:id="@+id/rectangle_7"
+            android:layout_width="0dp"
+            android:layout_height="616dp"
+            android:background="@drawable/drawable_login_main_back"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_test" />
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_test_response"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_login_app_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:padding="8dp"
+            android:layout_marginTop="402dp"
+            android:padding="2dp"
+            android:text="@string/login_app_description"
+            android:textAppearance="@font/nanumsquareneo_variable"
+            android:textColor="@color/login_app_description"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_test_send" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/login_app_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:src="@drawable/logo_login_app"
+            app:layout_constraintEnd_toEndOf="@id/tv_login_app_desc"
+            app:layout_constraintStart_toStartOf="@id/tv_login_app_desc"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_app_desc" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_login_kakao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="47dp"
+            android:background="@drawable/login_kakao_background"
+            android:gravity="center"
+            android:text="@string/login_with_kakao"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_app_logo" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_kakao_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_login_kakao"
+            app:layout_constraintBottom_toBottomOf="@id/tv_login_kakao"
+            app:layout_constraintStart_toStartOf="@id/tv_login_kakao"
+            app:layout_constraintTop_toTopOf="@id/tv_login_kakao" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_login_naver"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_naver_background"
+            android:gravity="center"
+            android:text="@string/login_with_naver"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintEnd_toEndOf="@id/tv_login_kakao"
+            app:layout_constraintStart_toStartOf="@id/tv_login_kakao"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_kakao" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_naver_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_login_naver"
+            app:layout_constraintBottom_toBottomOf="@id/tv_login_naver"
+            app:layout_constraintEnd_toEndOf="@id/iv_kakao_icon"
+            app:layout_constraintStart_toStartOf="@id/iv_kakao_icon"
+            app:layout_constraintTop_toTopOf="@id/tv_login_naver" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_phone_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:text="@string/login_with_phone"
+            app:layout_constraintEnd_toEndOf="@id/tv_login_kakao"
+            app:layout_constraintStart_toStartOf="@id/tv_login_kakao"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_naver" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_btn_kakao_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="iv_kakao_icon,tv_login_kakao" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_btn_naver_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="iv_naver_icon,tv_login_naver" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_default_background_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="iv_login_left,iv_login_center,iv_login_right" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_login_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="rectangle_7,tv_login_app_desc,login_app_logo,btn_phone_login,group_btn_kakao_login,group_btn_naver_login" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

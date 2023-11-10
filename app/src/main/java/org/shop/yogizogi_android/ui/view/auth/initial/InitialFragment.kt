@@ -1,19 +1,18 @@
 package org.shop.yogizogi_android.ui.view.auth.initial
 
-import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.databinding.FragmentInitialBinding
 import org.shop.yogizogi_android.ui.base.BaseFragment
-import org.shop.yogizogi_android.ui.view.main.MainActivity
+import org.shop.yogizogi_android.ui.view.auth.loginbottomsheet.LoginBottomSheetFragment
+import org.shop.yogizogi_android.utils.toInvisible
+import org.shop.yogizogi_android.utils.toVisible
 
 @AndroidEntryPoint
 class InitialFragment : BaseFragment<FragmentInitialBinding, InitialViewModel>(
@@ -28,6 +27,12 @@ class InitialFragment : BaseFragment<FragmentInitialBinding, InitialViewModel>(
 //        binding.tvTestSend.setOnClickListener {
 //            viewModel.getVerifyCode("01013409584")
 //        }
+        binding.btnPhoneLogin.setOnClickListener {
+            binding.groupLoginOptions.toInvisible()
+            binding.groupDefaultBackgroundImage.toInvisible()
+            binding.ivLoginLogo.toVisible()
+            LoginBottomSheetFragment().show(childFragmentManager,"initialFragment")
+        }
     }
 
     override fun initAfterBinding() {
@@ -52,6 +57,14 @@ class InitialFragment : BaseFragment<FragmentInitialBinding, InitialViewModel>(
                     }
                 }
             }
+        }
+    }
+
+    fun resetInitialFragment(){
+        with(binding){
+            groupLoginOptions.toVisible()
+            groupDefaultBackgroundImage.toVisible()
+            ivLoginLogo.toInvisible()
         }
     }
 }
