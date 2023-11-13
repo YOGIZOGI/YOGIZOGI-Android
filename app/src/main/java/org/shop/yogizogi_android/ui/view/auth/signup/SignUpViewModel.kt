@@ -1,6 +1,5 @@
 package org.shop.yogizogi_android.ui.view.auth.signup
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,6 +25,9 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
         MutableStateFlow<Resource<VerifyCodeSendResDTO>>(Resource.Loading())
     val codeReqProcess = _codeReqProcess.asStateFlow()
 
+    private val _codeNumber = MutableStateFlow<String>("")
+    val codeNumber = _codeNumber.asStateFlow()
+
     private val _codeCheckProcess =
         MutableStateFlow<Resource<VerifyCodeCheckResDTO>>(Resource.Loading())
     val codeCheckProcess = _codeCheckProcess.asStateFlow()
@@ -43,10 +45,14 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
         }
     }
 
-    fun checkVerifyCode(phoneNumber: String, code: String) {
+    fun updateCode(code: String) {
+        _codeNumber.value = code
+    }
+
+    fun checkVerifyCode() {
         viewModelScope.launch {
             _codeCheckProcess.value = Resource.Loading()
-            authRepository.checkVerifyCode(phoneNumber, code).collect {
+            authRepository.checkVerifyCode(_phoneNumber.value, _codeNumber.value).collect {
                 _codeCheckProcess.value = it
             }
         }

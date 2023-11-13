@@ -2,7 +2,6 @@ package org.shop.yogizogi_android.ui.view.auth.signup.process
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
