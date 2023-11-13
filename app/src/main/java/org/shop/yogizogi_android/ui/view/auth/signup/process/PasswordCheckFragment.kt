@@ -1,6 +1,7 @@
 package org.shop.yogizogi_android.ui.view.auth.signup.process
 
 import android.content.Intent
+import androidx.activity.addCallback
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.databinding.FragmentPasswordCheckBinding
@@ -18,6 +19,10 @@ class PasswordCheckFragment : BaseFragment<FragmentPasswordCheckBinding, SignUpV
             val intent = Intent(requireContext(), MainActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this){
+            viewModel.stepDown()
         }
     }
 

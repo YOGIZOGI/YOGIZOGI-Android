@@ -1,11 +1,15 @@
 package org.shop.yogizogi_android.ui.view.auth.signup
 
+import android.util.Log
+import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.databinding.FragmentSignUpBinding
 import org.shop.yogizogi_android.ui.base.BaseFragment
+import org.shop.yogizogi_android.ui.view.auth.loginbottomsheet.LoginBottomSheetFragment
 import org.shop.yogizogi_android.ui.view.auth.signup.process.AgreeFragment
 import org.shop.yogizogi_android.ui.view.auth.signup.process.PasswordCheckFragment
 import org.shop.yogizogi_android.ui.view.auth.signup.process.PasswordFragment
@@ -18,7 +22,11 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>(
     R.layout.fragment_sign_up
 ) {
     private val fragmentList = listOf(
-        PhoneFragment(), VerifyFragment(), AgreeFragment(), PasswordFragment(), PasswordCheckFragment()
+        PhoneFragment(),
+        VerifyFragment(),
+        AgreeFragment(),
+        PasswordFragment(),
+        PasswordCheckFragment()
     )
 
     override fun initView() {
@@ -26,6 +34,8 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>(
             sliderSignupProcess.value = viewModel.signUpStep.value.toFloat()
             sliderSignupProcess.isEnabled = false
         }
+
+        initBackBtn()
     }
 
     override fun initAfterBinding() {
@@ -35,15 +45,20 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>(
     private fun observeStep() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.signUpStep.collect { step ->
+                Log.d("SignUpFragment step", step.toString())
                 when (step) {
                     0 -> {
                         replaceFragment(step)
                         binding.sliderSignupProcess.value = step.toFloat()
+                        binding.tvTextSelfVerify.text =
+                            resources.getString(R.string.signup_verify_text)
                     }
 
                     1 -> {
                         replaceFragment(step)
                         binding.sliderSignupProcess.value = step.toFloat()
+                        binding.tvTextSelfVerify.text =
+                            resources.getString(R.string.signup_verify_text)
                     }
 
                     2 -> {
@@ -57,6 +72,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>(
                         binding.sliderSignupProcess.value = step.toFloat()
                         binding.tvTextSelfVerify.text = resources.getString(R.string.signup)
                     }
+
                     4 -> {
                         replaceFragment(step)
                     }
@@ -70,5 +86,19 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>(
             .replace(R.id.fragment_container_signup, fragmentList[step])
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun initBackBtn() {
+        binding.btnBack.setOnClickListener {
+            if (viewModel.signUpStep.value > 0) {
+                viewModel.stepDown()
+            } else {
+                findNavController().popBackStack()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            findNavController().popBackStack()
+        }
     }
 }

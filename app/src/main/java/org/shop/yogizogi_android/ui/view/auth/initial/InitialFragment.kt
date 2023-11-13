@@ -27,11 +27,12 @@ class InitialFragment : BaseFragment<FragmentInitialBinding, InitialViewModel>(
 //        binding.tvTestSend.setOnClickListener {
 //            viewModel.getVerifyCode("01013409584")
 //        }
+
         binding.btnPhoneLogin.setOnClickListener {
             binding.groupLoginOptions.toInvisible()
             binding.groupDefaultBackgroundImage.toInvisible()
             binding.ivLoginLogo.toVisible()
-            LoginBottomSheetFragment().show(childFragmentManager,"initialFragment")
+            LoginBottomSheetFragment().show(childFragmentManager, "initialFragment")
         }
     }
 
@@ -49,6 +50,7 @@ class InitialFragment : BaseFragment<FragmentInitialBinding, InitialViewModel>(
                             is Resource.Success -> {
 
                             }
+
                             is Resource.Error -> {
                                 Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT)
                                     .show()
@@ -60,8 +62,8 @@ class InitialFragment : BaseFragment<FragmentInitialBinding, InitialViewModel>(
         }
     }
 
-    fun resetInitialFragment(){
-        with(binding){
+    fun resetInitialFragment() {
+        with(binding) {
             groupLoginOptions.toVisible()
             groupDefaultBackgroundImage.toVisible()
             ivLoginLogo.toInvisible()

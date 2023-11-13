@@ -1,5 +1,7 @@
 package org.shop.yogizogi_android.ui.view.auth.signup.process
 
+import androidx.activity.addCallback
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.databinding.FragmentPhoneBinding
@@ -14,6 +16,10 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding, SignUpViewModel>(
     override fun initView() {
         binding.btnRequest.setOnClickListener {
             viewModel.stepUp()
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this){
+            findNavController().popBackStack()
         }
     }
 

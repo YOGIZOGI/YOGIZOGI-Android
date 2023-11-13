@@ -1,6 +1,7 @@
 package org.shop.yogizogi_android.ui.view.auth.loginbottomsheet
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,19 +26,36 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        isCancelable = false
 
+        initBackBtn()
+
+        binding.tvSignup.setOnClickListener {
+            navigateToInputNumFragment()
+            dismiss()
+        }
+    }
+
+    private fun navigateToInputNumFragment() {
+        val parentFragment = parentFragment
+        parentFragment?.findNavController()
+            ?.navigate(R.id.action_initialFragment_to_InputNumFragment)
+    }
+
+    private fun initBackBtn() {
         binding.ivBack.setOnClickListener {
             (parentFragment as? InitialFragment)?.resetInitialFragment()
             dismiss()
         }
-        binding.tvSignup.setOnClickListener {
-            navigateToInputNumFragment()
-        }
-    }
 
-    private fun navigateToInputNumFragment(){
-        val parentFragment = parentFragment
-        parentFragment?.findNavController()?.navigate(R.id.action_initialFragment_to_InputNumFragment)
+        requireDialog().setOnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                // 뒤로가기 버튼 클릭 시 처리할 작업
+                (parentFragment as? InitialFragment)?.resetInitialFragment()
+                dismiss()
+                true
+            } else {
+                false
+            }
+        }
     }
 }

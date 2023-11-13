@@ -1,5 +1,6 @@
 package org.shop.yogizogi_android.ui.view.auth.signup.process
 
+import androidx.activity.addCallback
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.databinding.FragmentPasswordBinding
@@ -14,6 +15,10 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, SignUpViewModel>(
     override fun initView() {
         binding.btnNext.setOnClickListener {
             viewModel.stepUp()
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this){
+            viewModel.stepDown()
         }
     }
 
