@@ -76,7 +76,6 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding, SignUpViewModel>(
             override fun afterTextChanged(editable: Editable?) {
                 val phoneNumber = editable.toString()
                 viewModel.updatePhoneNumber(phoneNumber)
-                Log.d("PhoneFrag value", viewModel.phoneNumber.value)
                 if (phoneNumber.isEmpty() || isPhoneNumberValid(phoneNumber)) {
                     binding.tilLayout.error = null
                     binding.btnRequest.isActivated = true

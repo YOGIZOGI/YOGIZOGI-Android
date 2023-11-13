@@ -37,10 +37,8 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
     fun getVerifyCode() {
         viewModelScope.launch {
             _codeReqProcess.value = Resource.Loading()
-            Log.d("SignUpViewModel number value", _phoneNumber.value)
             authRepository.getVerifyCode(_phoneNumber.value).collect {
                 _codeReqProcess.value = it
-                Log.d("InitialViewModel-codeProcess", _codeReqProcess.value.toString())
             }
         }
     }
