@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_initial">
         <action
             android:id="@+id/action_initialFragment_to_InputNumFragment"
-            app:destination="@id/inputNumFragment" />
+            app:destination="@id/signUpFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/inputNumFragment"
-        android:name="org.shop.yogizogi_android.ui.view.auth.signup.InputNumFragment"
+        android:id="@+id/signUpFragment"
+        android:name="org.shop.yogizogi_android.ui.view.auth.signup.SignUpFragment"
         android:label="InputNumFragment"
-        tools:layout="@layout/fragment_input_num">
+        tools:layout="@layout/fragment_sign_up">
 
     </fragment>
 </navigation>
