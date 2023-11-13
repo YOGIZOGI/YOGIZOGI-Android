@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.view.auth.signup.process.PhoneFragment">
+        tools:context=".ui.view.auth.signup.process.VerifyFragment">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_text_1"
@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
-            android:text="@string/signup_phone_text1"
+            android:text="@string/signup_verify_text1"
             android:textSize="20sp"
             app:fontFamily="@font/nanumsquareneo_variable"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,41 +24,11 @@
             android:id="@+id/tv_text_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/signup_phone_text2"
+            android:text="@string/signup_verify_text2"
             android:textSize="20sp"
             app:fontFamily="@font/nanumsquareneo_variable"
             app:layout_constraintStart_toStartOf="@id/tv_text_1"
             app:layout_constraintTop_toBottomOf="@id/tv_text_1" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_text_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/signup_phone_text3"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:fontFamily="@font/nanumsquareneo_variable"
-            app:layout_constraintStart_toStartOf="@id/tv_text_1"
-            app:layout_constraintTop_toBottomOf="@id/tv_text_2" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_text_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/signup_phone_text4"
-            android:textSize="20sp"
-            app:fontFamily="@font/nanumsquareneo_variable"
-            app:layout_constraintBottom_toBottomOf="@id/tv_text_3"
-            app:layout_constraintStart_toEndOf="@id/tv_text_3"
-            app:layout_constraintTop_toTopOf="@id/tv_text_3" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_signup_input_phonenum"
-            app:layout_constraintBottom_toBottomOf="@id/tv_text_4"
-            app:layout_constraintStart_toEndOf="@id/tv_text_4"
-            app:layout_constraintTop_toTopOf="@id/tv_text_1" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_layout"
@@ -67,13 +37,11 @@
             android:layout_marginStart="47dp"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="47dp"
-            android:hint="@string/signup_Phone_ex"
-            app:counterEnabled="true"
-            app:counterMaxLength="11"
+            android:hint="@string/verify_text"
             app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_text_4">
+            app:layout_constraintTop_toBottomOf="@id/tv_text_2">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/til_et_phonenum"
@@ -83,14 +51,16 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btn_request"
+            android:id="@+id/btn_next"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:background="@color/main_yellow"
-            android:text="@string/signup_request_verify"
-            android:textSize="16sp"
-            app:fontFamily="@font/nanumsquareneo_variable"
             android:gravity="center"
+            android:text="@string/next"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/nanumsquareneo_variable"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
