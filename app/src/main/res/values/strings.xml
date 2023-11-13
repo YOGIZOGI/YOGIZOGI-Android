@@ -40,6 +40,10 @@
     <string name="signup_complete">회원가입 완료!</string>
     <string name="signup_agree">약관동의</string>
 
+    <!-- SignUp Error -->
+    <string name="signup_error_default">전화번호 형식이 맞지 않습니다.</string>
+    <string name="signup_error_button">전화번호를 확인해주세요.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
