@@ -27,7 +27,13 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding, SignUpViewModel>(
 
     private fun sendRequest() {
         binding.btnRequest.setOnClickListener {
-            if (it.isActivated) {
+            if (viewModel.phoneNumber.value.isEmpty()) {
+                Toast.makeText(
+                    requireContext(),
+                    resources.getString(R.string.signup_error_button),
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else if (it.isActivated) {
                 viewModel.getVerifyCode()
             } else {
                 Toast.makeText(
@@ -60,6 +66,10 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding, SignUpViewModel>(
                     is Resource.Error -> {
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT)
                             .show()
+                        /**
+                         * 임시 코드(인증번호 오지 않아도 다음 화면으로 이동)
+                         */
+                        viewModel.stepUp()
                     }
                 }
             }
@@ -87,7 +97,7 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding, SignUpViewModel>(
     }
 
     private fun isPhoneNumberValid(phoneNumber: String): Boolean {
-        val phoneRegex = """^\d{11}$""".toRegex()
+        val phoneRegex = """^010\d{8}${'$'}""".toRegex()
         return phoneRegex.matches(phoneNumber)
     }
 

@@ -13,16 +13,19 @@ class AgreeFragment : BaseFragment<FragmentAgreeBinding, SignUpViewModel>(
     R.layout.fragment_agree
 ) {
     override fun initView() {
-        binding.btnSignup.setOnClickListener {
-            viewModel.stepUp()
-        }
-
-        requireActivity().onBackPressedDispatcher.addCallback(this){
-            viewModel.stepDown()
-        }
+//        binding.btnSignup.setOnClickListener {
+//            viewModel.stepUp()
+//        }
+        initBackBtn()
     }
 
     override fun initAfterBinding() {
 
+    }
+
+    private fun initBackBtn(){
+        requireActivity().onBackPressedDispatcher.addCallback(this){
+            viewModel.stepDown()
+        }
     }
 }

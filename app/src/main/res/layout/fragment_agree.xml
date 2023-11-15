@@ -8,6 +8,174 @@
         android:layout_height="match_parent"
         tools:context=".ui.view.auth.signup.process.AgreeFragment">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:text="@string/signup_agree_text"
+            android:textColor="@color/main_background"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_all"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="-2dp"
+            android:layout_marginTop="27dp"
+            android:button="@null"
+            android:drawableStart="@drawable/drawable_check_all"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/tv_text_1"
+            app:layout_constraintTop_toBottomOf="@id/tv_text_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_agree_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:text="@string/signup_agree_all"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintBottom_toBottomOf="@id/cb_all"
+            app:layout_constraintStart_toEndOf="@id/cb_all"
+            app:layout_constraintTop_toTopOf="@id/cb_all" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="38dp"
+            android:background="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/cb_all"
+            app:layout_constraintTop_toBottomOf="@id/cb_all" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_agree_personal"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="15dp"
+            android:button="@null"
+            android:drawableStart="@drawable/drawable_check"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/cb_all"
+            app:layout_constraintTop_toBottomOf="@id/view1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_agree_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/signup_agree_personal"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree_personal"
+            app:layout_constraintStart_toEndOf="@id/cb_agree_personal"
+            app:layout_constraintTop_toTopOf="@id/cb_agree_personal" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_personal_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:src="@drawable/ic_arrow_bottom"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree_personal"
+            app:layout_constraintEnd_toEndOf="@id/view1"
+            app:layout_constraintTop_toTopOf="@id/cb_agree_personal" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_agree_location"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="15dp"
+            android:button="@null"
+            android:drawableStart="@drawable/drawable_check"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/cb_all"
+            app:layout_constraintTop_toBottomOf="@id/cb_agree_personal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_agree_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/signup_agree_location"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree_location"
+            app:layout_constraintStart_toEndOf="@id/cb_agree_location"
+            app:layout_constraintTop_toTopOf="@id/cb_agree_location" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_location_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:src="@drawable/ic_arrow_bottom"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree_location"
+            app:layout_constraintEnd_toEndOf="@id/view1"
+            app:layout_constraintTop_toTopOf="@id/cb_agree_location" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="@id/view1"
+            app:layout_constraintStart_toStartOf="@id/view1"
+            app:layout_constraintTop_toBottomOf="@id/cb_agree_location" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_agree_marketing"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="15dp"
+            android:button="@null"
+            android:drawableStart="@drawable/drawable_check"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/cb_all"
+            app:layout_constraintTop_toBottomOf="@id/view2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_agree_marketing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/signup_agree_marketing"
+            android:textColor="@color/login_app_description"
+            android:textSize="14sp"
+            app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree_marketing"
+            app:layout_constraintStart_toEndOf="@id/cb_agree_marketing"
+            app:layout_constraintTop_toTopOf="@id/cb_agree_marketing" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_marketing_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:src="@drawable/ic_arrow_bottom"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree_marketing"
+            app:layout_constraintEnd_toEndOf="@id/view2"
+            app:layout_constraintTop_toTopOf="@id/cb_agree_marketing" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btn_signup"

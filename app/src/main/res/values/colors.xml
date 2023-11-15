@@ -6,4 +6,5 @@
     <color name="login_app_description">#9A8483</color>
     <color name="login_signup">#E9E9E9</color>
     <color name="main_yellow">#FFD83A</color>
+    <color name="light_gray">#DBDBDB</color>
 </resources>
