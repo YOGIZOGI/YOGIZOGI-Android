@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(private val authRemoteData: AuthRemoteData) :
     AuthRepository {
-
     override suspend fun getVerifyCode(phoneNumber: String): Flow<Resource<VerifyCodeSendResDTO>> {
         return flow {
             emit(authRemoteData.getVerifyCode(phoneNumber))

@@ -2,6 +2,8 @@ package org.shop.yogizogi_android.ui.view.auth.signup
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -15,6 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(private val authRepository: AuthRepository) :
     BaseViewModel() {
+    private val coroutineIOScope = CoroutineScope(Dispatchers.IO)
+
     private val _signUpStep = MutableStateFlow<Int>(0)
     val signUpStep = _signUpStep.asStateFlow()
 
@@ -39,8 +43,10 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
     fun getVerifyCode() {
         viewModelScope.launch {
             _codeReqProcess.value = Resource.Loading()
-            authRepository.getVerifyCode(_phoneNumber.value).collect {
-                _codeReqProcess.value = it
+            coroutineIOScope.launch {
+                authRepository.getVerifyCode(_phoneNumber.value).collect {
+                    _codeReqProcess.value = it
+                }
             }
         }
     }
@@ -52,8 +58,10 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
     fun checkVerifyCode() {
         viewModelScope.launch {
             _codeCheckProcess.value = Resource.Loading()
-            authRepository.checkVerifyCode(_phoneNumber.value, _codeNumber.value).collect {
-                _codeCheckProcess.value = it
+            coroutineIOScope.launch {
+                authRepository.checkVerifyCode(_phoneNumber.value, _codeNumber.value).collect {
+                    _codeCheckProcess.value = it
+                }
             }
         }
     }

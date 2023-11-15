@@ -191,5 +191,29 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="cb_all,tv_agree_all" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="cb_agree_personal,tv_agree_personal" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="cb_agree_location,tv_agree_location" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_marketing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="cb_agree_marketing,tv_agree_marketing" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
