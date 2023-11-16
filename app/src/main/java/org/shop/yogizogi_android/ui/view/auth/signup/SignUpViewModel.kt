@@ -6,18 +6,28 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.data.Resource
+import org.shop.yogizogi_android.data.model.remote.request.SignUpReqDTO
+import org.shop.yogizogi_android.data.model.remote.response.SignUpResDTO
 import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeCheckResDTO
 import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeSendResDTO
 import org.shop.yogizogi_android.repository.AuthRepository
+import org.shop.yogizogi_android.repository.SignUpRepository
 import org.shop.yogizogi_android.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(private val authRepository: AuthRepository) :
+class SignUpViewModel @Inject constructor(
+    private val authRepository: AuthRepository,
+    private val signUpRepository: SignUpRepository
+) :
     BaseViewModel() {
     private val coroutineIOScope = CoroutineScope(Dispatchers.IO)
+
+    private val _signUpInfoPhone = MutableStateFlow<String>("")
+    val signUpInfoPhone = _signUpInfoPhone.asStateFlow()
 
     private val _signUpStep = MutableStateFlow<Int>(0)
     val signUpStep = _signUpStep.asStateFlow()
@@ -35,6 +45,15 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
     private val _codeCheckProcess =
         MutableStateFlow<Resource<VerifyCodeCheckResDTO>>(Resource.Loading())
     val codeCheckProcess = _codeCheckProcess.asStateFlow()
+
+    private val _password = MutableStateFlow<String>("")
+    val password = _password.asStateFlow()
+
+    private val _passwordCheck = MutableStateFlow<String>("")
+    val passwordCheck = _passwordCheck.asStateFlow()
+
+    private val _signUpProcess = MutableStateFlow<Resource<SignUpResDTO>>(Resource.Loading())
+    val signUpProcess = _signUpProcess.asStateFlow()
 
     fun updatePhoneNumber(phoneNumber: String) {
         _phoneNumber.value = phoneNumber
@@ -61,6 +80,27 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
             coroutineIOScope.launch {
                 authRepository.checkVerifyCode(_phoneNumber.value, _codeNumber.value).collect {
                     _codeCheckProcess.value = it
+                }
+            }
+            _signUpInfoPhone.value = _phoneNumber.value
+        }
+    }
+
+    fun updatePassword(password: String) {
+        _password.value = password
+    }
+
+    fun updatePasswordCheck(passwordCheck: String) {
+        _passwordCheck.value = passwordCheck
+    }
+
+    fun signUp() {
+        viewModelScope.launch {
+            val signUpInfo = SignUpReqDTO(_signUpInfoPhone.value, _passwordCheck.value)
+            _signUpProcess.value = Resource.Loading()
+            coroutineIOScope.launch {
+                signUpRepository.postSignUp(signUpInfo).collect {
+                    _signUpProcess.value = it
                 }
             }
         }

@@ -48,13 +48,12 @@ class AgreeFragment : BaseFragment<FragmentAgreeBinding, SignUpViewModel>(
                 }
             }
         }
-
-        binding.btnSignup.isActivated =
-            binding.cbAgreePersonal.isChecked && binding.cbAgreeLocation.isChecked
     }
 
     private fun setNextBtn() {
         binding.btnSignup.setOnClickListener {
+            binding.btnSignup.isActivated =
+                binding.cbAgreePersonal.isChecked && binding.cbAgreeLocation.isChecked
             if (it.isActivated) {
                 viewModel.stepUp()
             } else {

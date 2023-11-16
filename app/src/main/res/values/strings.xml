@@ -47,13 +47,15 @@
     <string name="signup_password_text1">사용하실 비밀번호</string>
     <string name="signup_password_text2">를 입력해주세요</string>
     <string name="signup_password_helper">조건: 알파벳 7자 이상, 특수문자 포함</string>
-    <string name="signup_password_check_text1">한번 더</string>
+    <string name="signup_password_check_text1">한번 더&#160;</string>
     <string name="signup_password_check_text2">를 입력해주세요</string>
 
     <!-- SignUp Error -->
     <string name="signup_error_default">전화번호 형식이 맞지 않습니다.</string>
     <string name="signup_error_button">전화번호를 확인해주세요.</string>
     <string name="signup_error_code">인증번호를 확인해주세요.</string>
+    <string name="signup_error_password">비밀번호를 확인해주세요</string>
+    <string name="signup_error_password_check">비밀번호가 동일하지 않습니다.</string>
     <string name="signup_error_agree">필수 동의 사항을 모두 체크해주세요.</string>
 
     <!-- TODO: Remove or change this placeholder text -->

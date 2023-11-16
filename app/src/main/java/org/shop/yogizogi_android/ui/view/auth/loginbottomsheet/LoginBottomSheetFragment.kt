@@ -27,6 +27,7 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        isCancelable = false
         initBackBtn()
 
         binding.tvSignup.setOnClickListener {

@@ -10,11 +10,6 @@ class SignUpRemoteData @Inject constructor(private val signUpService: SignUpServ
     SignUpRemoteDataSource {
 
     override suspend fun postSignUp(body: SignUpReqDTO): Resource<SignUpResDTO> {
-        val response = signUpService.postSignUp(body)
-        return if (response.isSuccessful) {
-            Resource.Success(response.body()!!)
-        } else {
-            Resource.Error(response.message(), null)
-        }
+        return processCall { signUpService.postSignUp(body) }
     }
 }
