@@ -21,6 +21,7 @@
     <string name="login_save">로그인정보 저장하기</string>
     <string name="login_do">로그인 하기</string>
     <string name="signup">회원가입</string>
+    <string name="login_complete">로그인 완료!</string>
 
     <!-- SignUp -->
     <string name="signup_verify_text">본인인증</string>
