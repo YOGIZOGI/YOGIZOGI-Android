@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -42,9 +43,9 @@ class PasswordCheckFragment : BaseFragment<FragmentPasswordCheckBinding, SignUpV
                             resources.getString(R.string.signup_complete),
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        startActivity(intent)
-                        requireActivity().finish()
+                        val parentFragment = parentFragment
+                        parentFragment?.findNavController()
+                            ?.navigate(R.id.action_signUpFragment_to_initialFragment)
                     }
 
                     is Resource.Error -> {

@@ -11,7 +11,9 @@ class ProfilePreferFragment : BaseFragment<FragmentProfilePreferBinding, Profile
     R.layout.fragment_profile_prefer
 ) {
     override fun initView() {
-
+//        val intent = Intent(requireContext(), MainActivity::class.java)
+//        startActivity(intent)
+//        requireActivity().finish()
     }
 
     override fun initAfterBinding() {
