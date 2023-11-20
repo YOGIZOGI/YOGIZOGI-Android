@@ -95,7 +95,7 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
     private fun navigateToInputNumFragment() {
         val parentFragment = parentFragment
         parentFragment?.findNavController()
-            ?.navigate(R.id.action_initialFragment_to_InputNumFragment)
+            ?.navigate(R.id.action_initialFragment_to_inputNumFragment)
     }
 
     private fun initBackBtn() {
