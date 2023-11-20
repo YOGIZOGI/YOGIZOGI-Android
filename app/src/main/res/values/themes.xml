@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.YOGIZOGIAndroid" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/main_background</item>
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogTheme</item>
     </style>
 
     <style name="Theme.YOGIZOGIAndroid" parent="Base.Theme.YOGIZOGIAndroid" />
@@ -11,5 +12,14 @@
         <item name="windowSplashScreenBackground">@color/main_background</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="postSplashScreenTheme">@style/Base.Theme.YOGIZOGIAndroid</item>
+    </style>
+
+    <!-- Bottom sheet dialog Style -->
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomRoundedBackgroundBottomSheet</item>
+    </style>
+
+    <style name="CustomRoundedBackgroundBottomSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/drawable_bottomsheet</item>
     </style>
 </resources>
