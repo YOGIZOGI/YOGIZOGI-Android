@@ -14,10 +14,6 @@
         <action
             android:id="@+id/action_initialFragment_to_inputNumFragment"
             app:destination="@id/signUpFragment" />
-
-        <action
-            android:id="@+id/action_initialFragment_to_profileNicknameFragment"
-            app:destination="@id/profileNicknameFragment" />
     </fragment>
 
     <fragment
@@ -31,46 +27,5 @@
             app:destination="@id/initialFragment"
             app:popUpTo="@id/initialFragment"
             app:popUpToInclusive="true" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/profileNicknameFragment"
-        android:name="org.shop.yogizogi_android.ui.view.auth.profile.ProfileNicknameFragment"
-        android:label="ProfileNicknameFragment"
-        tools:layout="@layout/fragment_profile_nickname">
-
-        <action
-            android:id="@+id/action_profileNickNameFragment_to_profileIntroFragment"
-            app:destination="@id/profileIntroFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/profileIntroFragment"
-        android:name="org.shop.yogizogi_android.ui.view.auth.profile.ProfileIntroFragment"
-        android:label="ProfileIntroFragment"
-        tools:layout="@layout/fragment_profile_intro">
-
-        <action
-            android:id="@+id/action_profileIntroFragment_to_profileTasteFragment"
-            app:destination="@id/profileTasteFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/profileTasteFragment"
-        android:name="org.shop.yogizogi_android.ui.view.auth.profile.ProfileTasteFragment"
-        android:label="ProfileTasteFragment"
-        tools:layout="@layout/fragment_profile_taste">
-
-        <action
-            android:id="@+id/action_profileTasteFragment_to_profilePreferFragment"
-            app:destination="@id/profilePreferFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/profilePreferFragment"
-        android:name="org.shop.yogizogi_android.ui.view.auth.profile.ProfilePreferFragment"
-        android:label="ProfilePreferFragment"
-        tools:layout="@layout/fragment_profile_prefer">
-
     </fragment>
 </navigation>

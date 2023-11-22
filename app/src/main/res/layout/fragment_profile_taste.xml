@@ -5,7 +5,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.view.auth.profile.ProfileTasteFragment">
+        android:background="@color/main_background"
+        tools:context=".ui.view.profile.inner.ProfileTasteFragment">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

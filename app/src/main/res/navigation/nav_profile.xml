@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_profile"
+    app:startDestination="@id/profileNicknameFragment">
+
+    <fragment
+        android:id="@+id/profileNicknameFragment"
+        android:name="org.shop.yogizogi_android.ui.view.profile.inner.ProfileNicknameFragment"
+        android:label="ProfileNicknameFragment"
+        tools:layout="@layout/fragment_profile_nickname">
+
+        <action
+            android:id="@+id/action_profileNickNameFragment_to_profileIntroFragment"
+            app:destination="@id/profileIntroFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileIntroFragment"
+        android:name="org.shop.yogizogi_android.ui.view.profile.inner.ProfileIntroFragment"
+        android:label="ProfileIntroFragment"
+        tools:layout="@layout/fragment_profile_intro">
+
+        <action
+            android:id="@+id/action_profileIntroFragment_to_profileTasteFragment"
+            app:destination="@id/profileTasteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileTasteFragment"
+        android:name="org.shop.yogizogi_android.ui.view.profile.inner.ProfileTasteFragment"
+        android:label="ProfileTasteFragment"
+        tools:layout="@layout/fragment_profile_taste">
+
+        <action
+            android:id="@+id/action_profileTasteFragment_to_profilePreferFragment"
+            app:destination="@id/profilePreferFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profilePreferFragment"
+        android:name="org.shop.yogizogi_android.ui.view.profile.inner.ProfilePreferFragment"
+        android:label="ProfilePreferFragment"
+        tools:layout="@layout/fragment_profile_prefer">
+
+    </fragment>
+</navigation>

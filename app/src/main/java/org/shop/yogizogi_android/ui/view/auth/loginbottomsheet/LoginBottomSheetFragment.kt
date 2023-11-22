@@ -21,6 +21,7 @@ import org.shop.yogizogi_android.databinding.FragmentLoginBottomsheetBinding
 import org.shop.yogizogi_android.ui.view.auth.initial.InitialFragment
 import org.shop.yogizogi_android.ui.view.auth.signup.SignUpViewModel
 import org.shop.yogizogi_android.ui.view.main.MainActivity
+import org.shop.yogizogi_android.ui.view.profile.ProfileActivity
 
 @AndroidEntryPoint
 class LoginBottomSheetFragment : BottomSheetDialogFragment() {
@@ -65,9 +66,15 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
                             resources.getString(R.string.login_complete),
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        startActivity(intent)
-                        requireActivity().finish()
+                        if (result.data.firstLogInStatus == "ACTIVE") {
+                            val intent = Intent(requireContext(), MainActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        } else {
+                            val intent = Intent(requireContext(), ProfileActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        }
                     }
 
                     is Resource.Error -> {
@@ -79,6 +86,7 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
+    // TODO ViewModel을 SignUpViewModel에서 InitialViewModel로 Refactoring 하기
     private fun initLoginBtn() {
         binding.btnLogin.setOnClickListener {
             viewModel.login()
