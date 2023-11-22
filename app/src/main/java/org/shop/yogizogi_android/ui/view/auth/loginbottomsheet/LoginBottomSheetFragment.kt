@@ -19,14 +19,14 @@ import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.databinding.FragmentLoginBottomsheetBinding
 import org.shop.yogizogi_android.ui.view.auth.initial.InitialFragment
-import org.shop.yogizogi_android.ui.view.auth.signup.SignUpViewModel
+import org.shop.yogizogi_android.ui.view.auth.initial.InitialViewModel
 import org.shop.yogizogi_android.ui.view.main.MainActivity
 import org.shop.yogizogi_android.ui.view.profile.ProfileActivity
 
 @AndroidEntryPoint
 class LoginBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentLoginBottomsheetBinding
-    private val viewModel: SignUpViewModel by viewModels({ requireParentFragment() })
+    private val viewModel: InitialViewModel by viewModels({ requireParentFragment() })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +86,6 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    // TODO ViewModel을 SignUpViewModel에서 InitialViewModel로 Refactoring 하기
     private fun initLoginBtn() {
         binding.btnLogin.setOnClickListener {
             viewModel.login()
@@ -159,12 +158,6 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
             override fun afterTextChanged(editable: Editable?) {
                 val password = editable.toString()
                 viewModel.updatePassword(password)
-                if (password.isEmpty()) {
-                    binding.layoutPasswordInput.error =
-                        resources.getString(R.string.signup_error_password)
-                } else {
-                    binding.layoutPasswordInput.error = null
-                }
             }
         })
     }

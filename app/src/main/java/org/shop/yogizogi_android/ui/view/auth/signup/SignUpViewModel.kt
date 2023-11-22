@@ -15,15 +15,13 @@ import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeCheckResDT
 import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeSendResDTO
 import org.shop.yogizogi_android.repository.AuthRepository
 import org.shop.yogizogi_android.repository.SignUpRepository
-import org.shop.yogizogi_android.repository.UserPreferenceRepository
 import org.shop.yogizogi_android.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val authRepository: AuthRepository,
-    private val signUpRepository: SignUpRepository,
-    private val userPreferenceRepository: UserPreferenceRepository
+    private val signUpRepository: SignUpRepository
 ) :
     BaseViewModel() {
     private val coroutineIOScope = CoroutineScope(Dispatchers.IO)
@@ -56,25 +54,6 @@ class SignUpViewModel @Inject constructor(
 
     private val _signUpProcess = MutableStateFlow<Resource<SignUpResDTO>>(Resource.Loading())
     val signUpProcess = _signUpProcess.asStateFlow()
-
-    fun login() {
-        viewModelScope.launch {
-            _logInProcess.value = Resource.Loading()
-            coroutineIOScope.launch {
-                authRepository.login(_phoneNumber.value, _password.value).collect {
-                    _logInProcess.value = it
-                }
-            }
-        }
-    }
-
-    fun saveUserData(userData: LogInResDTO) {
-        viewModelScope.launch {
-            coroutineIOScope.launch {
-                userPreferenceRepository.updateUserPreference(userData)
-            }
-        }
-    }
 
     fun updatePhoneNumber(phoneNumber: String) {
         _phoneNumber.value = phoneNumber
