@@ -1,6 +1,5 @@
 package org.shop.yogizogi_android.ui.view.auth.signup.process
 
-import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
@@ -8,14 +7,12 @@ import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.databinding.FragmentPasswordCheckBinding
 import org.shop.yogizogi_android.ui.base.BaseFragment
 import org.shop.yogizogi_android.ui.view.auth.signup.SignUpViewModel
-import org.shop.yogizogi_android.ui.view.main.MainActivity
 
 @AndroidEntryPoint
 class PasswordCheckFragment : BaseFragment<FragmentPasswordCheckBinding, SignUpViewModel>(
@@ -43,9 +40,8 @@ class PasswordCheckFragment : BaseFragment<FragmentPasswordCheckBinding, SignUpV
                             resources.getString(R.string.signup_complete),
                             Toast.LENGTH_SHORT
                         ).show()
-                        val parentFragment = parentFragment
-                        parentFragment?.findNavController()
-                            ?.navigate(R.id.action_signUpFragment_to_initialFragment)
+
+                        navigateToInitialFragment()
                     }
 
                     is Resource.Error -> {
@@ -106,5 +102,10 @@ class PasswordCheckFragment : BaseFragment<FragmentPasswordCheckBinding, SignUpV
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             viewModel.stepDown()
         }
+    }
+
+    private fun navigateToInitialFragment() {
+        val parentFragment = parentFragment
+        parentFragment?.findNavController()?.navigate(R.id.action_signUpFragment_to_initialFragment)
     }
 }

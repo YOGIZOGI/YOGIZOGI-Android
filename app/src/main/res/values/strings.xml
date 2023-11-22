@@ -9,7 +9,7 @@
 
     <!-- Common -->
     <string name="next">다음</string>
-    <string name="jump">건너뛰기</string>
+    <string name="skip">건너뛰기</string>
     <string name="register">등록</string>
 
     <!-- Login -->
@@ -71,6 +71,8 @@
     <string name="taste_sweet">단 맛</string>
     <string name="taste_salty">짠 맛</string>
     <string name="profile_prefer">님,\n어떤 맛을 선호하시나요?</string>
+    <string name="taste_like">선호하는 정도 0~5</string>
+    <string name="taste_well">잘 먹는 정도 0~5</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

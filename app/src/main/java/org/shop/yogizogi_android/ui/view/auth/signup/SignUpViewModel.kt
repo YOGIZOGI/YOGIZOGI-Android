@@ -49,9 +49,6 @@ class SignUpViewModel @Inject constructor(
     private val _passwordCheck = MutableStateFlow<String>("")
     val passwordCheck = _passwordCheck.asStateFlow()
 
-    private val _logInProcess = MutableStateFlow<Resource<LogInResDTO>>(Resource.Loading())
-    val logInProcess = _logInProcess.asStateFlow()
-
     private val _signUpProcess = MutableStateFlow<Resource<SignUpResDTO>>(Resource.Loading())
     val signUpProcess = _signUpProcess.asStateFlow()
 
