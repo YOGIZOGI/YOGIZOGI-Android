@@ -1,5 +1,6 @@
 package org.shop.yogizogi_android.ui.view.auth.signup
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -9,19 +10,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.remote.request.SignUpReqDTO
-import org.shop.yogizogi_android.data.model.remote.response.LogInResDTO
 import org.shop.yogizogi_android.data.model.remote.response.SignUpResDTO
 import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeCheckResDTO
 import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeSendResDTO
 import org.shop.yogizogi_android.repository.AuthRepository
-import org.shop.yogizogi_android.repository.SignUpRepository
 import org.shop.yogizogi_android.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
-    private val signUpRepository: SignUpRepository
+    private val authRepository: AuthRepository
 ) :
     BaseViewModel() {
     private val coroutineIOScope = CoroutineScope(Dispatchers.IO)
@@ -92,10 +90,11 @@ class SignUpViewModel @Inject constructor(
 
     fun signUp() {
         viewModelScope.launch {
+            Log.d("회원가입 정보","${_phoneNumber.value}, ${_password.value}, ${_passwordCheck.value}")
             val signUpInfo = SignUpReqDTO(_phoneNumber.value, _passwordCheck.value)
             _signUpProcess.value = Resource.Loading()
             coroutineIOScope.launch {
-                signUpRepository.postSignUp(signUpInfo).collect {
+                authRepository.postSignUp(signUpInfo).collect {
                     _signUpProcess.value = it
                 }
             }
