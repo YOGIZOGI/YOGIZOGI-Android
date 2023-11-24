@@ -5,6 +5,7 @@ import org.shop.yogizogi_android.data.api.AuthService
 import org.shop.yogizogi_android.data.api.SignUpService
 import org.shop.yogizogi_android.data.model.remote.request.LogInReqDTO
 import org.shop.yogizogi_android.data.model.remote.request.SignUpReqDTO
+import org.shop.yogizogi_android.data.model.remote.response.DupCheckResDTO
 import org.shop.yogizogi_android.data.model.remote.response.LogInResDTO
 import org.shop.yogizogi_android.data.model.remote.response.SignUpResDTO
 import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeCheckResDTO
@@ -33,5 +34,9 @@ class AuthRemoteData @Inject constructor(
 
     override suspend fun postSignUp(body: SignUpReqDTO): Resource<SignUpResDTO> {
         return processCall { signUpService.postSignUp(body) }
+    }
+
+    override suspend fun getNicknameDupCheck(nickname: String): Resource<DupCheckResDTO> {
+        return processCall { signUpService.getNicknameDupCheck(nickname) }
     }
 }

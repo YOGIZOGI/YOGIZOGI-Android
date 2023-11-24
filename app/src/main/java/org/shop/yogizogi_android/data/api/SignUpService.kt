@@ -14,6 +14,6 @@ interface SignUpService {
     @POST("/api/sign-up")
     suspend fun postSignUp(@Body signUpReq: SignUpReqDTO): Response<CommonSuccessRes<SignUpResDTO>>
 
-    @GET("/api/sign-up/check-duplication_nickname")
+    @GET("/api/sign-up/check-duplication-nickname")
     suspend fun getNicknameDupCheck(@Query("nickname") nickname: String): Response<CommonSuccessRes<DupCheckResDTO>>
 }
