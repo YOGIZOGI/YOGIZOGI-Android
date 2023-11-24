@@ -19,7 +19,7 @@ suspend fun <T> processCall(call: suspend () -> Response<CommonSuccessRes<T>>): 
     } else {
         Log.d("processCall - FailRes", response.toString())
         val commonFailRes = response.errorBody()?.let {
-            Gson().fromJson(it.toString(), CommonFailRes::class.java)
+            Gson().fromJson(it.string(), CommonFailRes::class.java)
         }
         val errorMessage = commonFailRes?.message ?: "Server error"
         Resource.Error(errorMessage, null)
