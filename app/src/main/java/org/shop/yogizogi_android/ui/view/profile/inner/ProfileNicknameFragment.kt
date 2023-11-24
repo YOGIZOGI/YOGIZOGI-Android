@@ -60,14 +60,14 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
                         if (result.data.status == ExistState.EXIST.toString()) {
                             Toast.makeText(
                                 requireContext(),
-                                "이미 존재",
+                                resources.getString(R.string.nickname_exist),
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
                             withContext(Dispatchers.Main) {
                                 Toast.makeText(
                                     requireContext(),
-                                    "가입 가능",
+                                    resources.getString(R.string.nickname_not_exist),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
@@ -85,7 +85,7 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
     }
 
     private fun navigateToProfileIntroFragment() {
-        findNavController().navigate(R.id.action_profileNickNameFragment_to_profileIntroFragment)
+        findNavController().navigate(R.id.action_profileNicknameFragment_to_profileIntroFragment)
     }
 
     override fun onDestroyView() {
