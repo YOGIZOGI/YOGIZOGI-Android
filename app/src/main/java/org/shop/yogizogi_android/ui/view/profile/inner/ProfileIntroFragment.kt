@@ -26,3 +26,9 @@ class ProfileIntroFragment : BaseFragment<FragmentProfileIntroBinding, ProfileVi
 
     }
 }
+
+/**
+ * TODO
+ * - 사용자 한 줄 설명 서버와 정해지면 나머지 서버 연결 작업 하기
+ * - Taste도 서버와 협의 후 작업하기
+ */
