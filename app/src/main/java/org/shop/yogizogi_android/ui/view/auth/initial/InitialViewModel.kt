@@ -1,5 +1,6 @@
 package org.shop.yogizogi_android.ui.view.auth.initial
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -33,14 +34,15 @@ class InitialViewModel @Inject constructor(
 
     fun login() {
         viewModelScope.launch {
+            Log.d("로그인 정보","${_phoneNumber.value}, ${_password.value}")
             _logInProcess.value = Resource.Loading()
             coroutineIOScope.launch {
-//                authRepository.login(_phoneNumber.value, _password.value).collect {
-//                    _logInProcess.value = it
-//                }
-                authRepository.login("01012345678", "yogi1234!").collect {
+                authRepository.login(_phoneNumber.value, _password.value).collect {
                     _logInProcess.value = it
                 }
+//                authRepository.login("01012345678", "yogi1234!").collect {
+//                    _logInProcess.value = it
+//                }
             }
         }
     }

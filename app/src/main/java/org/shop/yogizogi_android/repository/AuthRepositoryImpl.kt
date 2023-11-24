@@ -7,7 +7,9 @@ import kotlinx.coroutines.flow.flowOn
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.remote.datasource.AuthRemoteData
 import org.shop.yogizogi_android.data.model.remote.request.LogInReqDTO
+import org.shop.yogizogi_android.data.model.remote.request.SignUpReqDTO
 import org.shop.yogizogi_android.data.model.remote.response.LogInResDTO
+import org.shop.yogizogi_android.data.model.remote.response.SignUpResDTO
 import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeCheckResDTO
 import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeSendResDTO
 import javax.inject.Inject
@@ -33,6 +35,12 @@ class AuthRepositoryImpl @Inject constructor(private val authRemoteData: AuthRem
     ): Flow<Resource<VerifyCodeCheckResDTO>> {
         return flow {
             emit(authRemoteData.getVerifyCheck(phoneNumber, code))
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun postSignUp(body: SignUpReqDTO): Flow<Resource<SignUpResDTO>> {
+        return flow {
+            emit(authRemoteData.postSignUp(body))
         }.flowOn(Dispatchers.IO)
     }
 }
