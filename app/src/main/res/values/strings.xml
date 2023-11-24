@@ -72,7 +72,7 @@
     <string name="taste_hot">매운 맛</string>
     <string name="taste_sweet">단 맛</string>
     <string name="taste_salty">짠 맛</string>
-    <string name="profile_prefer">%0$s님,\n어떤 맛을 선호하시나요?</string>
+    <string name="profile_prefer">어떤 맛을 선호하시나요?</string>
     <string name="taste_like">선호하는 정도 0~5</string>
     <string name="taste_well">잘 먹는 정도 0~5</string>
     <string name="nickname_exist">이미 존재하는 닉네임입니다.</string>

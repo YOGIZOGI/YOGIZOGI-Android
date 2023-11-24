@@ -20,6 +20,10 @@ class ProfileIntroFragment : BaseFragment<FragmentProfileIntroBinding, ProfileVi
         binding.btnNext.setOnClickListener {
             findNavController().navigate(R.id.action_profileIntroFragment_to_profileTasteFragment)
         }
+
+        binding.btnSkip.setOnClickListener {
+            findNavController().navigate(R.id.action_profileIntroFragment_to_profileTasteFragment)
+        }
     }
 
     override fun initAfterBinding() {
