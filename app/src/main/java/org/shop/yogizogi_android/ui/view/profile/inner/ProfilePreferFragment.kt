@@ -1,9 +1,12 @@
 package org.shop.yogizogi_android.ui.view.profile.inner
 
+import android.content.Intent
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.databinding.FragmentProfilePreferBinding
 import org.shop.yogizogi_android.ui.base.BaseFragment
+import org.shop.yogizogi_android.ui.view.main.MainActivity
 import org.shop.yogizogi_android.ui.view.profile.ProfileViewModel
 
 @AndroidEntryPoint
@@ -12,9 +15,16 @@ class ProfilePreferFragment : BaseFragment<FragmentProfilePreferBinding, Profile
     R.layout.fragment_profile_prefer
 ) {
     override fun initView() {
-//        val intent = Intent(requireContext(), MainActivity::class.java)
-//        startActivity(intent)
-//        requireActivity().finish()
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.btnNext.setOnClickListener {
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
     }
 
     override fun initAfterBinding() {
