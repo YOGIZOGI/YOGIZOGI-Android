@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_profile_nickname">
 
         <action
-            android:id="@+id/action_profileNickNameFragment_to_profileIntroFragment"
+            android:id="@+id/action_profileNicknameFragment_to_profileIntroFragment"
             app:destination="@id/profileIntroFragment" />
     </fragment>
 

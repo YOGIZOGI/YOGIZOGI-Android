@@ -27,6 +27,7 @@
     <string name="login_do">로그인 하기</string>
     <string name="signup">회원가입</string>
     <string name="login_complete">로그인 완료!</string>
+    <string name="login_empty">전화번호 혹은 비밀번호를 확인해주세요</string>
 
     <!-- SignUp -->
     <string name="signup_verify_text">본인인증</string>
@@ -74,6 +75,9 @@
     <string name="profile_prefer">%0$s님,\n어떤 맛을 선호하시나요?</string>
     <string name="taste_like">선호하는 정도 0~5</string>
     <string name="taste_well">잘 먹는 정도 0~5</string>
+    <string name="nickname_exist">이미 존재하는 닉네임입니다.</string>
+    <string name="nickname_not_exist">사용가능한 닉네임입니다.</string>
+    <string name="nickname_empty">닉네임을 입력해주세요.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

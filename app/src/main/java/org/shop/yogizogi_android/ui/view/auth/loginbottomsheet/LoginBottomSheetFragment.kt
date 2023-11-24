@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -23,6 +22,7 @@ import org.shop.yogizogi_android.ui.view.auth.initial.InitialFragment
 import org.shop.yogizogi_android.ui.view.auth.initial.InitialViewModel
 import org.shop.yogizogi_android.ui.view.main.MainActivity
 import org.shop.yogizogi_android.ui.view.profile.ProfileActivity
+import org.shop.yogizogi_android.utils.ActiveState
 import org.shop.yogizogi_android.utils.toGone
 import org.shop.yogizogi_android.utils.toVisible
 
@@ -49,7 +49,6 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         isCancelable = false
-        binding.lottieLoading.toGone()
         initBackBtn()
         initLoginBtn()
         initSignupBtn()
@@ -62,20 +61,16 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.logInProcess.collect { result ->
                 when (result) {
-                    is Resource.Loading -> {
-                        binding.lottieLoading.toVisible()
-                        binding.lottieLoading.playAnimation()
-                    }
+                    is Resource.Loading -> {}
+
                     is Resource.Success -> {
-                        binding.lottieLoading.pauseAnimation()
-                        binding.lottieLoading.toGone()
                         viewModel.saveUserData(result.data)
                         Toast.makeText(
                             requireContext(),
                             resources.getString(R.string.login_complete),
                             Toast.LENGTH_SHORT
                         ).show()
-                        if (result.data.firstLogInStatus == "ACTIVE") {
+                        if (result.data.firstLogInStatus == ActiveState.ACTIVE.toString()) {
                             val intent = Intent(requireContext(), MainActivity::class.java)
                             startActivity(intent)
                             requireActivity().finish()
@@ -87,8 +82,6 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
                     }
 
                     is Resource.Error -> {
-                        binding.lottieLoading.pauseAnimation()
-                        binding.lottieLoading.toGone()
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT)
                             .show()
                     }

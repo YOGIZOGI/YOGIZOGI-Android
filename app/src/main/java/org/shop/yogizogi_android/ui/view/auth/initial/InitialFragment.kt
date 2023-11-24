@@ -35,7 +35,6 @@ class InitialFragment : BaseFragment<FragmentInitialBinding, InitialViewModel>(
             groupLoginOptions.toVisible()
             groupDefaultBackgroundImage.toVisible()
             ivLoginLogo.toInvisible()
-            lottieLoading.toInvisible()
         }
     }
 }
