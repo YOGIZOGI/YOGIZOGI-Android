@@ -35,7 +35,10 @@ class InitialViewModel @Inject constructor(
         viewModelScope.launch {
             _logInProcess.value = Resource.Loading()
             coroutineIOScope.launch {
-                authRepository.login(_phoneNumber.value, _password.value).collect {
+//                authRepository.login(_phoneNumber.value, _password.value).collect {
+//                    _logInProcess.value = it
+//                }
+                authRepository.login("01012345678", "yogi1234!").collect {
                     _logInProcess.value = it
                 }
             }

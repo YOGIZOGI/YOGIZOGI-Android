@@ -8,4 +8,5 @@
     <color name="main_yellow">#FFD83A</color>
     <color name="light_gray">#DBDBDB</color>
     <color name="like_or_well">#7A7A7A</color>
+    <color name="hot_like">#FF6D7F</color>
 </resources>

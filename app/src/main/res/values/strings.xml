@@ -66,11 +66,12 @@
     <!-- Profile -->
     <string name="profile_nickname">환영합니다!\n사용하실 닉네임을 알려주세요</string>
     <string name="profile_intro">자신을 표현하는\n한줄소개를 작성해주세요</string>
-    <string name="profile_taste">님,\n어떤 입맛인지 알려주세요</string>
+    <string name="profile_taste1">님,</string>
+    <string name="profile_taste2">어떤 입맛인지 알려주세요</string>
     <string name="taste_hot">매운 맛</string>
     <string name="taste_sweet">단 맛</string>
     <string name="taste_salty">짠 맛</string>
-    <string name="profile_prefer">님,\n어떤 맛을 선호하시나요?</string>
+    <string name="profile_prefer">%0$s님,\n어떤 맛을 선호하시나요?</string>
     <string name="taste_like">선호하는 정도 0~5</string>
     <string name="taste_well">잘 먹는 정도 0~5</string>
 

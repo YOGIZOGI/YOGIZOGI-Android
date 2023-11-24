@@ -5,5 +5,6 @@ import org.shop.yogizogi_android.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor():BaseViewModel() {
+class ProfileViewModel @Inject constructor() : BaseViewModel() {
+
 }

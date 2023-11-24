@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="slider_hot" parent="@style/Widget.MaterialComponents.Slider">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.SliderHot</item>
+    </style>
 
+    <style name="ThemeOverlay.SliderHot" parent="">
+        <!-- change the line color -->
+        <item name="colorPrimary">#FF324B</item>
+        <item name="colorSecondary">#FF6D7F</item>
+    </style>
+
+    <style name="slider_sweet" parent="@style/Widget.MaterialComponents.Slider">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.SliderSweet</item>
+    </style>
+
+    <style name="ThemeOverlay.SliderSweet" parent="">
+        <!-- change the line color -->
+        <item name="colorPrimary">#FFCE00</item>
+        <item name="colorSecondary">#DCB40F</item>
+    </style>
+
+    <style name="slider_salty" parent="@style/Widget.MaterialComponents.Slider">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.SliderSalty</item>
+    </style>
+
+    <style name="ThemeOverlay.SliderSalty" parent="">
+        <!-- change the line color -->
+        <item name="colorPrimary">#00D8DF</item>
+        <item name="colorSecondary">#3AFCE5</item>
+    </style>
 </resources>
