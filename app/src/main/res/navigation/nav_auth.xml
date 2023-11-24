@@ -10,8 +10,9 @@
         android:name="org.shop.yogizogi_android.ui.view.auth.initial.InitialFragment"
         android:label="InitialFragment"
         tools:layout="@layout/fragment_initial">
+
         <action
-            android:id="@+id/action_initialFragment_to_InputNumFragment"
+            android:id="@+id/action_initialFragment_to_inputNumFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
 
@@ -21,5 +22,10 @@
         android:label="InputNumFragment"
         tools:layout="@layout/fragment_sign_up">
 
+        <action
+            android:id="@+id/action_signUpFragment_to_initialFragment"
+            app:destination="@id/initialFragment"
+            app:popUpTo="@id/initialFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

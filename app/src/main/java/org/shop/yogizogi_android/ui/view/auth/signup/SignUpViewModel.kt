@@ -1,12 +1,12 @@
 package org.shop.yogizogi_android.ui.view.auth.signup
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.remote.request.SignUpReqDTO
@@ -14,20 +14,15 @@ import org.shop.yogizogi_android.data.model.remote.response.SignUpResDTO
 import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeCheckResDTO
 import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeSendResDTO
 import org.shop.yogizogi_android.repository.AuthRepository
-import org.shop.yogizogi_android.repository.SignUpRepository
 import org.shop.yogizogi_android.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
-    private val signUpRepository: SignUpRepository
+    private val authRepository: AuthRepository
 ) :
     BaseViewModel() {
     private val coroutineIOScope = CoroutineScope(Dispatchers.IO)
-
-    private val _signUpInfoPhone = MutableStateFlow<String>("")
-    val signUpInfoPhone = _signUpInfoPhone.asStateFlow()
 
     private val _signUpStep = MutableStateFlow<Int>(0)
     val signUpStep = _signUpStep.asStateFlow()
@@ -82,7 +77,6 @@ class SignUpViewModel @Inject constructor(
                     _codeCheckProcess.value = it
                 }
             }
-            _signUpInfoPhone.value = _phoneNumber.value
         }
     }
 
@@ -96,10 +90,11 @@ class SignUpViewModel @Inject constructor(
 
     fun signUp() {
         viewModelScope.launch {
-            val signUpInfo = SignUpReqDTO(_signUpInfoPhone.value, _passwordCheck.value)
+            Log.d("회원가입 정보","${_phoneNumber.value}, ${_password.value}, ${_passwordCheck.value}")
+            val signUpInfo = SignUpReqDTO(_phoneNumber.value, _passwordCheck.value)
             _signUpProcess.value = Resource.Loading()
             coroutineIOScope.launch {
-                signUpRepository.postSignUp(signUpInfo).collect {
+                authRepository.postSignUp(signUpInfo).collect {
                     _signUpProcess.value = it
                 }
             }

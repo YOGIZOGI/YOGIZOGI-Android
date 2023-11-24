@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="org.shop.yogizogi_android.ui.view.profile.ProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_background"
+        tools:context=".ui.view.profile.inner.ProfileTasteFragment">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="36dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_arrow_left_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_user_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-3dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="46.5dp"
+            android:text="gkgkgk"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintStart_toStartOf="@id/btn_back"
+            app:layout_constraintTop_toBottomOf="@id/btn_back" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_taste1"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintBottom_toBottomOf="@id/tv_user_nickname"
+            app:layout_constraintStart_toEndOf="@id/tv_user_nickname"
+            app:layout_constraintTop_toTopOf="@id/tv_user_nickname" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_text_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="46.5dp"
+            android:text="@string/profile_taste2"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_user_nickname"
+            app:layout_constraintTop_toBottomOf="@id/tv_user_nickname" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_user"
+            android:layout_width="73dp"
+            android:layout_height="73dp"
+            android:layout_marginEnd="37dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="@id/tv_text_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_text_2"
+            app:srcCompat="@drawable/ic_user_default" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="21dp"
+            android:backgroundTint="@color/like_or_well"
+            app:layout_constraintEnd_toEndOf="@id/iv_user"
+            app:layout_constraintTop_toBottomOf="@id/iv_user">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_gravity="top"
+                android:drawableEnd="@drawable/ic_arrow_like"
+                android:gravity="top|center_horizontal"
+                android:paddingTop="5dp"
+                android:text="@string/taste_like"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/light_gray" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_gravity="bottom"
+                android:drawableStart="@drawable/ic_arrow_well"
+                android:gravity="bottom|center_horizontal"
+                android:paddingBottom="5dp"
+                android:text="@string/taste_well"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_text_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="96dp"
+            android:drawableStart="@drawable/ic_hot"
+            android:drawablePadding="4dp"
+            android:text="@string/taste_hot"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/tv_text_2"
+            app:layout_constraintTop_toBottomOf="@id/tv_text_2" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider_hot"
+            style="@style/slider_hot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:stepSize="1"
+            android:valueFrom="0"
+            android:valueTo="5"
+            app:layout_constraintEnd_toEndOf="@id/iv_user"
+            app:layout_constraintStart_toStartOf="@id/tv_text_hot"
+            app:layout_constraintTop_toBottomOf="@id/tv_text_hot"
+            app:thumbColor="@color/white"
+            app:trackColorInactive="@color/light_gray"
+            app:trackHeight="20dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_text_sweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:drawableStart="@drawable/ic_sweet"
+            android:drawablePadding="4dp"
+            android:text="@string/taste_sweet"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/tv_text_hot"
+            app:layout_constraintTop_toBottomOf="@id/tv_text_hot" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider_sweet"
+            style="@style/slider_sweet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:stepSize="1"
+            android:valueFrom="0"
+            android:valueTo="5"
+            app:layout_constraintEnd_toEndOf="@id/iv_user"
+            app:layout_constraintStart_toStartOf="@id/tv_text_sweet"
+            app:layout_constraintTop_toBottomOf="@id/tv_text_sweet"
+            app:thumbColor="@color/white"
+            app:trackColorInactive="@color/light_gray"
+            app:trackHeight="20dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_text_salty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:drawableStart="@drawable/ic_salty"
+            android:drawablePadding="4dp"
+            android:text="@string/taste_salty"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/tv_text_hot"
+            app:layout_constraintTop_toBottomOf="@id/tv_text_sweet" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider_salty"
+            style="@style/slider_salty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:stepSize="1"
+            android:valueFrom="0"
+            android:valueTo="5"
+            app:layout_constraintEnd_toEndOf="@id/iv_user"
+            app:layout_constraintStart_toStartOf="@id/tv_text_salty"
+            app:layout_constraintTop_toBottomOf="@id/tv_text_salty"
+            app:thumbColor="@color/white"
+            app:trackColorInactive="@color/light_gray"
+            app:trackHeight="20dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
