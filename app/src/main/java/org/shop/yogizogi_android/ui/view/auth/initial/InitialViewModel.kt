@@ -28,7 +28,7 @@ class InitialViewModel @Inject constructor(
     private val _password = MutableStateFlow<String>("")
     val password = _password.asStateFlow()
 
-    private val _logInProcess = MutableStateFlow<Resource<LogInResDTO>>(Resource.Loading())
+    private val _logInProcess = MutableStateFlow<Resource<LogInResDTO>?>(null)
     val logInProcess = _logInProcess.asStateFlow()
 
     fun login() {

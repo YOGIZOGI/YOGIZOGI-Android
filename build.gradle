@@ -9,6 +9,7 @@ buildscript {
         gsonVersion = '2.9.0'
         okHttpVersion = '5.0.0-alpha.11'
         dataStoreVersion = '1.0.0'
+        lottieVersion = '6.2.0'
     }
 
     dependencies {
