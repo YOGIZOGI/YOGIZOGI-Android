@@ -13,10 +13,8 @@ import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeSendResDTO
 import javax.inject.Inject
 
 class AuthRemoteData @Inject constructor(
-    private val authService: AuthService,
-    private val signUpService: SignUpService
-) :
-    AuthRemoteDataSource {
+    private val authService: AuthService, private val signUpService: SignUpService
+) : AuthRemoteDataSource {
     override suspend fun postLogin(loginBody: LogInReqDTO): Resource<LogInResDTO> {
         return processCall { authService.postLogin(loginBody) }
     }
@@ -26,8 +24,7 @@ class AuthRemoteData @Inject constructor(
     }
 
     override suspend fun getVerifyCheck(
-        phoneNumber: String,
-        code: String
+        phoneNumber: String, code: String
     ): Resource<VerifyCodeCheckResDTO> {
         return processCall { authService.getCodeCheck(phoneNumber, code) }
     }
@@ -35,7 +32,7 @@ class AuthRemoteData @Inject constructor(
     override suspend fun postSignUp(body: SignUpReqDTO): Resource<SignUpResDTO> {
         return processCall { signUpService.postSignUp(body) }
     }
-
+    
     override suspend fun getNicknameDupCheck(nickname: String): Resource<DupCheckResDTO> {
         return processCall { signUpService.getNicknameDupCheck(nickname) }
     }

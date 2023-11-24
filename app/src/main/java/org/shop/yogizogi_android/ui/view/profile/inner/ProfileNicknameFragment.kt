@@ -37,7 +37,7 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
             if (nickname.isEmpty()) {
                 Toast.makeText(
                     requireContext(),
-                    "비었습니다",
+                    resources.getString(R.string.nickname_empty),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
