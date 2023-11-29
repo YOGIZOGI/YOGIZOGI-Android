@@ -8,9 +8,9 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_mood_item"
-        android:layout_width="160dp"
-        android:layout_height="105dp"
+        android:id="@+id/card_main_feed_item"
+        android:layout_width="105dp"
+        android:layout_height="160dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp">
 
@@ -19,17 +19,13 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_mood"
-                android:layout_width="0dp"
+                android:id="@+id/iv_image"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitCenter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/mood_date" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mood"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -38,7 +34,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="@string/mood_date" />
+                tools:text="@string/feed_filter_kor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

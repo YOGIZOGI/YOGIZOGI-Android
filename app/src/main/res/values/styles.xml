@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="slider_hot" parent="@style/Widget.MaterialComponents.Slider">
         <item name="materialThemeOverlay">@style/ThemeOverlay.SliderHot</item>
     </style>
@@ -28,5 +29,13 @@
         <!-- change the line color -->
         <item name="colorPrimary">#00D8DF</item>
         <item name="colorSecondary">#3AFCE5</item>
+    </style>
+
+    <style name="feed_filter">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

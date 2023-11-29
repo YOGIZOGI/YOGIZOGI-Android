@@ -16,7 +16,7 @@ class MoodAdapter(private val clickListener: MoodItemClick) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemMood) {
             binding.tvMood.text = item.moodTitle
-            binding.cardItem.setOnClickListener {
+            binding.cardMoodItem.setOnClickListener {
                 clickListener.onItemClick(item)
             }
         }
