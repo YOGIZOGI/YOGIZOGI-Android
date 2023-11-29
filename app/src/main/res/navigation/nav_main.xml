@@ -19,6 +19,21 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
 
+        <action
+            android:id="@+id/action_homeFragment_to_moodFragment"
+            app:destination="@id/moodFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/moodFragment"
+        android:name="org.shop.yogizogi_android.ui.view.main.home.mood.MoodFragment"
+        android:label="MoodFragment"
+        tools:layout="@layout/fragment_mood">
+
+        <argument
+            android:name="searchText"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 
     <fragment

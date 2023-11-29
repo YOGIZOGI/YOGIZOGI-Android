@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_space_start">8dp</dimen>
+    <dimen name="item_space_end">8dp</dimen>
+    <dimen name="item_space_top">12dp</dimen>
+    <dimen name="item_space_bottom">12dp</dimen>
+</resources>
