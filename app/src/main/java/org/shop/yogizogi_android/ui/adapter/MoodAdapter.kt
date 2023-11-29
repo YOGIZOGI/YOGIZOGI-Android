@@ -7,14 +7,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.shop.yogizogi_android.data.model.local.ItemMood
 import org.shop.yogizogi_android.databinding.ItemMoodBinding
+import org.shop.yogizogi_android.utils.clicklistener.MoodItemClick
 
-class MoodAdapter :
+class MoodAdapter(private val clickListener: MoodItemClick) :
     ListAdapter<ItemMood, MoodAdapter.MoodViewHolder>(diffUtil) {
 
     inner class MoodViewHolder(private val binding: ItemMoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemMood) {
             binding.tvMood.text = item.moodTitle
+            binding.cardItem.setOnClickListener {
+                clickListener.onItemClick(item)
+            }
         }
     }
 

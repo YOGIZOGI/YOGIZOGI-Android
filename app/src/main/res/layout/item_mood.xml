@@ -8,6 +8,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_item"
         android:layout_width="160dp"
         android:layout_height="105dp"
         app:cardCornerRadius="20dp"

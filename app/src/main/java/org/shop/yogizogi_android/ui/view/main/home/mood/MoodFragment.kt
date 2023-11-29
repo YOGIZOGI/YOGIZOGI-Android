@@ -1,6 +1,7 @@
 package org.shop.yogizogi_android.ui.view.main.home.mood
 
 import android.util.Log
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
@@ -10,13 +11,14 @@ import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.MoodAdapter
 import org.shop.yogizogi_android.ui.base.BaseFragment
 import org.shop.yogizogi_android.ui.view.main.home.HomeViewModel
+import org.shop.yogizogi_android.utils.clicklistener.MoodItemClick
 import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
     HomeViewModel::class.java,
     R.layout.fragment_mood
-) {
+), MoodItemClick {
     private val navArgs: MoodFragmentArgs by navArgs()
     private lateinit var moodAdapter: MoodAdapter
 
@@ -46,7 +48,7 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
     }
 
     private fun initAdapter() {
-        moodAdapter = MoodAdapter()
+        moodAdapter = MoodAdapter(this)
         binding.rvMoodList.adapter = moodAdapter
         binding.rvMoodList.addItemDecoration(
             ItemDecoration(
@@ -57,5 +59,19 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
             )
         )
         moodAdapter.submitList(moodList)
+    }
+
+    override fun onItemClick(item: ItemMood) {
+        navigateToFeedFragment(item.moodTitle)
+    }
+
+    private fun navigateToFeedFragment(moodTitle: String) {
+        val searchText = navArgs.searchText ?: "null"
+        findNavController().navigate(
+            MoodFragmentDirections.actionMoodFragmentToFeedFragment(
+                searchText,
+                moodTitle
+            )
+        )
     }
 }
