@@ -10,6 +10,7 @@ buildscript {
         okHttpVersion = '5.0.0-alpha.11'
         dataStoreVersion = '1.0.0'
         lottieVersion = '6.2.0'
+        readMoreVersion = '1.0.0'
     }
 
     dependencies {

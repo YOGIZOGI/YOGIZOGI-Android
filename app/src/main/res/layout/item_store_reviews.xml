@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_store_review_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_review_user_profile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_user_default" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/nanumsquareneo_variable"
+                android:text="@string/app_name"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/iv_review_user_profile"
+                app:layout_constraintStart_toEndOf="@id/iv_review_user_profile"
+                app:layout_constraintTop_toTopOf="@id/iv_review_user_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_text_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquareneo_variable"
+                android:text="@string/main_review_user_text"
+                app:layout_constraintBottom_toBottomOf="@id/iv_review_user_profile"
+                app:layout_constraintStart_toEndOf="@id/tv_user_name"
+                app:layout_constraintTop_toTopOf="@id/iv_review_user_profile" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_review_user_profile"
+                app:layout_constraintStart_toEndOf="@id/tv_text_user_name"
+                app:layout_constraintTop_toTopOf="@id/iv_review_user_profile"
+                app:srcCompat="@drawable/ic_verified" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_review_user_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_review_user_profile"
+                app:srcCompat="@drawable/drawable_star_isclicked" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_food_images"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_review_user_profile" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_hot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@id/layout_hot"
+                app:layout_constraintStart_toStartOf="@id/layout_hot"
+                app:layout_constraintTop_toBottomOf="@id/vp_food_images"
+                app:srcCompat="@drawable/ic_hot" />
+
+            <include
+                android:id="@+id/layout_hot"
+                layout="@layout/layout_taste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toStartOf="@id/vp_food_images"
+                app:layout_constraintTop_toBottomOf="@id/iv_hot" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_sweet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/iv_hot"
+                app:layout_constraintEnd_toEndOf="@id/layout_sweet"
+                app:layout_constraintStart_toStartOf="@id/layout_sweet"
+                app:layout_constraintTop_toTopOf="@id/iv_hot"
+                app:srcCompat="@drawable/ic_sweet" />
+
+            <include
+                android:id="@+id/layout_sweet"
+                layout="@layout/layout_taste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_hot"
+                app:layout_constraintStart_toEndOf="@id/layout_hot"
+                app:layout_constraintTop_toTopOf="@id/layout_hot" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_salty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/iv_hot"
+                app:layout_constraintEnd_toEndOf="@id/layout_salty"
+                app:layout_constraintStart_toStartOf="@id/layout_salty"
+                app:layout_constraintTop_toTopOf="@id/iv_hot"
+                app:srcCompat="@drawable/ic_salty" />
+
+            <include
+                android:id="@+id/layout_salty"
+                layout="@layout/layout_taste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_hot"
+                app:layout_constraintStart_toEndOf="@id/layout_sweet"
+                app:layout_constraintTop_toTopOf="@id/layout_hot" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_review_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:text="@string/main_review_long_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/vp_food_images"
+                app:layout_constraintStart_toStartOf="@id/vp_food_images"
+                app:layout_constraintTop_toBottomOf="@id/layout_sweet" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

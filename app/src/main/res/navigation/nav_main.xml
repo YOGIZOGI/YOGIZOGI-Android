@@ -67,7 +67,7 @@
 
     <fragment
         android:id="@+id/reviewFragment"
-        android:name="org.shop.yogizogi_android.ui.view.main.review.ReviewFragment"
+        android:name="org.shop.yogizogi_android.ui.view.main.myreview.ReviewFragment"
         android:label="ReviewFragment"
         tools:layout="@layout/fragment_review">
 
