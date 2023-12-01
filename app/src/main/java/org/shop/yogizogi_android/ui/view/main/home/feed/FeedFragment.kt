@@ -1,6 +1,7 @@
 package org.shop.yogizogi_android.ui.view.main.home.feed
 
 import android.util.Log
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
@@ -10,13 +11,14 @@ import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.MainFeedAdapter
 import org.shop.yogizogi_android.ui.base.BaseFragment
 import org.shop.yogizogi_android.ui.view.main.home.HomeViewModel
+import org.shop.yogizogi_android.utils.clicklistener.MainFeedClick
 import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class FeedFragment : BaseFragment<FragmentFeedBinding, HomeViewModel>(
     HomeViewModel::class.java,
     R.layout.fragment_feed
-) {
+), MainFeedClick {
     private val navArgs: FeedFragmentArgs by navArgs()
     private lateinit var feedAdapter: MainFeedAdapter
 
@@ -47,7 +49,7 @@ class FeedFragment : BaseFragment<FragmentFeedBinding, HomeViewModel>(
     }
 
     private fun initAdapter() {
-        feedAdapter = MainFeedAdapter()
+        feedAdapter = MainFeedAdapter(this)
         binding.rvFeedList.adapter = feedAdapter
         binding.rvFeedList.addItemDecoration(
             ItemDecoration(
@@ -58,5 +60,17 @@ class FeedFragment : BaseFragment<FragmentFeedBinding, HomeViewModel>(
             )
         )
         feedAdapter.submitList(mainFeedList)
+    }
+
+    override fun onItemClick(item: MainFeed) {
+        navigateToStoreReviewFragment(item)
+    }
+
+    private fun navigateToStoreReviewFragment(item: MainFeed) {
+        findNavController().navigate(
+            FeedFragmentDirections.actionFeedFragmentToStoreReviewFragment(
+                item
+            )
+        )
     }
 }

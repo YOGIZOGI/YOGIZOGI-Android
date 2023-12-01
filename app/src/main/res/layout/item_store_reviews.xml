@@ -51,22 +51,25 @@
                 app:layout_constraintTop_toTopOf="@id/iv_review_user_profile" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_isverified"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@id/iv_review_user_profile"
                 app:layout_constraintStart_toEndOf="@id/tv_text_user_name"
                 app:layout_constraintTop_toTopOf="@id/iv_review_user_profile"
                 app:srcCompat="@drawable/ic_verified" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_isfavorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                app:srcCompat="@drawable/drawable_star_isclicked"
                 app:layout_constraintBottom_toBottomOf="@id/iv_review_user_profile"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/iv_review_user_profile"
-                app:srcCompat="@drawable/drawable_star_isclicked" />
+                app:layout_constraintTop_toTopOf="@id/iv_review_user_profile" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_food_images"
@@ -136,19 +139,22 @@
                 app:layout_constraintStart_toEndOf="@id/layout_sweet"
                 app:layout_constraintTop_toTopOf="@id/layout_hot" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <kr.co.prnd.readmore.ReadMoreTextView
                 android:id="@+id/tv_review_content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="4dp"
-                android:ellipsize="end"
-                android:maxLines="5"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/nanumsquareneo_variable"
                 android:text="@string/main_review_long_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/vp_food_images"
                 app:layout_constraintStart_toStartOf="@id/vp_food_images"
-                app:layout_constraintTop_toBottomOf="@id/layout_sweet" />
+                app:layout_constraintTop_toBottomOf="@id/layout_sweet"
+                app:readMoreColor="@color/see_more"
+                app:readMoreMaxLine="3"
+                app:readMoreText="@string/read_more" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

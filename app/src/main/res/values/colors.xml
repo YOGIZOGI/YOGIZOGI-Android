@@ -9,4 +9,5 @@
     <color name="light_gray">#DBDBDB</color>
     <color name="like_or_well">#7A7A7A</color>
     <color name="hot_like">#FF6D7F</color>
+    <color name="see_more">#00C2FF</color>
 </resources>

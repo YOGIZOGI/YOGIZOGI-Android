@@ -15,14 +15,15 @@ import org.shop.yogizogi_android.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private val childFragmentList = arrayListOf<Int>(
+    private val childFragmentList = listOf(
         R.id.moodFragment,
         R.id.feedFragment,
+        R.id.storeReviewFragment,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView<ActivityMainBinding?>(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
             .apply {
                 lifecycleOwner = this@MainActivity
             }
