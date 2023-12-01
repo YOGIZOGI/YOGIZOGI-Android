@@ -2,6 +2,7 @@ package org.shop.yogizogi_android.data.model.local
 
 data class StoreReview(
     val nickname: String,
+    val imgList: List<String>,
     val isVerified: Boolean,
     val isFavorite: Boolean,
     val hotWell: Int,

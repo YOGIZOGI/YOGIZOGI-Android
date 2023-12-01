@@ -27,6 +27,7 @@ class StoreReviewAdapter : ListAdapter<StoreReview, StoreReviewAdapter.StoreRevi
                 layoutSalty.tvWell.text = item.saltyWell.toString()
                 layoutSalty.tvPrefer.text = item.saltyPrefer.toString()
                 tvReviewContent.text = item.reviewContent
+                vpFoodImages.adapter = StoreReviewVPAdapter(item.imgList)
             }
         }
     }

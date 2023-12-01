@@ -11,6 +11,7 @@ buildscript {
         dataStoreVersion = '1.0.0'
         lottieVersion = '6.2.0'
         readMoreVersion = '1.0.0'
+        picassoVersion = '2.8'
     }
 
     dependencies {

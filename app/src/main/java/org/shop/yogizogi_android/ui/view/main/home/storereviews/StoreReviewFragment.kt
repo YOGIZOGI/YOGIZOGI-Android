@@ -20,10 +20,19 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
     private val navArgs: StoreReviewFragmentArgs by navArgs()
     private lateinit var storeReviewAdapter: StoreReviewAdapter
 
+    private val imgList by lazy {
+        arrayListOf(
+            "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+            "https://www.google.com/url?sa=i&url=https%3A%2F%2Fblog.naver.com%2Feomji_123%2F220974335217%3FviewType%3Dpc&psig=AOvVaw1bEnhCJWzgONT7ZgMD51tc&ust=1701496066814000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPja8_bE7YIDFQAAAAAdAAAAABAI",
+            "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsoundcloud.com%2Fcosmosound%2Fsz9qmsgteudj&psig=AOvVaw1bEnhCJWzgONT7ZgMD51tc&ust=1701496066814000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPja8_bE7YIDFQAAAAAdAAAAABAR"
+        )
+    }
+
     private val storeReviewList by lazy {
         arrayListOf<StoreReview>(
             StoreReview(
                 "욕죡",
+                imgList,
                 true,
                 true,
                 2,
@@ -36,6 +45,7 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
             ),
             StoreReview(
                 "요오기죠기",
+                imgList,
                 true,
                 false,
                 4,
@@ -48,6 +58,7 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
             ),
             StoreReview(
                 "요기죠오기",
+                imgList,
                 false,
                 false,
                 1,
@@ -60,6 +71,7 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
             ),
             StoreReview(
                 "요기죠기이이",
+                imgList,
                 true,
                 true,
                 3,
@@ -72,6 +84,7 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
             ),
             StoreReview(
                 "욕조욕이",
+                imgList,
                 false,
                 true,
                 3,
