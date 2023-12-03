@@ -1,6 +1,7 @@
 package org.shop.yogizogi_android.ui.view.main.home.storereviews
 
 import android.util.Log
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
@@ -101,7 +102,10 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
     override fun initView() {
         val navArgs = navArgs.storeInfo
         Log.d("StoreReviewFrag-navArgs", navArgs.toString())
+        binding.tvStoreName.text = navArgs?.storeName
         initAdapter()
+        initBackBtn()
+        initInfoBtn()
     }
 
     override fun initAfterBinding() {
@@ -120,5 +124,21 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
             )
         )
         storeReviewAdapter.submitList(storeReviewList)
+    }
+
+    private fun initBackBtn() {
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun initInfoBtn() {
+        binding.btnStoreInfo.setOnClickListener {
+            navigateToStoreInfo()
+        }
+    }
+
+    private fun navigateToStoreInfo() {
+        findNavController().navigate(StoreReviewFragmentDirections.actionStoreReviewFragmentToStoreInfoFragment())
     }
 }

@@ -67,10 +67,22 @@
         android:label="StoreReviewFragment"
         tools:layout="@layout/fragment_store_review">
 
+        <action
+            android:id="@+id/action_storeReviewFragment_to_storeInfoFragment"
+            app:destination="@id/storeInfoFragment" />
+
         <argument
             android:name="storeInfo"
             app:argType="org.shop.yogizogi_android.data.model.local.MainFeed"
             app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/storeInfoFragment"
+        android:name="org.shop.yogizogi_android.ui.view.main.home.storeinfo.StoreInfoFragment"
+        android:label="StoreInfoFragment"
+        tools:layout="@layout/fragment_store_info">
+
     </fragment>
 
     <fragment

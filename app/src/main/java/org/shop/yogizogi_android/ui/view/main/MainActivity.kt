@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         R.id.moodFragment,
         R.id.feedFragment,
         R.id.storeReviewFragment,
+        R.id.storeInfoFragment,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
