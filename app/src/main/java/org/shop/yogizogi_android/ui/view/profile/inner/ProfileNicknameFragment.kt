@@ -20,6 +20,7 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
     ProfileViewModel::class.java,
     R.layout.fragment_profile_nickname
 ) {
+    // TODO ProfileIntroFragment로 넘어갈 때에 사용자의 닉네임 중복확인을 함과 동시에 S3에 객체 등록 요청 보내기
     override fun initView() {
         binding.btnBack.setOnClickListener {
             requireActivity().finish()
@@ -48,11 +49,6 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
 
     private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                launch {
-//
-//                }
-//            }
             viewModel.nicknameDupProcess.collect { result ->
                 when (result) {
                     is Resource.Loading -> {}
@@ -85,7 +81,12 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
     }
 
     private fun navigateToProfileIntroFragment() {
-        findNavController().navigate(R.id.action_profileNicknameFragment_to_profileIntroFragment)
+        val nickname = binding.etUserNickname.text.toString()
+        findNavController().navigate(
+            ProfileNicknameFragmentDirections.actionProfileNicknameFragmentToProfileIntroFragment(
+                nickname
+            )
+        )
     }
 
     override fun onDestroyView() {

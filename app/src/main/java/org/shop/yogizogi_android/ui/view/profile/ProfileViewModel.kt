@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.remote.response.DupCheckResDTO
+import org.shop.yogizogi_android.data.model.remote.response.ProfileCreateResDTO
 import org.shop.yogizogi_android.repository.AuthRepository
 import org.shop.yogizogi_android.ui.base.BaseViewModel
 import javax.inject.Inject
@@ -20,6 +21,10 @@ class ProfileViewModel @Inject constructor(private val authRepository: AuthRepos
 
     private val _nicknameDupProcess = MutableStateFlow<Resource<DupCheckResDTO>>(Resource.Loading())
     val nicknameDupProcess = _nicknameDupProcess.asStateFlow()
+
+    private val _userProfileProcess =
+        MutableStateFlow<Resource<ProfileCreateResDTO>>(Resource.Loading())
+    val userProfileProcess = _userProfileProcess.asStateFlow()
 
     fun nicknameDupCheck(nickname: String) {
         viewModelScope.launch {

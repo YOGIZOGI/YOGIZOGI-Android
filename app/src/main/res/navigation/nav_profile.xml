@@ -25,6 +25,11 @@
         <action
             android:id="@+id/action_profileIntroFragment_to_profileTasteFragment"
             app:destination="@id/profileTasteFragment" />
+
+        <argument
+            android:name="nickname"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 
     <fragment
@@ -36,6 +41,11 @@
         <action
             android:id="@+id/action_profileTasteFragment_to_profilePreferFragment"
             app:destination="@id/profilePreferFragment" />
+
+        <argument
+            android:name="nickname"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 
     <fragment
@@ -44,5 +54,9 @@
         android:label="ProfilePreferFragment"
         tools:layout="@layout/fragment_profile_prefer">
 
+        <argument
+            android:name="nickname"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 </navigation>
