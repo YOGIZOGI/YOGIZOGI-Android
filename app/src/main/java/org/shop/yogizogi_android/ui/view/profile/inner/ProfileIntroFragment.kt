@@ -19,17 +19,21 @@ class ProfileIntroFragment : BaseFragment<FragmentProfileIntroBinding, ProfileVi
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
-        navigateToProfileTasteFrag()
         skip()
-        registUserProfile()
+        createUserProfile()
     }
 
     override fun initAfterBinding() {
 
     }
 
-    private fun registUserProfile() {
+    private fun createUserProfile() {
+        val nickname = navArgs.nickname
+        val userImage = ""
         val userIntro = binding.etUserIntro.text.toString()
+        binding.btnNext.setOnClickListener {
+            viewModel.createUserProfile(nickname, userImage, userIntro)
+        }
     }
 
     private fun skip() {
@@ -43,14 +47,13 @@ class ProfileIntroFragment : BaseFragment<FragmentProfileIntroBinding, ProfileVi
         }
     }
 
+    // TODO btnNext 요청 보내고 성공시 navigate
     private fun navigateToProfileTasteFrag() {
-        binding.btnNext.setOnClickListener {
-            val nickname = navArgs.nickname
-            findNavController().navigate(
-                ProfileIntroFragmentDirections.actionProfileIntroFragmentToProfileTasteFragment(
-                    nickname
-                )
+        val nickname = navArgs.nickname
+        findNavController().navigate(
+            ProfileIntroFragmentDirections.actionProfileIntroFragmentToProfileTasteFragment(
+                nickname
             )
-        }
+        )
     }
 }

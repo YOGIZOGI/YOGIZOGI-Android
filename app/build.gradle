@@ -60,6 +60,9 @@ dependencies {
     // Gson
     implementation("com.squareup.retrofit2:converter-gson:$gsonVersion")
 
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+
     // okHttp
     implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
     implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")

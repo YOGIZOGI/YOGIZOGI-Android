@@ -1,5 +1,6 @@
 package org.shop.yogizogi_android.ui.view.profile.inner
 
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,10 +27,15 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
             requireActivity().finish()
         }
         initNextBtn()
+        setUserImage()
     }
 
     override fun initAfterBinding() {
         observeData()
+    }
+
+    private fun setUserImage() {
+
     }
 
     private fun initNextBtn() {
