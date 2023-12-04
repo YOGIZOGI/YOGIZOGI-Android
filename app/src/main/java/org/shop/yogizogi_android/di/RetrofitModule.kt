@@ -113,12 +113,13 @@ object RetrofitModule {
     @Singleton
     @Auth
     suspend fun provideAuthHeaderInterceptor(userRepository: UserRepository): Interceptor {
-        val accessToken = CoroutineScope(Dispatchers.Main).launch {
+        var accessToken=""
+        CoroutineScope(Dispatchers.Main).launch {
             CoroutineScope(Dispatchers.IO).async {
-                userRepository.getUserData().first().accessToken
+                accessToken = userRepository.getUserData().first().accessToken
             }.await()
         }
-        Log.d("RetrofitModule", accessToken.toString())
+        Log.d("RetrofitModule", accessToken)
 
         return Interceptor { chain ->
 //            val accessToken = runBlocking(Dispatchers.IO) {
@@ -130,7 +131,7 @@ object RetrofitModule {
             val original = chain.request()
             val request = original.newBuilder()
                 .header(CONTENT_TYPE, CONTENT_TYPE_VALUE)
-                .header(ACCESS_TOKEN, accessToken.toString())
+                .header(ACCESS_TOKEN, accessToken)
                 .method(original.method, original.body)
                 .build()
 
