@@ -53,8 +53,11 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding, SignUpViewModel>(
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.codeReqProcess.collect { result ->
                 when (result) {
-                    is Resource.Loading -> {}
+                    is Resource.Loading -> {
+                        playAnimation(binding.lottieLoading)
+                    }
                     is Resource.Success -> {
+                        stopAnimation(binding.lottieLoading)
                         Toast.makeText(
                             requireContext(),
                             result.data.description,
@@ -64,6 +67,7 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding, SignUpViewModel>(
                     }
 
                     is Resource.Error -> {
+                        stopAnimation(binding.lottieLoading)
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT)
                             .show()
                         /**
@@ -71,6 +75,8 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding, SignUpViewModel>(
                          */
 //                        viewModel.stepUp()
                     }
+
+                    null -> {}
                 }
             }
         }

@@ -33,8 +33,11 @@ class PasswordCheckFragment : BaseFragment<FragmentPasswordCheckBinding, SignUpV
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.signUpProcess.collect { result ->
                 when (result) {
-                    is Resource.Loading -> {}
+                    is Resource.Loading -> {
+                        playAnimation(binding.lottieLoading)
+                    }
                     is Resource.Success -> {
+                        stopAnimation(binding.lottieLoading)
                         Toast.makeText(
                             requireContext(),
                             resources.getString(R.string.signup_complete),
@@ -45,9 +48,12 @@ class PasswordCheckFragment : BaseFragment<FragmentPasswordCheckBinding, SignUpV
                     }
 
                     is Resource.Error -> {
+                        stopAnimation(binding.lottieLoading)
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT)
                             .show()
                     }
+
+                    null -> {}
                 }
             }
         }

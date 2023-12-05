@@ -37,12 +37,12 @@ class InitialViewModel @Inject constructor(
             Log.d("로그인 정보","${_phoneNumber.value}, ${_password.value}")
             _logInProcess.value = Resource.Loading()
             coroutineIOScope.launch {
-//                authRepository.login(_phoneNumber.value, _password.value).collect {
-//                    _logInProcess.value = it
-//                }
-                authRepository.login("01012345678", "yogi1234!").collect {
+                authRepository.login(_phoneNumber.value, _password.value).collect {
                     _logInProcess.value = it
                 }
+//                authRepository.login("01012345678", "yogi1234!").collect {
+//                    _logInProcess.value = it
+//                }
             }
         }
     }

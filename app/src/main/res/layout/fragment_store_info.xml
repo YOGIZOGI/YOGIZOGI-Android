@@ -149,6 +149,7 @@
                         app:layout_constraintTop_toBottomOf="@id/rv_store_theme" />
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_loc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="21dp"
@@ -160,9 +161,43 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_store_address"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBaseline_toBaselineOf="@id/ic_loc"
+                        app:layout_constraintStart_toEndOf="@id/ic_loc" />
 
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="21dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ic_time"
+                        app:srcCompat="@drawable/ic_info_time" />
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_store_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBaseline_toBaselineOf="@id/ic_time"
+                        app:layout_constraintStart_toEndOf="@id/ic_time" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="21dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ic_time"
+                        app:srcCompat="@drawable/ic_info_callnum" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_store_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBaseline_toBaselineOf="@id/ic_number"
+                        app:layout_constraintStart_toEndOf="@id/ic_number" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
