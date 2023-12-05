@@ -31,14 +31,14 @@ class SignUpViewModel @Inject constructor(
     val phoneNumber = _phoneNumber.asStateFlow()
 
     private val _codeReqProcess =
-        MutableStateFlow<Resource<VerifyCodeSendResDTO>>(Resource.Loading())
+        MutableStateFlow<Resource<VerifyCodeSendResDTO>?>(null)
     val codeReqProcess = _codeReqProcess.asStateFlow()
 
     private val _codeNumber = MutableStateFlow<String>("")
     val codeNumber = _codeNumber.asStateFlow()
 
     private val _codeCheckProcess =
-        MutableStateFlow<Resource<VerifyCodeCheckResDTO>>(Resource.Loading())
+        MutableStateFlow<Resource<VerifyCodeCheckResDTO>?>(null)
     val codeCheckProcess = _codeCheckProcess.asStateFlow()
 
     private val _password = MutableStateFlow<String>("")
@@ -47,7 +47,7 @@ class SignUpViewModel @Inject constructor(
     private val _passwordCheck = MutableStateFlow<String>("")
     val passwordCheck = _passwordCheck.asStateFlow()
 
-    private val _signUpProcess = MutableStateFlow<Resource<SignUpResDTO>>(Resource.Loading())
+    private val _signUpProcess = MutableStateFlow<Resource<SignUpResDTO>?>(null)
     val signUpProcess = _signUpProcess.asStateFlow()
 
     fun updatePhoneNumber(phoneNumber: String) {

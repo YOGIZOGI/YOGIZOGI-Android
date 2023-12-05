@@ -62,8 +62,10 @@ class VerifyFragment : BaseFragment<FragmentVerifyBinding, SignUpViewModel>(
                         /**
                          * 임시 코드(인증번호 오지 않아도 다음 화면으로 이동)
                          */
-                        viewModel.stepUp()
+//                        viewModel.stepUp()
                     }
+
+                    null -> {}
                 }
             }
         }

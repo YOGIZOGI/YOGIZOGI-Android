@@ -20,6 +20,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -126,6 +127,8 @@
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -142,13 +145,106 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/light_gray"
+                        app:layout_constraintTop_toBottomOf="@id/rv_store_theme" />
+
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_loc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="21dp"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/rv_store_theme"
                         app:srcCompat="@drawable/ic_info_map_pin" />
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_store_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nanumsquareneo_variable"
+                        android:text="@string/info_address"
+                        app:layout_constraintBottom_toBottomOf="@id/ic_loc"
+                        app:layout_constraintStart_toEndOf="@id/ic_loc"
+                        app:layout_constraintTop_toTopOf="@id/ic_loc" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="21dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ic_loc"
+                        app:srcCompat="@drawable/ic_info_time" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_store_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nanumsquareneo_variable"
+                        android:text="@string/info_time"
+                        app:layout_constraintBottom_toBottomOf="@id/ic_time"
+                        app:layout_constraintStart_toEndOf="@id/ic_time"
+                        app:layout_constraintTop_toTopOf="@id/ic_time" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="21dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ic_time"
+                        app:srcCompat="@drawable/ic_info_callnum" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_store_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nanumsquareneo_variable"
+                        android:text="@string/info_number"
+                        app:layout_constraintBottom_toBottomOf="@id/ic_number"
+                        app:layout_constraintStart_toEndOf="@id/ic_number"
+                        app:layout_constraintTop_toTopOf="@id/ic_number" />
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/light_gray"
+                        app:layout_constraintTop_toBottomOf="@id/ic_number" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_text_menu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumsquareneo_variable"
+                        android:padding="20dp"
+                        android:text="@string/info_menu_text"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view1" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_menu_list"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_text_menu"
+                        tools:listitem="@layout/item_store_info_menu" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
