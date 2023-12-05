@@ -7,13 +7,17 @@ buildscript {
         hiltVersion = '2.48'
         roomVersion = '2.6.0'
         gsonVersion = '2.9.0'
+        retrofitVersion = '2.9.0'
         okHttpVersion = '5.0.0-alpha.11'
         dataStoreVersion = '1.0.0'
         lottieVersion = '6.2.0'
+        readMoreVersion = '1.0.0'
+        picassoVersion = '2.8'
     }
 
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-serialization:1.8.21")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion")
     }
 }
 

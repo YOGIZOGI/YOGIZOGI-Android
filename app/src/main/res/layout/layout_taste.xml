@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_well"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_review_well"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_slash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_review_view"
+            app:layout_constraintBottom_toBottomOf="@id/tv_well"
+            app:layout_constraintStart_toEndOf="@id/tv_well"
+            app:layout_constraintTop_toTopOf="@id/tv_well" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_prefer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_review_prefer"
+            app:layout_constraintBottom_toBottomOf="@id/tv_well"
+            app:layout_constraintStart_toEndOf="@id/tv_slash"
+            app:layout_constraintTop_toTopOf="@id/tv_well" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

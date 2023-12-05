@@ -3,9 +3,9 @@
 
     <!-- Bottom Navigation View -->
     <string name="bnv_home">홈</string>
-    <string name="bnv_follow">팔로우</string>
     <string name="bnv_myreview">내 리뷰</string>
     <string name="bnv_mymap">내 지도</string>
+    <string name="bnv_setting">설정</string>
 
     <!-- Common -->
     <string name="next">다음</string>
@@ -78,6 +78,48 @@
     <string name="nickname_exist">이미 존재하는 닉네임입니다.</string>
     <string name="nickname_not_exist">사용가능한 닉네임입니다.</string>
     <string name="nickname_empty">닉네임을 입력해주세요.</string>
+    <string name="profile_create">프로필이 등록되었습니다.</string>
+    <string name="taste_create">입맛이 등록되었습니다.</string>
+
+    <!-- Main -->
+    <string name="main_search_hint">검색) ex.성수, 건대, 홍대 등..</string>
+    <string name="main_search_text">모임장소는 어디인가요??</string>
+    <string name="main_search_my_location">내 위치 주변 검색</string>
+    <string name="main_mood_title">#요기무드</string>
+    <string name="main_mood_subtitle">무드별 맛집 추천!</string>
+    <string name="mood_date">데이트</string>
+    <string name="mood_free">편한 친구들과</string>
+    <string name="mood_sum">썸 or 첫 데이트</string>
+    <string name="mood_nopo">노포맛집</string>
+    <string name="mood_group">단체모임</string>
+    <string name="mood_parent">부모님과 함께</string>
+    <string name="mood_light">가볍게 한잔</string>
+    <string name="mood_solo">혼밥</string>
+    <string name="mood_marry">상견례</string>
+    <string name="mood_study">스터디</string>
+    <string name="place">성수</string>
+    <string name="feed_title">에서 데이트</string>
+    <string name="feed_filter_kor">한식</string>
+    <string name="feed_filter_chn">중식</string>
+    <string name="feed_filter_jpn">일식</string>
+    <string name="feed_filter_wes">양식</string>
+    <string name="feed_filter_night">야식</string>
+
+    <!-- Main_Review -->
+    <string name="main_review_title_name">OO식당</string>
+    <string name="main_review_title">의 리뷰</string>
+    <string name="main_review_info">식당 정보 보기</string>
+    <string name="main_review_filter">필터</string>
+    <string name="main_review_well">2</string>
+    <string name="main_review_view">/</string>
+    <string name="main_review_prefer">4</string>
+    <string name="main_review_user_text">님의 리뷰</string>
+    <string name="main_review_long_text">매우 긴 리뷰 텍스트 입니다.헤헤 매우 긴 리뷰 텍스트 입니다.하 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. 매우 긴 리뷰 텍스트 입니다. </string>
+    <string name="read_more">…더보기</string>
+
+    <!-- Main Info -->
+    <string name="info_title_loc">건대입구</string>
+    <string name="info_title_type">덮밥 전문점</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -20,15 +20,22 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
     ProfileViewModel::class.java,
     R.layout.fragment_profile_nickname
 ) {
+    // TODO ProfileIntroFragment로 넘어갈 때에 사용자의 닉네임 중복확인을 함과 동시에 S3에 객체 등록 요청 보내기
     override fun initView() {
         binding.btnBack.setOnClickListener {
             requireActivity().finish()
         }
+
         initNextBtn()
+        setUserImage()
     }
 
     override fun initAfterBinding() {
         observeData()
+    }
+
+    private fun setUserImage() {
+
     }
 
     private fun initNextBtn() {
@@ -48,15 +55,14 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
 
     private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                launch {
-//
-//                }
-//            }
             viewModel.nicknameDupProcess.collect { result ->
                 when (result) {
-                    is Resource.Loading -> {}
+                    is Resource.Loading -> {
+                        playAnimation(binding.lottieLoading)
+                    }
+
                     is Resource.Success -> {
+                        stopAnimation(binding.lottieLoading)
                         if (result.data.status == ExistState.EXIST.toString()) {
                             Toast.makeText(
                                 requireContext(),
@@ -76,16 +82,24 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
                     }
 
                     is Resource.Error -> {
+                        stopAnimation(binding.lottieLoading)
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT)
                             .show()
                     }
+
+                    null -> {}
                 }
             }
         }
     }
 
     private fun navigateToProfileIntroFragment() {
-        findNavController().navigate(R.id.action_profileNicknameFragment_to_profileIntroFragment)
+        val nickname = binding.etUserNickname.text.toString()
+        findNavController().navigate(
+            ProfileNicknameFragmentDirections.actionProfileNicknameFragmentToProfileIntroFragment(
+                nickname
+            )
+        )
     }
 
     override fun onDestroyView() {

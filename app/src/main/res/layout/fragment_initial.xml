@@ -69,42 +69,42 @@
             android:id="@+id/tv_login_app_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="402dp"
+            android:layout_marginBottom="26dp"
             android:padding="2dp"
             android:text="@string/login_app_description"
             android:textAppearance="@font/nanumsquareneo_variable"
             android:textColor="@color/login_app_description"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/login_app_logo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/login_app_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
+            android:layout_marginBottom="32dp"
             android:src="@drawable/logo_login_app"
+            app:layout_constraintBottom_toTopOf="@id/tv_login_kakao"
             app:layout_constraintEnd_toEndOf="@id/tv_login_app_desc"
-            app:layout_constraintStart_toStartOf="@id/tv_login_app_desc"
-            app:layout_constraintTop_toBottomOf="@id/tv_login_app_desc" />
+            app:layout_constraintStart_toStartOf="@id/tv_login_app_desc" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_login_kakao"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="47dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="47dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/login_kakao_background"
             android:gravity="center"
             android:text="@string/login_with_kakao"
             android:textSize="15sp"
             android:textStyle="bold"
             app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintBottom_toTopOf="@id/tv_login_naver"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/login_app_logo" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_kakao_icon"
@@ -120,16 +120,16 @@
             android:id="@+id/tv_login_naver"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/login_naver_background"
             android:gravity="center"
             android:text="@string/login_with_naver"
             android:textSize="15sp"
             android:textStyle="bold"
             app:fontFamily="@font/nanumsquareneo_variable"
+            app:layout_constraintBottom_toTopOf="@id/btn_phone_login"
             app:layout_constraintEnd_toEndOf="@id/tv_login_kakao"
-            app:layout_constraintStart_toStartOf="@id/tv_login_kakao"
-            app:layout_constraintTop_toBottomOf="@id/tv_login_kakao" />
+            app:layout_constraintStart_toStartOf="@id/tv_login_kakao" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_naver_icon"
@@ -146,10 +146,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
+            android:layout_marginBottom="50dp"
             android:text="@string/login_with_phone"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/tv_login_kakao"
-            app:layout_constraintStart_toStartOf="@id/tv_login_kakao"
-            app:layout_constraintTop_toBottomOf="@id/tv_login_naver" />
+            app:layout_constraintStart_toStartOf="@id/tv_login_kakao" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group_btn_kakao_login"

@@ -68,32 +68,52 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_user" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btn_skip"
-            android:layout_width="157dp"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="46dp"
-            android:layout_marginBottom="65dp"
-            android:background="@drawable/drawable_gray_button"
-            android:gravity="center"
-            android:text="@string/skip"
-            android:textStyle="bold"
-            app:fontFamily="@font/nanumsquareneo_variable"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btn_next"
-            android:layout_width="127dp"
-            android:layout_height="wrap_content"
             android:layout_marginEnd="46dp"
             android:layout_marginBottom="65dp"
-            android:background="@drawable/drawable_login_login"
-            android:gravity="center"
-            android:text="@string/next"
-            android:textStyle="bold"
-            app:fontFamily="@font/nanumsquareneo_variable"
+            android:weightSum="3"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_skip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/drawable_gray_button"
+                android:gravity="center"
+                android:layout_marginEnd="30dp"
+                android:text="@string/skip"
+                android:textStyle="bold"
+                app:fontFamily="@font/nanumsquareneo_variable" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/drawable_login_login"
+                android:gravity="center"
+                android:text="@string/next"
+                android:textStyle="bold"
+                app:fontFamily="@font/nanumsquareneo_variable" />
+        </LinearLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_loading" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

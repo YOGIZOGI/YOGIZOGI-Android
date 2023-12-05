@@ -9,6 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.airbnb.lottie.LottieAnimationView
+import org.shop.yogizogi_android.utils.toGone
+import org.shop.yogizogi_android.utils.toVisible
 
 abstract class BaseFragment<T : ViewDataBinding, R : BaseViewModel>(
     private val viewModelClass: Class<R>,
@@ -16,6 +19,7 @@ abstract class BaseFragment<T : ViewDataBinding, R : BaseViewModel>(
 ) : Fragment() {
 
     private var _binding: T? = null
+
     // This property is only valid between onCreateView and onDestroyView.
     protected val binding get() = _binding!!
 
@@ -58,4 +62,14 @@ abstract class BaseFragment<T : ViewDataBinding, R : BaseViewModel>(
      * initiate others (ex. observe Livedata)
      */
     abstract fun initAfterBinding()
+
+    fun playAnimation(view: LottieAnimationView) {
+        view.toVisible()
+        view.playAnimation()
+    }
+
+    fun stopAnimation(view: LottieAnimationView) {
+        view.pauseAnimation()
+        view.toGone()
+    }
 }
