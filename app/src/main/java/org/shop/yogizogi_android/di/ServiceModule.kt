@@ -32,7 +32,6 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    @Auth
     fun provideUserService(
         retrofit: Retrofit
     ): UserService {

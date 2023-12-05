@@ -1,9 +1,16 @@
 package org.shop.yogizogi_android.ui.view.profile.inner
 
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.shop.yogizogi_android.R
+import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.databinding.FragmentProfileIntroBinding
 import org.shop.yogizogi_android.ui.base.BaseFragment
 import org.shop.yogizogi_android.ui.view.profile.ProfileViewModel
@@ -24,14 +31,46 @@ class ProfileIntroFragment : BaseFragment<FragmentProfileIntroBinding, ProfileVi
     }
 
     override fun initAfterBinding() {
+        observeData()
+    }
 
+    private fun observeData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.userProfileProcess.collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        playAnimation(binding.lottieLoading)
+                    }
+
+                    is Resource.Success -> {
+                        stopAnimation(binding.lottieLoading)
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                requireContext(),
+                                resources.getString(R.string.profile_create),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        navigateToProfileTasteFrag()
+                    }
+
+                    is Resource.Error -> {
+                        stopAnimation(binding.lottieLoading)
+                        Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                    null -> {}
+                }
+            }
+        }
     }
 
     private fun createUserProfile() {
-        val nickname = navArgs.nickname
-        val userImage = ""
-        val userIntro = binding.etUserIntro.text.toString()
         binding.btnNext.setOnClickListener {
+            val nickname = navArgs.nickname
+            val userImage = ""
+            val userIntro = binding.etUserIntro.text.toString()
             viewModel.createUserProfile(nickname, userImage, userIntro)
         }
     }
@@ -39,11 +78,9 @@ class ProfileIntroFragment : BaseFragment<FragmentProfileIntroBinding, ProfileVi
     private fun skip() {
         binding.btnSkip.setOnClickListener {
             val nickname = navArgs.nickname
-            findNavController().navigate(
-                ProfileIntroFragmentDirections.actionProfileIntroFragmentToProfileTasteFragment(
-                    nickname
-                )
-            )
+            val userImage = ""
+            val userIntro = ""
+            viewModel.createUserProfile(nickname, userImage, userIntro)
         }
     }
 
@@ -55,5 +92,11 @@ class ProfileIntroFragment : BaseFragment<FragmentProfileIntroBinding, ProfileVi
                 nickname
             )
         )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        viewLifecycleOwner.lifecycleScope.coroutineContext.cancel()
     }
 }

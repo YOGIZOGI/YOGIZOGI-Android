@@ -10,7 +10,9 @@ import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.UserPreference
 import org.shop.yogizogi_android.data.model.remote.datasource.UserRemoteData
 import org.shop.yogizogi_android.data.model.remote.request.ProfileCreateReqDTO
+import org.shop.yogizogi_android.data.model.remote.request.TasteRegisterReqDTO
 import org.shop.yogizogi_android.data.model.remote.response.ProfileCreateResDTO
+import org.shop.yogizogi_android.data.model.remote.response.TasteRegisterResDTO
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -18,9 +20,21 @@ class UserRepositoryImpl @Inject constructor(
     private val userDataStore: UserDataStore
 ) :
     UserRepository {
-    override suspend fun createProfile(body: ProfileCreateReqDTO): Flow<Resource<ProfileCreateResDTO>> {
+    override suspend fun createProfile(
+        header: String,
+        body: ProfileCreateReqDTO
+    ): Flow<Resource<ProfileCreateResDTO>> {
         return flow {
-            emit(userRemoteData.putUserProfile(body))
+            emit(userRemoteData.putUserProfile(header, body))
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun createTaste(
+        header: String,
+        body: TasteRegisterReqDTO
+    ): Flow<Resource<TasteRegisterResDTO>> {
+        return flow {
+            emit(userRemoteData.postMeokProfile(header, body))
         }.flowOn(Dispatchers.IO)
     }
 

@@ -109,63 +109,63 @@ object RetrofitModule {
             .build()
     }
 
-    @Provides
-    @Singleton
-    @Auth
-    suspend fun provideAuthHeaderInterceptor(userRepository: UserRepository): Interceptor {
-        var accessToken=""
-        CoroutineScope(Dispatchers.Main).launch {
-            CoroutineScope(Dispatchers.IO).async {
-                accessToken = userRepository.getUserData().first().accessToken
-            }.await()
-        }
-        Log.d("RetrofitModule", accessToken)
-
-        return Interceptor { chain ->
-//            val accessToken = runBlocking(Dispatchers.IO) {
-//                kotlin.runCatching {
-//                    userRepository.getUserData().first()
-//                }.getOrDefault(UserPreference.getDefaultInstance())
-//            }
-
-            val original = chain.request()
-            val request = original.newBuilder()
-                .header(CONTENT_TYPE, CONTENT_TYPE_VALUE)
-                .header(ACCESS_TOKEN, accessToken)
-                .method(original.method, original.body)
-                .build()
-
-            chain.proceed(request)
-        }
-    }
-
-    @Provides
-    @Singleton
-    @Auth
-    fun providesAuthOkHttpClient(
-        logger: HttpLoggingInterceptor,
-        @Auth headerInterceptor: Interceptor,
-    ): OkHttpClient.Builder {
-        return OkHttpClient.Builder().apply {
-            addInterceptor(headerInterceptor)
-            addInterceptor(logger)
-            connectTimeout(TIMEOUT_CONNECT, TimeUnit.SECONDS)
-            readTimeout(TIMEOUT_READ, TimeUnit.SECONDS)
-            writeTimeout(TIMEOUT_WRITE, TimeUnit.SECONDS)
-        }
-    }
-
-    @Provides
-    @Singleton
-    @Auth
-    fun providesAuthRetrofit(
-        @Auth client: OkHttpClient.Builder,
-        gsonConverterFactory: GsonConverterFactory,
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(client.build())
-            .addConverterFactory(gsonConverterFactory)
-            .build()
-    }
+//    @Provides
+//    @Singleton
+//    @Auth
+//    suspend fun provideAuthHeaderInterceptor(userRepository: UserRepository): Interceptor {
+//        var accessToken=""
+//        CoroutineScope(Dispatchers.Main).launch {
+//            CoroutineScope(Dispatchers.IO).async {
+//                accessToken = userRepository.getUserData().first().accessToken
+//            }.await()
+//        }
+//        Log.d("RetrofitModule", accessToken)
+//
+//        return Interceptor { chain ->
+////            val accessToken = runBlocking(Dispatchers.IO) {
+////                kotlin.runCatching {
+////                    userRepository.getUserData().first()
+////                }.getOrDefault(UserPreference.getDefaultInstance())
+////            }
+//
+//            val original = chain.request()
+//            val request = original.newBuilder()
+//                .header(CONTENT_TYPE, CONTENT_TYPE_VALUE)
+//                .header(ACCESS_TOKEN, accessToken)
+//                .method(original.method, original.body)
+//                .build()
+//
+//            chain.proceed(request)
+//        }
+//    }
+//
+//    @Provides
+//    @Singleton
+//    @Auth
+//    fun providesAuthOkHttpClient(
+//        logger: HttpLoggingInterceptor,
+//        @Auth headerInterceptor: Interceptor,
+//    ): OkHttpClient.Builder {
+//        return OkHttpClient.Builder().apply {
+//            addInterceptor(headerInterceptor)
+//            addInterceptor(logger)
+//            connectTimeout(TIMEOUT_CONNECT, TimeUnit.SECONDS)
+//            readTimeout(TIMEOUT_READ, TimeUnit.SECONDS)
+//            writeTimeout(TIMEOUT_WRITE, TimeUnit.SECONDS)
+//        }
+//    }
+//
+//    @Provides
+//    @Singleton
+//    @Auth
+//    fun providesAuthRetrofit(
+//        @Auth client: OkHttpClient.Builder,
+//        gsonConverterFactory: GsonConverterFactory,
+//    ): Retrofit {
+//        return Retrofit.Builder()
+//            .baseUrl(BASE_URL)
+//            .client(client.build())
+//            .addConverterFactory(gsonConverterFactory)
+//            .build()
+//    }
 }

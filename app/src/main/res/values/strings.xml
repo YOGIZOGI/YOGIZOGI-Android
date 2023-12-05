@@ -78,6 +78,8 @@
     <string name="nickname_exist">이미 존재하는 닉네임입니다.</string>
     <string name="nickname_not_exist">사용가능한 닉네임입니다.</string>
     <string name="nickname_empty">닉네임을 입력해주세요.</string>
+    <string name="profile_create">프로필이 등록되었습니다.</string>
+    <string name="taste_create">입맛이 등록되었습니다.</string>
 
     <!-- Main -->
     <string name="main_search_hint">검색) ex.성수, 건대, 홍대 등..</string>

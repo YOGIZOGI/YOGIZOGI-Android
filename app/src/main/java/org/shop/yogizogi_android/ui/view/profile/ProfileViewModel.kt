@@ -7,12 +7,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.remote.request.ProfileCreateReqDTO
+import org.shop.yogizogi_android.data.model.remote.request.TasteRegisterReqDTO
 import org.shop.yogizogi_android.data.model.remote.response.DupCheckResDTO
 import org.shop.yogizogi_android.data.model.remote.response.ProfileCreateResDTO
+import org.shop.yogizogi_android.data.model.remote.response.TasteRegisterResDTO
 import org.shop.yogizogi_android.repository.AuthRepository
 import org.shop.yogizogi_android.repository.UserRepository
 import org.shop.yogizogi_android.ui.base.BaseViewModel
@@ -26,12 +29,25 @@ class ProfileViewModel @Inject constructor(
     BaseViewModel() {
     private val coroutineIOScope = CoroutineScope(Dispatchers.IO)
 
-    private val _nicknameDupProcess = MutableStateFlow<Resource<DupCheckResDTO>>(Resource.Loading())
+    private val _userAccessToken = MutableStateFlow<String>("")
+    val userAccessToken = _userAccessToken.asStateFlow()
+
+    private val _nicknameDupProcess = MutableStateFlow<Resource<DupCheckResDTO>?>(null)
     val nicknameDupProcess = _nicknameDupProcess.asStateFlow()
 
     private val _userProfileProcess =
-        MutableStateFlow<Resource<ProfileCreateResDTO>>(Resource.Loading())
+        MutableStateFlow<Resource<ProfileCreateResDTO>?>(null)
     val userProfileProcess = _userProfileProcess.asStateFlow()
+
+    private val _userTasteProcess =
+        MutableStateFlow<Resource<TasteRegisterResDTO>?>(null)
+    val userTasteProcess = _userTasteProcess.asStateFlow()
+
+    init {
+        coroutineIOScope.launch {
+            _userAccessToken.value = userRepository.getUserData().first().accessToken
+        }
+    }
 
     fun nicknameDupCheck(nickname: String) {
         viewModelScope.launch {
@@ -56,8 +72,34 @@ class ProfileViewModel @Inject constructor(
             _userProfileProcess.value = Resource.Loading()
             val profileCreateRequest = ProfileCreateReqDTO(nickname, userImage, userIntro)
             coroutineIOScope.launch {
-                userRepository.createProfile(profileCreateRequest).collect {
+                userRepository.createProfile(_userAccessToken.value, profileCreateRequest).collect {
                     _userProfileProcess.value = it
+                }
+            }
+        }
+    }
+
+    fun createUserTaste(
+        hotPrefer: Long,
+        hotWell: Long,
+        sweetPrefer: Long,
+        sweetWell: Long,
+        saltyPrefer: Long,
+        saltyWell: Long,
+    ) {
+        viewModelScope.launch {
+            _userTasteProcess.value = Resource.Loading()
+            val tasteCreateRequest = TasteRegisterReqDTO(
+                hotPrefer,
+                hotWell,
+                sweetPrefer,
+                sweetWell,
+                saltyPrefer,
+                saltyWell
+            )
+            coroutineIOScope.launch {
+                userRepository.createTaste(_userAccessToken.value, tasteCreateRequest).collect {
+                    _userTasteProcess.value = it
                 }
             }
         }

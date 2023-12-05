@@ -1,6 +1,5 @@
 package org.shop.yogizogi_android.ui.view.profile.inner
 
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,6 +25,7 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
         binding.btnBack.setOnClickListener {
             requireActivity().finish()
         }
+
         initNextBtn()
         setUserImage()
     }
@@ -57,8 +57,12 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.nicknameDupProcess.collect { result ->
                 when (result) {
-                    is Resource.Loading -> {}
+                    is Resource.Loading -> {
+                        playAnimation(binding.lottieLoading)
+                    }
+
                     is Resource.Success -> {
+                        stopAnimation(binding.lottieLoading)
                         if (result.data.status == ExistState.EXIST.toString()) {
                             Toast.makeText(
                                 requireContext(),
@@ -78,9 +82,12 @@ class ProfileNicknameFragment : BaseFragment<FragmentProfileNicknameBinding, Pro
                     }
 
                     is Resource.Error -> {
+                        stopAnimation(binding.lottieLoading)
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT)
                             .show()
                     }
+
+                    null -> {}
                 }
             }
         }
