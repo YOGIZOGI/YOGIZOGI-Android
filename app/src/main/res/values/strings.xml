@@ -120,6 +120,13 @@
     <!-- Main Info -->
     <string name="info_title_loc">건대입구</string>
     <string name="info_title_type">덮밥 전문점</string>
+    <string name="info_address">서울 광진구 능동로 127 2층</string>
+    <string name="info_time">11:00 ~ 21:00</string>
+    <string name="info_open">영업중</string>
+    <string name="info_number">(0507)–2214–5678</string>
+    <string name="info_menu_text">메뉴</string>
+    <string name="menu_name">큐브 스테이크 덮밥</string>
+    <string name="menu_price">12,000원</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
