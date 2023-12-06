@@ -11,6 +11,9 @@
     <string name="next">다음</string>
     <string name="skip">건너뛰기</string>
     <string name="register">등록</string>
+    <string name="location_permission_title">위치권한 요청</string>
+    <string name="location_permission_message">현재 위치정보를 얻기 위해 위치 권한이 필요합니다.</string>
+    <string name="location_permission_denied">위치권한 요청이 거절되었습니다.</string>
 
     <!-- Login -->
     <string name="login_app_description">나만의 입맛대로 맛집을 찾고 싶다면!</string>
