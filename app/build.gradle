@@ -83,6 +83,20 @@ dependencies {
     // Picasso
     implementation("com.squareup.picasso:picasso:$picassoVersion")
 
+    // 네이버 지도 sdk
+    implementation("com.naver.maps:map-sdk:$naverMapVersion")
+
+    // FusedLocationSource
+    implementation("com.google.android.gms:play-services-location:$fusedLocationSourceVersion")
+
+    // Ted Permission - RxJava3
+    implementation("io.github.ParkSangGwon:tedpermission-rx3:$tedpermissionVersion")
+
+    //RxAndroid와 RxJava , RxKotlin 추가
+    implementation("io.reactivex.rxjava3:rxandroid:$rxandroidVersion")
+    implementation("io.reactivex.rxjava3:rxjava:$rxjavaVersion")
+    implementation("io.reactivex.rxjava3:rxkotlin:$rxkotlinVersion")
+
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
