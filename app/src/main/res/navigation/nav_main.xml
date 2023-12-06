@@ -95,7 +95,7 @@
 
     <fragment
         android:id="@+id/settingFragment"
-        android:name="org.shop.yogizogi_android.ui.view.main.follow.SettingFragment"
+        android:name="org.shop.yogizogi_android.ui.view.main.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting">
 

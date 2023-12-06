@@ -13,7 +13,7 @@
         android:icon="@drawable/ic_review"
         android:title="@string/bnv_myreview" />
     <item
-        android:id="@+id/followFragment"
+        android:id="@+id/settingFragment"
         android:icon="@drawable/ic_setting"
         android:title="@string/bnv_setting" />
 </menu>
