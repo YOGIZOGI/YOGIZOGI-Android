@@ -1,4 +1,4 @@
-package org.shop.yogizogi_android.data.model.remote.response
+package org.shop.yogizogi_android.data.model.remote.response.unauth
 
 import org.shop.yogizogi_android.data.model.UserPreference
 import org.shop.yogizogi_android.utils.ActiveState

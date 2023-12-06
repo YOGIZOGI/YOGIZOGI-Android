@@ -1,16 +1,23 @@
 package org.shop.yogizogi_android.ui.view.main.home.mood
 
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.shop.yogizogi_android.R
-import org.shop.yogizogi_android.data.model.local.ItemMood
+import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.databinding.FragmentMoodBinding
 import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.MoodAdapter
 import org.shop.yogizogi_android.ui.base.BaseFragment
 import org.shop.yogizogi_android.ui.view.main.home.HomeViewModel
+import org.shop.yogizogi_android.utils.Moods
 import org.shop.yogizogi_android.utils.clicklistener.MoodItemClick
 import kotlin.math.roundToInt
 
@@ -23,17 +30,19 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
     private lateinit var moodAdapter: MoodAdapter
 
     private val moodList by lazy {
-        arrayListOf<ItemMood>(
-            ItemMood(resources.getString(R.string.mood_date)),
-            ItemMood(resources.getString(R.string.mood_free)),
-            ItemMood(resources.getString(R.string.mood_sum)),
-            ItemMood(resources.getString(R.string.mood_nopo)),
-            ItemMood(resources.getString(R.string.mood_group)),
-            ItemMood(resources.getString(R.string.mood_parent)),
-            ItemMood(resources.getString(R.string.mood_light)),
-            ItemMood(resources.getString(R.string.mood_solo)),
-            ItemMood(resources.getString(R.string.mood_marry)),
-            ItemMood(resources.getString(R.string.mood_study))
+        arrayListOf<Moods>(
+            Moods.SOLO,
+            Moods.WITH_LOVER,
+            Moods.WITH_FRIENDS,
+            Moods.WITH_PARENT,
+            Moods.WITH_CHILD,
+            Moods.WITH_COLLEAGUE,
+            Moods.LIGHT_MEAL,
+            Moods.GOURMET_MEAL,
+            Moods.PAIRING_MEAL,
+            Moods.BUSINESS_MEETING,
+            Moods.GROUP_MEETING,
+            Moods.ANNIVERSARY
         )
     }
 
@@ -44,7 +53,33 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
     }
 
     override fun initAfterBinding() {
+        observeData()
+    }
 
+    private fun observeData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.moodStoreProcess.collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        playAnimation(binding.lottieLoading)
+                    }
+
+                    is Resource.Success -> {
+                        stopAnimation(binding.lottieLoading)
+                        navigateToFeedFragment()
+                    }
+
+                    is Resource.Error -> {
+                        stopAnimation(binding.lottieLoading)
+                        withContext(Dispatchers.Main) {
+                            showToast(result.message)
+                        }
+                    }
+
+                    null -> {}
+                }
+            }
+        }
     }
 
     private fun initAdapter() {
@@ -61,17 +96,22 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
         moodAdapter.submitList(moodList)
     }
 
-    override fun onItemClick(item: ItemMood) {
-        navigateToFeedFragment(item.moodTitle)
+    override fun onItemClick(item: Moods) {
+        viewModel.getStoreWithMood(item.name)
     }
 
-    private fun navigateToFeedFragment(moodTitle: String) {
-        val searchText = navArgs.searchText ?: "null"
+    private fun navigateToFeedFragment() {
         findNavController().navigate(
             MoodFragmentDirections.actionMoodFragmentToFeedFragment(
-                searchText,
-                moodTitle
+                navArgs.searchText,
+                null
             )
         )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        viewLifecycleOwner.lifecycleScope.coroutineContext.cancel()
     }
 }

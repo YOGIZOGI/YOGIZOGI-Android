@@ -24,16 +24,17 @@ class FeedFragment : BaseFragment<FragmentFeedBinding, HomeViewModel>(
 
     private val mainFeedList by lazy {
         arrayListOf<MainFeed>(
-            MainFeed(null, resources.getString(R.string.mood_date)),
-            MainFeed(null, resources.getString(R.string.mood_free)),
-            MainFeed(null, resources.getString(R.string.mood_sum)),
-            MainFeed(null, resources.getString(R.string.mood_nopo)),
-            MainFeed(null, resources.getString(R.string.mood_group)),
-            MainFeed(null, resources.getString(R.string.mood_parent)),
-            MainFeed(null, resources.getString(R.string.mood_light)),
-            MainFeed(null, resources.getString(R.string.mood_solo)),
-            MainFeed(null, resources.getString(R.string.mood_marry)),
-            MainFeed(null, resources.getString(R.string.mood_study))
+            MainFeed(null, resources.getString(R.string.mood_with_friends)),
+            MainFeed(null, resources.getString(R.string.mood_with_friends)),
+            MainFeed(null, resources.getString(R.string.mood_with_friends)),
+            MainFeed(null, resources.getString(R.string.mood_with_friends)),
+            MainFeed(null, resources.getString(R.string.mood_with_friends)),
+            MainFeed(null, resources.getString(R.string.mood_with_friends)),
+            MainFeed(null, resources.getString(R.string.mood_with_friends)),
+            MainFeed(null, resources.getString(R.string.mood_with_friends)),
+            MainFeed(null, resources.getString(R.string.mood_with_friends)),
+            MainFeed(null, resources.getString(R.string.mood_with_friends)),
+            MainFeed(null, resources.getString(R.string.mood_with_friends))
         )
     }
 

@@ -1,10 +1,10 @@
 package org.shop.yogizogi_android.data.api
 
-import org.shop.yogizogi_android.data.model.remote.request.LogInReqDTO
+import org.shop.yogizogi_android.data.model.remote.request.unauth.LogInReqDTO
 import org.shop.yogizogi_android.data.model.remote.response.CommonSuccessRes
-import org.shop.yogizogi_android.data.model.remote.response.LogInResDTO
-import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeCheckResDTO
-import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeSendResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.LogInResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.VerifyCodeCheckResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.VerifyCodeSendResDTO
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

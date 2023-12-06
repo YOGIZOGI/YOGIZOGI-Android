@@ -3,10 +3,10 @@ package org.shop.yogizogi_android.repository
 import kotlinx.coroutines.flow.Flow
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.UserPreference
-import org.shop.yogizogi_android.data.model.remote.request.ProfileCreateReqDTO
-import org.shop.yogizogi_android.data.model.remote.request.TasteRegisterReqDTO
-import org.shop.yogizogi_android.data.model.remote.response.ProfileCreateResDTO
-import org.shop.yogizogi_android.data.model.remote.response.TasteRegisterResDTO
+import org.shop.yogizogi_android.data.model.remote.request.auth.ProfileCreateReqDTO
+import org.shop.yogizogi_android.data.model.remote.request.auth.TasteRegisterReqDTO
+import org.shop.yogizogi_android.data.model.remote.response.auth.ProfileCreateResDTO
+import org.shop.yogizogi_android.data.model.remote.response.auth.TasteRegisterResDTO
 
 interface UserRepository {
     suspend fun createProfile(

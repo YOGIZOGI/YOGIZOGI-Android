@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.data.Resource
-import org.shop.yogizogi_android.data.model.remote.request.SignUpReqDTO
-import org.shop.yogizogi_android.data.model.remote.response.SignUpResDTO
-import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeCheckResDTO
-import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeSendResDTO
+import org.shop.yogizogi_android.data.model.remote.request.unauth.SignUpReqDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.SignUpResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.VerifyCodeCheckResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.VerifyCodeSendResDTO
 import org.shop.yogizogi_android.repository.AuthRepository
 import org.shop.yogizogi_android.ui.base.BaseViewModel
 import javax.inject.Inject

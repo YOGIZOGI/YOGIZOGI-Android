@@ -5,17 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.shop.yogizogi_android.data.model.local.ItemMood
 import org.shop.yogizogi_android.databinding.ItemMoodBinding
+import org.shop.yogizogi_android.utils.Moods
 import org.shop.yogizogi_android.utils.clicklistener.MoodItemClick
 
 class MoodAdapter(private val clickListener: MoodItemClick) :
-    ListAdapter<ItemMood, MoodAdapter.MoodViewHolder>(diffUtil) {
+    ListAdapter<Moods, MoodAdapter.MoodViewHolder>(diffUtil) {
 
     inner class MoodViewHolder(private val binding: ItemMoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ItemMood) {
-            binding.tvMood.text = item.moodTitle
+        fun bind(item: Moods) {
+            binding.tvMood.text = item.korean
             binding.cardMoodItem.setOnClickListener {
                 clickListener.onItemClick(item)
             }
@@ -37,12 +37,12 @@ class MoodAdapter(private val clickListener: MoodItemClick) :
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<ItemMood>() {
-            override fun areItemsTheSame(oldItem: ItemMood, newItem: ItemMood): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<Moods>() {
+            override fun areItemsTheSame(oldItem: Moods, newItem: Moods): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: ItemMood, newItem: ItemMood): Boolean {
+            override fun areContentsTheSame(oldItem: Moods, newItem: Moods): Boolean {
                 return oldItem == newItem
             }
         }

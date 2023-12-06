@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.data.Resource
-import org.shop.yogizogi_android.data.model.remote.response.LogInResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.LogInResDTO
 import org.shop.yogizogi_android.repository.AuthRepository
 import org.shop.yogizogi_android.repository.UserDataStore
 import org.shop.yogizogi_android.ui.base.BaseViewModel
