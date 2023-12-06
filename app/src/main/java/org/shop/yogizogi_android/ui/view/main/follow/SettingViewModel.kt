@@ -5,5 +5,5 @@ import org.shop.yogizogi_android.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class FollowViewModel @Inject constructor() : BaseViewModel() {
+class SettingViewModel @Inject constructor() : BaseViewModel() {
 }
