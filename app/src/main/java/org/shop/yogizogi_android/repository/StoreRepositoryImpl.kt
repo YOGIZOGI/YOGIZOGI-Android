@@ -14,7 +14,7 @@ class StoreRepositoryImpl @Inject constructor(private val storeRemoteData: Store
     override suspend fun getStoreWithMoods(
         header: String,
         moods: Array<String>
-    ): Flow<Resource<SpecificStoreResDTO>> {
+    ): Flow<Resource<List<SpecificStoreResDTO>>> {
         return flow {
             emit(storeRemoteData.getRestaurants(header, moods))
         }.flowOn(Dispatchers.IO)

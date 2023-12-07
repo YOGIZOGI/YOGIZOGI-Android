@@ -67,6 +67,8 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapViewModel>(
             naverMap.cameraPosition = CameraPosition(marker.position, 16.0)
         } else {
             naverMap.locationTrackingMode = LocationTrackingMode.Follow
+
+            // TODO Info가 아닌 BNV를 통해 MapFrag로 온 경우 사용자가 찜한 매장 전체 보여주기
             viewModel.getUserMap()
         }
     }

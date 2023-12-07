@@ -1,6 +1,5 @@
 package org.shop.yogizogi_android.ui.view.main.home
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -27,7 +26,7 @@ class HomeViewModel @Inject constructor(
     private val _userAccessToken = MutableStateFlow<String>("")
     val userAccessToken = _userAccessToken.asStateFlow()
 
-    private val _moodStoreProcess = MutableStateFlow<Resource<SpecificStoreResDTO>?>(null)
+    private val _moodStoreProcess = MutableStateFlow<Resource<List<SpecificStoreResDTO>>?>(null)
     val moodStoreProcess = _moodStoreProcess.asStateFlow()
 
     private val _storeInfoProcess = MutableStateFlow<Resource<SpecificStoreResDTO>?>(null)

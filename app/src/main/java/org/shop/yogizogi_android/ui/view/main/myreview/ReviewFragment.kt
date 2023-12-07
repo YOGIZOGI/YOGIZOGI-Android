@@ -1,7 +1,10 @@
 package org.shop.yogizogi_android.ui.view.main.myreview
 
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.R
+import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.local.MyReview
 import org.shop.yogizogi_android.databinding.FragmentReviewBinding
 import org.shop.yogizogi_android.ui.adapter.ItemDecoration
@@ -77,10 +80,35 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding, ReviewViewModel>(
 
     override fun initView() {
         initAdapter()
+        viewModel.getUserFeed()
     }
 
     override fun initAfterBinding() {
+        observeData()
+    }
 
+    private fun observeData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.userFeedProcess.collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        playAnimation(binding.lottieLoading)
+                    }
+
+                    is Resource.Success -> {
+                        stopAnimation(binding.lottieLoading)
+                        val data = result.data.menuReviews
+                        myReviewAdapter.submitList(reviewList)
+                    }
+
+                    is Resource.Error -> {
+                        stopAnimation(binding.lottieLoading)
+                    }
+
+                    null -> {}
+                }
+            }
+        }
     }
 
     private fun initAdapter() {
@@ -94,6 +122,5 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding, ReviewViewModel>(
                 bottom = resources.getDimension(R.dimen.item_space_start).roundToInt()
             )
         )
-        myReviewAdapter.submitList(reviewList)
     }
 }

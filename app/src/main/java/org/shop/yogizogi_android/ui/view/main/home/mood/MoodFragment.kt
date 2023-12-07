@@ -7,11 +7,11 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.data.Resource
+import org.shop.yogizogi_android.data.model.remote.response.auth.FeedList
 import org.shop.yogizogi_android.databinding.FragmentMoodBinding
 import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.MoodAdapter
@@ -66,14 +66,15 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
 
                     is Resource.Success -> {
                         stopAnimation(binding.lottieLoading)
-                        navigateToFeedFragment()
+                        val feedList = FeedList(result.data)
+                        navigateToFeedFragment(feedList)
                     }
 
                     is Resource.Error -> {
                         stopAnimation(binding.lottieLoading)
 
                         // TODO 임시로 Error여도 navigate임시로 Error여도 navigate
-                        navigateToFeedFragment()
+//                        navigateToFeedFragment()
                         withContext(Dispatchers.Main) {
                             showToast(result.message)
                         }
@@ -104,11 +105,12 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
         viewModel.getStoreWithMood(item.name)
     }
 
-    private fun navigateToFeedFragment() {
+    private fun navigateToFeedFragment(feedList: FeedList) {
         findNavController().navigate(
             MoodFragmentDirections.actionMoodFragmentToFeedFragment(
                 navArgs.searchText,
-                null
+                null,
+                feedList,
             )
         )
     }

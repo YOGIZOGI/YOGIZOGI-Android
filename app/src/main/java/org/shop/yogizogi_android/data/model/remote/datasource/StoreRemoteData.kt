@@ -10,7 +10,7 @@ class StoreRemoteData @Inject constructor(private val storeService: StoreService
     override suspend fun getRestaurants(
         header: String,
         moods: Array<String>
-    ): Resource<SpecificStoreResDTO> {
+    ): Resource<List<SpecificStoreResDTO>> {
         return processCall { storeService.getRestaurants(header, moods) }
     }
 

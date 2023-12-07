@@ -7,7 +7,7 @@ interface StoreRemoteDataSource {
     suspend fun getRestaurants(
         header: String,
         moods: Array<String>
-    ): Resource<SpecificStoreResDTO>
+    ): Resource<List<SpecificStoreResDTO>>
 
     suspend fun getSpecificRestaurant(
         header: String,

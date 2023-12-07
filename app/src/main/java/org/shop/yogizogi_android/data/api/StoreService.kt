@@ -14,7 +14,7 @@ interface StoreService {
     suspend fun getRestaurants(
         @Header(ACCESS_TOKEN) accessToken: String,
         @Query("yogiMoods") moods: Array<String>
-    ): Response<CommonSuccessRes<SpecificStoreResDTO>>
+    ): Response<CommonSuccessRes<List<SpecificStoreResDTO>>>
 
     @GET("/api/restaurants/{restaurantId}")
     suspend fun getSpecificRestaurant(

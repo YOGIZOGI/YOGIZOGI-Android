@@ -5,7 +5,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.data.Resource
@@ -107,7 +106,7 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
     override fun initView() {
         val navArgs = navArgs.storeInfo
         Log.d("StoreReviewFrag-navArgs", navArgs.toString())
-        binding.tvStoreName.text = navArgs?.storeName
+        binding.tvStoreName.text = navArgs?.restaurantDetails?.name
         initAdapter()
         initBackBtn()
         initInfoBtn()
@@ -163,7 +162,8 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
     private fun initInfoBtn() {
         binding.btnStoreInfo.setOnClickListener {
             // TODO 임시 코드!
-            viewModel.getStoreInfo("11ee94cb-c19d-a4d1-8b1c-597b5b7cf2dd")
+//            viewModel.getStoreInfo("11ee94cb-c19d-a4d1-8b1c-597b5b7cf2dd")
+            viewModel.getStoreInfo(navArgs.storeInfo!!.id)
         }
     }
 

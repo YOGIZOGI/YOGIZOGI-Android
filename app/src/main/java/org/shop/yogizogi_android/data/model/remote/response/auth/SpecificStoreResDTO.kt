@@ -5,7 +5,7 @@ import java.io.Serializable
 data class SpecificStoreResDTO(
     val id: String,
     val restaurantDetails: RestaurantDetails,
-    val menus: List<MenuVO>
+    val menus: List<MenuVO>?
 ) : Serializable
 
 data class MenuVO(
@@ -19,3 +19,7 @@ data class MenuDatails(
     val description: String,
     val imageUrl: String
 )
+
+data class FeedList(
+    val feedList: List<SpecificStoreResDTO>
+) : Serializable

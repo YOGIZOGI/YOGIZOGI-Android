@@ -8,7 +8,7 @@ interface StoreRepository {
     suspend fun getStoreWithMoods(
         header: String,
         moods: Array<String>
-    ): Flow<Resource<SpecificStoreResDTO>>
+    ): Flow<Resource<List<SpecificStoreResDTO>>>
 
     suspend fun getSpecificStore(
         header: String,

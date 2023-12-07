@@ -43,6 +43,12 @@
             app:destination="@id/storeReviewFragment" />
 
         <argument
+            android:name="feedList"
+            android:defaultValue="@null"
+            app:argType="org.shop.yogizogi_android.data.model.remote.response.auth.FeedList"
+            app:nullable="true" />
+
+        <argument
             android:name="searchText"
             app:argType="string"
             app:nullable="true" />
@@ -65,7 +71,8 @@
 
         <argument
             android:name="storeInfo"
-            app:argType="org.shop.yogizogi_android.data.model.local.MainFeed"
+            android:defaultValue="@null"
+            app:argType="org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO"
             app:nullable="true" />
     </fragment>
 
