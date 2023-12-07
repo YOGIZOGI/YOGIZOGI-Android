@@ -58,6 +58,7 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapViewModel>(
 
         val args = navArgs.storeDetail
         if (args != null) {
+            Log.d("MapFragment - OnMapReady", "navArgs 존재함!")
             val marker = Marker()
             marker.position = LatLng(
                 args.restaurantDetails.coordinate.latitude.toDouble(),
@@ -66,6 +67,7 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapViewModel>(
             marker.map = naverMap
             naverMap.cameraPosition = CameraPosition(marker.position, 16.0)
         } else {
+            Log.d("MapFragment - OnMapReady", "navArgs 존재 안 함!")
             naverMap.locationTrackingMode = LocationTrackingMode.Follow
 
             // TODO Info가 아닌 BNV를 통해 MapFrag로 온 경우 사용자가 찜한 매장 전체 보여주기

@@ -13,7 +13,7 @@ data class Profile(
 
 data class MenuReviewVO(
     val id: Long,
-    val content: String,
+    val content: String?,
     val recommendationStatus: String,
     val images: List<String>
 )

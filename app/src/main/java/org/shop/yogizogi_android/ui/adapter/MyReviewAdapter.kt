@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
-import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.data.model.local.MyReview
 import org.shop.yogizogi_android.databinding.ItemMyreviewBinding
 
@@ -15,10 +13,9 @@ class MyReviewAdapter : ListAdapter<MyReview, MyReviewAdapter.MyReviewViewHolder
     inner class MyReviewViewHolder(private val binding: ItemMyreviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MyReview) {
-            Picasso.get().load(item.image).placeholder(R.drawable.image_store_info_menu)
-                .into(binding.ivImage)
-            binding.tvName.text = item.name
-            binding.selectorRecom.isSelected = item.recom
+            binding.vpMyreviewImages.adapter = MyReviewVPAdapter(item.images)
+            binding.tvName.text = item.id.toString()
+            binding.selectorRecom.isSelected = item.recommendationStatus
         }
     }
 

@@ -18,12 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_image"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_myreview_images"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/mood_date" />
+                android:layout_height="match_parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_name"
@@ -41,8 +39,8 @@
                 android:id="@+id/selector_recom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
                 android:layout_margin="4dp"
+                android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/selector_recommend" />

@@ -1,11 +1,13 @@
 package org.shop.yogizogi_android.ui.view.main.myreview
 
 import androidx.lifecycle.lifecycleScope
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.data.Resource
-import org.shop.yogizogi_android.data.model.local.MyReview
+import org.shop.yogizogi_android.data.model.remote.response.auth.Profile
+import org.shop.yogizogi_android.data.toMyReview
 import org.shop.yogizogi_android.databinding.FragmentReviewBinding
 import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.MyReviewAdapter
@@ -18,65 +20,6 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding, ReviewViewModel>(
     R.layout.fragment_review
 ) {
     private lateinit var myReviewAdapter: MyReviewAdapter
-    private val reviewList by lazy {
-        arrayListOf<MyReview>(
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "건대 홍콩포차",
-                false
-            ),
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "건대 1943",
-                true
-            ),
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "건대 뒷고기",
-                true
-            ),
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "재즈",
-                false
-            ),
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "겨울나그네",
-                true
-            ),
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "호식이 한마리 치킨",
-                false
-            ),
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "홍대 할리스",
-                false
-            ),
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "강남 지그재그",
-                false
-            ),
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "홍콩 와인바",
-                true
-            ),
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "군자닭",
-                true
-            ),
-            MyReview(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "빽다방",
-                false
-            ),
-        )
-    }
 
     override fun initView() {
         initAdapter()
@@ -97,8 +40,12 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding, ReviewViewModel>(
 
                     is Resource.Success -> {
                         stopAnimation(binding.lottieLoading)
-                        val data = result.data.menuReviews
-                        myReviewAdapter.submitList(reviewList)
+                        val reviewData = result.data.menuReviews.map {
+                            it.toMyReview()
+                        }
+                        myReviewAdapter.submitList(reviewData)
+                        val userProfile = result.data.userProfile
+                        setUserProfile(userProfile)
                     }
 
                     is Resource.Error -> {
@@ -109,6 +56,15 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding, ReviewViewModel>(
                 }
             }
         }
+    }
+
+    private fun setUserProfile(userProfile: Profile) {
+        binding.tvUserNickname.text = userProfile.nickname
+        if (userProfile.imageUrl != "") {
+            Picasso.get().load(userProfile.imageUrl).placeholder(R.drawable.ic_user_default)
+                .into(binding.ivUserImg)
+        }
+        binding.tvUserDesc.text = userProfile.introduction
     }
 
     private fun initAdapter() {
