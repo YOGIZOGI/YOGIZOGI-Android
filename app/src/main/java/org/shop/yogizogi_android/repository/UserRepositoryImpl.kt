@@ -11,6 +11,8 @@ import org.shop.yogizogi_android.data.model.UserPreference
 import org.shop.yogizogi_android.data.model.remote.datasource.UserRemoteData
 import org.shop.yogizogi_android.data.model.remote.request.auth.ProfileCreateReqDTO
 import org.shop.yogizogi_android.data.model.remote.request.auth.TasteRegisterReqDTO
+import org.shop.yogizogi_android.data.model.remote.response.auth.MeokFeedResDTO
+import org.shop.yogizogi_android.data.model.remote.response.auth.MeokMapResDTO
 import org.shop.yogizogi_android.data.model.remote.response.auth.ProfileCreateResDTO
 import org.shop.yogizogi_android.data.model.remote.response.auth.TasteRegisterResDTO
 import javax.inject.Inject
@@ -35,6 +37,21 @@ class UserRepositoryImpl @Inject constructor(
     ): Flow<Resource<TasteRegisterResDTO>> {
         return flow {
             emit(userRemoteData.postMeokProfile(header, body))
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun getUserMap(header: String, userId: String): Flow<Resource<MeokMapResDTO>> {
+        return flow {
+            emit(userRemoteData.getUserMap(header, userId))
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun getUserFeed(
+        header: String,
+        userId: String
+    ): Flow<Resource<MeokFeedResDTO>> {
+        return flow {
+            emit(userRemoteData.getUserFeed(header, userId))
         }.flowOn(Dispatchers.IO)
     }
 

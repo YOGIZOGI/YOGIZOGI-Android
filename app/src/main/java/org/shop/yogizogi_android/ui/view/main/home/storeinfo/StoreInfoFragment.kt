@@ -4,6 +4,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
+import org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO
 import org.shop.yogizogi_android.databinding.FragmentStoreInfoBinding
 import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.StoreInfoVPAdapter
@@ -26,6 +27,7 @@ class StoreInfoFragment : BaseFragment<FragmentStoreInfoBinding, HomeViewModel>(
         initAdapter()
         initStoreDetail()
         initCreateReviewBtn()
+        initCheckLocBtn()
     }
 
     override fun initAfterBinding() {
@@ -55,6 +57,22 @@ class StoreInfoFragment : BaseFragment<FragmentStoreInfoBinding, HomeViewModel>(
         }
     }
 
+    private fun initCreateReviewBtn() {
+        binding.ivWriteReview.setOnClickListener {
+            findNavController().navigate(StoreInfoFragmentDirections.actionStoreInfoFragmentToCreateReviewFragment())
+        }
+    }
+
+    private fun initCheckLocBtn() {
+        binding.btnCheckLoc.setOnClickListener {
+            findNavController().navigate(
+                StoreInfoFragmentDirections.actionStoreInfoFragmentToMapFragment(
+                    navArgs.storeDetail
+                )
+            )
+        }
+    }
+
     private fun initAdapter() {
         storeMenuAdapter = StoreMenuAdapter()
         binding.rvMenuList.adapter = storeMenuAdapter
@@ -66,12 +84,6 @@ class StoreInfoFragment : BaseFragment<FragmentStoreInfoBinding, HomeViewModel>(
                 bottom = resources.getDimension(R.dimen.item_space_start).roundToInt()
             )
         )
-    }
-
-    private fun initCreateReviewBtn() {
-        binding.ivWriteReview.setOnClickListener {
-            findNavController().navigate(StoreInfoFragmentDirections.actionStoreInfoFragmentToCreateReviewFragment())
-        }
     }
 
     private fun initBackBtn() {

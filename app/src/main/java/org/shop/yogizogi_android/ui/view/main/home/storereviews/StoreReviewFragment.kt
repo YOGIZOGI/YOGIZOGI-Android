@@ -162,9 +162,7 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
 
     private fun initInfoBtn() {
         binding.btnStoreInfo.setOnClickListener {
-            /**
-             * 임시 코드!
-             */
+            // TODO 임시 코드!
             viewModel.getStoreInfo("11ee94cb-c19d-a4d1-8b1c-597b5b7cf2dd")
         }
     }

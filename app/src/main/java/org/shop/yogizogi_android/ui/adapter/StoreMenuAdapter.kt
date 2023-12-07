@@ -9,6 +9,7 @@ import com.squareup.picasso.Picasso
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.data.model.remote.response.auth.MenuVO
 import org.shop.yogizogi_android.databinding.ItemStoreInfoMenuBinding
+import java.text.DecimalFormat
 
 class StoreMenuAdapter :
     ListAdapter<MenuVO, StoreMenuAdapter.StoreMenuViewHolder>(diffUtil) {
@@ -21,7 +22,7 @@ class StoreMenuAdapter :
                     .placeholder(R.drawable.image_store_info_menu)
                     .into(ivMenuImg)
                 tvMenuName.text = item.details.name
-                tvMenuPrice.text = item.details.price
+                tvMenuPrice.text = formatPrice(item.details.price.toInt())
             }
         }
     }
@@ -38,6 +39,11 @@ class StoreMenuAdapter :
 
     override fun onBindViewHolder(holder: StoreMenuViewHolder, position: Int) {
         holder.bind(currentList[position])
+    }
+
+    fun formatPrice(price: Int): String {
+        val decimalFormat = DecimalFormat("#,###")
+        return decimalFormat.format(price.toLong())
     }
 
     companion object {

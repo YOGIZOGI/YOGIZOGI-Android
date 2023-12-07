@@ -79,6 +79,10 @@
             android:id="@+id/action_storeInfoFragment_to_createReviewFragment"
             app:destination="@id/createReviewFragment" />
 
+        <action
+            android:id="@+id/action_storeInfoFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+
         <argument
             android:name="storeDetail"
             app:argType="org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO"
@@ -99,6 +103,10 @@
         android:label="MapFragment"
         tools:layout="@layout/fragment_map">
 
+        <argument
+            android:name="storeDetail"
+            app:argType="org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO"
+            app:nullable="true" />
     </fragment>
 
     <fragment
