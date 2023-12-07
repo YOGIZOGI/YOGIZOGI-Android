@@ -135,6 +135,13 @@
     <string name="menu_name">큐브 스테이크 덮밥</string>
     <string name="menu_price">12,000원</string>
 
+    <!-- MyReview -->
+    <string name="myreview_nickname_text">님</string>
+    <string name="myreview_follower_text">팔로워</string>
+    <string name="myreview_following_text">팔로잉</string>
+    <string name="myreview_follower_num">28</string>
+    <string name="myreview_following_num">19</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

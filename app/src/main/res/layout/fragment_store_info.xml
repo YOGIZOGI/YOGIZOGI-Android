@@ -108,7 +108,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/drawable_bookmark_isclicked" />
+                                app:srcCompat="@drawable/selector_bookmark_isclicked" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/iv_write_review"
