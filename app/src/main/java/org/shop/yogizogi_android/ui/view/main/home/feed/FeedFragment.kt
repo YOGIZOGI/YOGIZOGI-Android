@@ -1,6 +1,8 @@
 package org.shop.yogizogi_android.ui.view.main.home.feed
 
+import android.content.Context
 import android.util.Log
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +24,15 @@ class FeedFragment : BaseFragment<FragmentFeedBinding, HomeViewModel>(
 ), MainFeedClick {
     private val navArgs: FeedFragmentArgs by navArgs()
     private lateinit var feedAdapter: MainFeedAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            viewModel.initMoodStoreProcess()
+            findNavController().popBackStack()
+        }
+    }
 
     override fun initView() {
         val feedList = navArgs.feedList

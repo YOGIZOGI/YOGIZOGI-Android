@@ -1,10 +1,11 @@
 package org.shop.yogizogi_android.ui.view.main.home.storeinfo
 
+import android.content.Context
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
-import org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO
 import org.shop.yogizogi_android.databinding.FragmentStoreInfoBinding
 import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.StoreInfoVPAdapter
@@ -21,6 +22,15 @@ class StoreInfoFragment : BaseFragment<FragmentStoreInfoBinding, HomeViewModel>(
     private val navArgs: StoreInfoFragmentArgs by navArgs()
     private lateinit var storeInfoVPAdapter: StoreInfoVPAdapter
     private lateinit var storeMenuAdapter: StoreMenuAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            viewModel.initStoreInfoProcess()
+            findNavController().popBackStack()
+        }
+    }
 
     override fun initView() {
         initBackBtn()
@@ -88,6 +98,7 @@ class StoreInfoFragment : BaseFragment<FragmentStoreInfoBinding, HomeViewModel>(
 
     private fun initBackBtn() {
         binding.btnBack.setOnClickListener {
+            viewModel.initStoreInfoProcess()
             findNavController().popBackStack()
         }
     }

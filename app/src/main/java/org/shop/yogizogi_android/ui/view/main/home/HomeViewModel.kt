@@ -60,4 +60,12 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+    fun initStoreInfoProcess() {
+        _storeInfoProcess.value = null
+    }
+
+    fun initMoodStoreProcess() {
+        _moodStoreProcess.value = null
+    }
 }
