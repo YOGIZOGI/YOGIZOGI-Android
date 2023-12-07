@@ -7,12 +7,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.shop.yogizogi_android.data.model.local.MyReview
 import org.shop.yogizogi_android.databinding.ItemMyreviewBinding
+import org.shop.yogizogi_android.utils.clicklistener.MyReviewClick
 
-class MyReviewAdapter : ListAdapter<MyReview, MyReviewAdapter.MyReviewViewHolder>(diffUtil) {
+class MyReviewAdapter(private val clickListener: MyReviewClick) :
+    ListAdapter<MyReview, MyReviewAdapter.MyReviewViewHolder>(diffUtil) {
 
     inner class MyReviewViewHolder(private val binding: ItemMyreviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MyReview) {
+            binding.cardMyreviewItem.setOnClickListener {
+                clickListener.onItemClick(item)
+            }
             binding.vpMyreviewImages.adapter = MyReviewVPAdapter(item.images)
             binding.tvName.text = item.id.toString()
             binding.selectorRecom.isSelected = item.recommendationStatus

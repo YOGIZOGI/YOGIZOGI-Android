@@ -74,6 +74,12 @@
             android:defaultValue="@null"
             app:argType="org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO"
             app:nullable="true" />
+
+        <argument
+            android:name="storeReview"
+            android:defaultValue="@null"
+            app:argType="org.shop.yogizogi_android.data.model.local.StoreReview"
+            app:nullable="true" />
     </fragment>
 
     <fragment
@@ -123,6 +129,9 @@
         android:label="ReviewFragment"
         tools:layout="@layout/fragment_review">
 
+        <action
+            android:id="@+id/action_reviewFragment_to_storeReviewFragment"
+            app:destination="@id/storeReviewFragment" />
     </fragment>
 
     <fragment

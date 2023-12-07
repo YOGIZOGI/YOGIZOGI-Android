@@ -1,6 +1,8 @@
 package org.shop.yogizogi_android.ui.view.main.home.storereviews
 
+import android.content.Context
 import android.util.Log
+import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -103,11 +105,20 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
         )
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            findNavController().popBackStack()
+        }
+    }
+
     override fun initView() {
         val navArgs = navArgs.storeInfo
         Log.d("StoreReviewFrag-navArgs", navArgs.toString())
         binding.tvStoreName.text = navArgs?.restaurantDetails?.name
         initAdapter()
+        initList()
         initBackBtn()
         initInfoBtn()
     }
@@ -150,7 +161,17 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
                 bottom = resources.getDimension(R.dimen.item_space_start).roundToInt()
             )
         )
-        storeReviewAdapter.submitList(storeReviewList)
+    }
+
+    private fun initList() {
+        val args = navArgs.storeReview
+        if (args != null) {
+            Log.d("StoreReviewFragment Args", "navArgs 존재함!")
+            storeReviewAdapter.submitList(arrayListOf(args))
+        } else {
+            Log.d("StoreReviewFragment Args", "navArgs 존재 안 함!")
+            storeReviewAdapter.submitList(storeReviewList)
+        }
     }
 
     private fun initBackBtn() {

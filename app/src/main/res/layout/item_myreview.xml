@@ -11,6 +11,8 @@
         android:id="@+id/card_myreview_item"
         android:layout_width="105dp"
         android:layout_height="160dp"
+        android:clickable="true"
+        android:focusable="true"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp">
 
@@ -21,7 +23,8 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_myreview_images"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_margin="12dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_name"

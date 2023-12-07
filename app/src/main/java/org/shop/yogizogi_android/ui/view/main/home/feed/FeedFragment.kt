@@ -72,7 +72,7 @@ class FeedFragment : BaseFragment<FragmentFeedBinding, HomeViewModel>(
     private fun navigateToStoreReviewFragment(item: SpecificStoreResDTO) {
         findNavController().navigate(
             FeedFragmentDirections.actionFeedFragmentToStoreReviewFragment(
-                item
+                item, null
             )
         )
     }
