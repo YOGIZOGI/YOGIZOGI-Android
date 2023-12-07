@@ -1,10 +1,12 @@
 package org.shop.yogizogi_android.data.model.remote.response.auth
 
+import java.io.Serializable
+
 data class SpecificStoreResDTO(
     val id: String,
     val restaurantDetails: RestaurantDetails,
     val menus: List<MenuVO>
-)
+) : Serializable
 
 data class MenuVO(
     val id: Long,

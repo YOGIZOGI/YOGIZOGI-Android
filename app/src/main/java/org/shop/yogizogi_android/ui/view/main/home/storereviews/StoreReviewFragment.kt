@@ -1,11 +1,16 @@
 package org.shop.yogizogi_android.ui.view.main.home.storereviews
 
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.R
+import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.local.StoreReview
+import org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO
 import org.shop.yogizogi_android.databinding.FragmentStoreReviewBinding
 import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.StoreReviewAdapter
@@ -109,7 +114,30 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
     }
 
     override fun initAfterBinding() {
+        observeData()
+    }
 
+    private fun observeData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.storeInfoProcess.collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        playAnimation(binding.lottieLoading)
+                    }
+
+                    is Resource.Success -> {
+                        stopAnimation(binding.lottieLoading)
+                        navigateToStoreInfo(result.data)
+                    }
+
+                    is Resource.Error -> {
+                        stopAnimation(binding.lottieLoading)
+                    }
+
+                    null -> {}
+                }
+            }
+        }
     }
 
     private fun initAdapter() {
@@ -134,11 +162,18 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
 
     private fun initInfoBtn() {
         binding.btnStoreInfo.setOnClickListener {
-            navigateToStoreInfo()
+            /**
+             * 임시 코드!
+             */
+            viewModel.getStoreInfo("11ee94cb-c19d-a4d1-8b1c-597b5b7cf2dd")
         }
     }
 
-    private fun navigateToStoreInfo() {
-        findNavController().navigate(StoreReviewFragmentDirections.actionStoreReviewFragmentToStoreInfoFragment())
+    private fun navigateToStoreInfo(storeDetail: SpecificStoreResDTO) {
+        findNavController().navigate(
+            StoreReviewFragmentDirections.actionStoreReviewFragmentToStoreInfoFragment(
+                storeDetail
+            )
+        )
     }
 }

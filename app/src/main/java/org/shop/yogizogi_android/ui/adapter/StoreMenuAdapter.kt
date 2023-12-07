@@ -7,20 +7,21 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.shop.yogizogi_android.R
-import org.shop.yogizogi_android.data.model.local.StoreInfoMenu
+import org.shop.yogizogi_android.data.model.remote.response.auth.MenuVO
 import org.shop.yogizogi_android.databinding.ItemStoreInfoMenuBinding
 
 class StoreMenuAdapter :
-    ListAdapter<StoreInfoMenu, StoreMenuAdapter.StoreMenuViewHolder>(diffUtil) {
+    ListAdapter<MenuVO, StoreMenuAdapter.StoreMenuViewHolder>(diffUtil) {
 
     inner class StoreMenuViewHolder(private val binding: ItemStoreInfoMenuBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: StoreInfoMenu) {
+        fun bind(item: MenuVO) {
             with(binding) {
-                Picasso.get().load(item.image).placeholder(R.drawable.image_store_info_menu)
+                Picasso.get().load(item.details.imageUrl)
+                    .placeholder(R.drawable.image_store_info_menu)
                     .into(ivMenuImg)
-                tvMenuName.text = item.menuName
-                tvMenuPrice.text = item.menuPrice
+                tvMenuName.text = item.details.name
+                tvMenuPrice.text = item.details.price
             }
         }
     }
@@ -40,14 +41,14 @@ class StoreMenuAdapter :
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<StoreInfoMenu>() {
-            override fun areItemsTheSame(oldItem: StoreInfoMenu, newItem: StoreInfoMenu): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<MenuVO>() {
+            override fun areItemsTheSame(oldItem: MenuVO, newItem: MenuVO): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: StoreInfoMenu,
-                newItem: StoreInfoMenu
+                oldItem: MenuVO,
+                newItem: MenuVO
             ): Boolean {
                 return oldItem == newItem
             }

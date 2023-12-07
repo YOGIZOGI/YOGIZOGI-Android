@@ -1,4 +1,4 @@
-package org.shop.yogizogi_android.ui.view.auth.loginbottomsheet
+package org.shop.yogizogi_android.ui.view.auth.initial.loginbottomsheet
 
 import android.content.Intent
 import android.os.Bundle

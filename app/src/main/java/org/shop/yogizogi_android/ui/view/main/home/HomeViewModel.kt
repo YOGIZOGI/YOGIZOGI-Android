@@ -30,6 +30,9 @@ class HomeViewModel @Inject constructor(
     private val _moodStoreProcess = MutableStateFlow<Resource<SpecificStoreResDTO>?>(null)
     val moodStoreProcess = _moodStoreProcess.asStateFlow()
 
+    private val _storeInfoProcess = MutableStateFlow<Resource<SpecificStoreResDTO>?>(null)
+    val storeInfoProcess = _storeInfoProcess.asStateFlow()
+
     init {
         coroutineIOScope.launch {
             _userAccessToken.value = userRepository.getUserData().first().accessToken
@@ -40,10 +43,20 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             _moodStoreProcess.value = Resource.Loading()
             val moods = arrayOf(selectedMood)
-            Log.e("MoodFragment", moods.toString())
             coroutineIOScope.launch {
                 storeRepository.getStoreWithMoods(_userAccessToken.value, moods).collect {
                     _moodStoreProcess.value = it
+                }
+            }
+        }
+    }
+
+    fun getStoreInfo(restaurantId: String) {
+        viewModelScope.launch {
+            _storeInfoProcess.value = Resource.Loading()
+            coroutineIOScope.launch {
+                storeRepository.getSpecificStore(_userAccessToken.value, restaurantId).collect {
+                    _storeInfoProcess.value = it
                 }
             }
         }

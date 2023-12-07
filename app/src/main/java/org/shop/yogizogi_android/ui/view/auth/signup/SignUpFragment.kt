@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.databinding.FragmentSignUpBinding
 import org.shop.yogizogi_android.ui.base.BaseFragment
-import org.shop.yogizogi_android.ui.view.auth.loginbottomsheet.LoginBottomSheetFragment
+import org.shop.yogizogi_android.ui.view.auth.initial.loginbottomsheet.LoginBottomSheetFragment
 import org.shop.yogizogi_android.ui.view.auth.signup.process.AgreeFragment
 import org.shop.yogizogi_android.ui.view.auth.signup.process.PasswordCheckFragment
 import org.shop.yogizogi_android.ui.view.auth.signup.process.PasswordFragment

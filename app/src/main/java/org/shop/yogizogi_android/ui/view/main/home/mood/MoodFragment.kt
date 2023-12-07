@@ -71,6 +71,10 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
 
                     is Resource.Error -> {
                         stopAnimation(binding.lottieLoading)
+
+                        /**
+                         * 임시로 Error여도 navigate
+                         */
                         navigateToFeedFragment()
                         withContext(Dispatchers.Main) {
                             showToast(result.message)
@@ -98,6 +102,7 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
     }
 
     override fun onItemClick(item: Moods) {
+        Log.d("MoodFragment Clicked Mood", "item.name: ${item.name}, item.korean: ${item.korean}")
         viewModel.getStoreWithMood(item.name)
     }
 

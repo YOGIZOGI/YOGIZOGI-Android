@@ -75,6 +75,22 @@
         android:label="StoreInfoFragment"
         tools:layout="@layout/fragment_store_info">
 
+        <action
+            android:id="@+id/action_storeInfoFragment_to_createReviewFragment"
+            app:destination="@id/createReviewFragment" />
+
+        <argument
+            android:name="storeDetail"
+            app:argType="org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createReviewFragment"
+        android:name="org.shop.yogizogi_android.ui.view.main.home.creview.CreateReviewFragment"
+        android:label="CreateReviewFragment"
+        tools:layout="@layout/fragment_create_review">
+
     </fragment>
 
     <fragment
