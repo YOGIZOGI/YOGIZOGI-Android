@@ -105,6 +105,7 @@
 
         <argument
             android:name="storeDetail"
+            android:defaultValue="@null"
             app:argType="org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO"
             app:nullable="true" />
     </fragment>

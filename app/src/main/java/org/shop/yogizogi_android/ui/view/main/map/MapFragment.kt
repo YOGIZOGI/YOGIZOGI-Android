@@ -9,12 +9,12 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.gun0912.tedpermission.rx3.TedPermission
 import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
-import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
@@ -53,7 +53,7 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapViewModel>(
     override fun onMapReady(naverMap: NaverMap) {
         this.naverMap = naverMap
         naverMap.locationSource = locationSource
-        naverMap.locationTrackingMode = LocationTrackingMode.Follow
+        naverMap.locationTrackingMode = LocationTrackingMode.None
         naverMap.uiSettings.isLocationButtonEnabled = true
 
         val args = navArgs.storeDetail
@@ -64,7 +64,9 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapViewModel>(
                 args.restaurantDetails.coordinate.longitude.toDouble()
             )
             marker.map = naverMap
-        }else{
+            naverMap.cameraPosition = CameraPosition(marker.position, 16.0)
+        } else {
+            naverMap.locationTrackingMode = LocationTrackingMode.Follow
             viewModel.getUserMap()
         }
     }
