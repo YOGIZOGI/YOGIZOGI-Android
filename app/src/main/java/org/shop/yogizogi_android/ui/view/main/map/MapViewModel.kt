@@ -23,7 +23,7 @@ class MapViewModel @Inject constructor(private val userRepository: UserRepositor
     private val _userData = MutableStateFlow<UserPreference?>(null)
     val userAccessToken = _userData.asStateFlow()
 
-    private val _userMapProcess = MutableStateFlow<Resource<MeokMapResDTO>?>(null)
+    private val _userMapProcess = MutableStateFlow<Resource<List<MeokMapResDTO>>?>(null)
     val userMapProcess = _userMapProcess.asStateFlow()
 
     init {
@@ -46,5 +46,9 @@ class MapViewModel @Inject constructor(private val userRepository: UserRepositor
                 }
             }
         }
+    }
+
+    fun initMapProcess() {
+        _userMapProcess.value = null
     }
 }

@@ -6,6 +6,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.remote.datasource.StoreRemoteData
+import org.shop.yogizogi_android.data.model.remote.request.auth.AddMapReqDTO
+import org.shop.yogizogi_android.data.model.remote.response.auth.AddMapResDTO
 import org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO
 import javax.inject.Inject
 
@@ -26,6 +28,24 @@ class StoreRepositoryImpl @Inject constructor(private val storeRemoteData: Store
     ): Flow<Resource<SpecificStoreResDTO>> {
         return flow {
             emit(storeRemoteData.getSpecificRestaurant(header, restaurantId))
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun addMapRestaurants(
+        header: String,
+        body: AddMapReqDTO
+    ): Flow<Resource<AddMapResDTO>> {
+        return flow {
+            emit(storeRemoteData.postAddMapRestaurants(header, body))
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun deleteMapRestaurants(
+        header: String,
+        body: AddMapReqDTO
+    ): Flow<Resource<String>> {
+        return flow {
+            emit(storeRemoteData.deleteMapRestaurants(header, body))
         }.flowOn(Dispatchers.IO)
     }
 }

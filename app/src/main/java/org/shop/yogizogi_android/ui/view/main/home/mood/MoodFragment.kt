@@ -72,9 +72,6 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, HomeViewModel>(
 
                     is Resource.Error -> {
                         stopAnimation(binding.lottieLoading)
-
-                        // TODO 임시로 Error여도 navigate임시로 Error여도 navigate
-//                        navigateToFeedFragment()
                         withContext(Dispatchers.Main) {
                             showToast(result.message)
                         }

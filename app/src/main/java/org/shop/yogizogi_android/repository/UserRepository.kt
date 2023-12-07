@@ -24,7 +24,7 @@ interface UserRepository {
     suspend fun getUserMap(
         header: String,
         userId: String
-    ): Flow<Resource<MeokMapResDTO>>
+    ): Flow<Resource<List<MeokMapResDTO>>>
 
     suspend fun getUserFeed(
         header: String,

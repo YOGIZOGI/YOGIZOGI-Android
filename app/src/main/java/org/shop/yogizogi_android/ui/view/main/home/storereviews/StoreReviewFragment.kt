@@ -114,9 +114,13 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
     }
 
     override fun initView() {
-        val navArgs = navArgs.storeInfo
+        val navArgs = navArgs
+        if (navArgs.storeInfo != null) {
+            binding.tvStoreName.text = navArgs.storeInfo?.restaurantDetails?.name
+        } else {
+            binding.tvStoreName.text = navArgs.storeReview?.nickname
+        }
         Log.d("StoreReviewFrag-navArgs", navArgs.toString())
-        binding.tvStoreName.text = navArgs?.restaurantDetails?.name
         initAdapter()
         initList()
         initBackBtn()

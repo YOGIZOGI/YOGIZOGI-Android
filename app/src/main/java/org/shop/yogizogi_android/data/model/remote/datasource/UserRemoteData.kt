@@ -26,7 +26,7 @@ class UserRemoteData @Inject constructor(private val userService: UserService) :
         return processCall { userService.postMeokProfile(header, body) }
     }
 
-    override suspend fun getUserMap(header: String, userId: String): Resource<MeokMapResDTO> {
+    override suspend fun getUserMap(header: String, userId: String): Resource<List<MeokMapResDTO>> {
         return processCall { userService.getUserMap(header, userId) }
     }
 

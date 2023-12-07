@@ -38,6 +38,7 @@ class StoreInfoFragment : BaseFragment<FragmentStoreInfoBinding, HomeViewModel>(
         initStoreDetail()
         initCreateReviewBtn()
         initCheckLocBtn()
+        initAddBookMark()
     }
 
     override fun initAfterBinding() {
@@ -63,6 +64,22 @@ class StoreInfoFragment : BaseFragment<FragmentStoreInfoBinding, HomeViewModel>(
                 vpStoreImage.adapter = storeInfoVPAdapter
 
                 storeMenuAdapter.submitList(storeDetail.menus)
+            }
+        }
+    }
+
+    private fun initAddBookMark() {
+        binding.ivIsbookmarked.setOnClickListener {
+            if (it.isSelected) {
+                it.isSelected = false
+                navArgs.storeDetail?.let { restaurantId ->
+                    viewModel.deleteMapRestaurants(
+                        restaurantId.id
+                    )
+                }
+            } else {
+                it.isSelected = true
+                navArgs.storeDetail?.let { restaurantId -> viewModel.addMapRestaurants(restaurantId.id) }
             }
         }
     }

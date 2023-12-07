@@ -25,6 +25,7 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding, ReviewViewModel>(
     R.layout.fragment_review
 ), MyReviewClick {
     private lateinit var myReviewAdapter: MyReviewAdapter
+    private lateinit var userProfile: Profile
 
     override fun initView() {
         initAdapter()
@@ -49,7 +50,7 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding, ReviewViewModel>(
                             it.toMyReview()
                         }
                         myReviewAdapter.submitList(reviewData)
-                        val userProfile = result.data.userProfile
+                        userProfile = result.data.userProfile
                         setUserProfile(userProfile)
                     }
 
@@ -89,7 +90,7 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding, ReviewViewModel>(
         Log.d("ReviewFragment Item Click", "클릭됨")
         val mappedItem =
             StoreReview(
-                item.id.toString(),
+                userProfile.nickname,
                 item.images,
                 false,
                 item.recommendationStatus,

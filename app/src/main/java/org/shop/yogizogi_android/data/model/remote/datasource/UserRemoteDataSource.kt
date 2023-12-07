@@ -22,7 +22,7 @@ interface UserRemoteDataSource {
     suspend fun getUserMap(
         header: String,
         userId: String
-    ): Resource<MeokMapResDTO>
+    ): Resource<List<MeokMapResDTO>>
 
     suspend fun getUserFeed(
         header: String,

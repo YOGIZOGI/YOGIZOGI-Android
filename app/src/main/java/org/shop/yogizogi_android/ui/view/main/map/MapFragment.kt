@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.annotation.UiThread
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -17,7 +18,9 @@ import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.R
+import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.databinding.FragmentMapBinding
 import org.shop.yogizogi_android.ui.base.BaseFragment
 
@@ -40,7 +43,39 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapViewModel>(
     }
 
     override fun initAfterBinding() {
+        observeData()
+    }
 
+    private fun observeData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.userMapProcess.collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+
+                    }
+
+                    is Resource.Success -> {
+                        val mapData = result.data
+                        if (mapData.isNotEmpty()) {
+                            for (mapItem in mapData) {
+                                val marker = Marker()
+                                marker.position = LatLng(
+                                    mapItem.restaurantDetails.coordinate.latitude.toDouble(),
+                                    mapItem.restaurantDetails.coordinate.longitude.toDouble()
+                                )
+                                marker.map = naverMap
+                            }
+                        }
+                    }
+
+                    is Resource.Error -> {
+                        showToast(result.message)
+                    }
+
+                    null -> {}
+                }
+            }
+        }
     }
 
     private fun setMapFragment() {
@@ -70,7 +105,24 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapViewModel>(
             Log.d("MapFragment - OnMapReady", "navArgs 존재 안 함!")
             naverMap.locationTrackingMode = LocationTrackingMode.Follow
 
-            // TODO Info가 아닌 BNV를 통해 MapFrag로 온 경우 사용자가 찜한 매장 전체 보여주기
+            viewModel.getUserMap()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("MapFragment", "onPause")
+        viewModel.initMapProcess()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("MapFragment", "onResume")
+        val args = navArgs.storeDetail
+        if (args != null) {
+            Log.d("MapFragment", "navArgs 존재함!")
+        } else {
+            Log.d("MapFragment", "navArgs 존재 안 함!")
             viewModel.getUserMap()
         }
     }

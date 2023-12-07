@@ -33,11 +33,11 @@ interface UserService {
     suspend fun getUserMap(
         @Header(ACCESS_TOKEN) accessToken: String,
         @Path("userId") userId: String
-    ):Response<CommonSuccessRes<MeokMapResDTO>>
+    ): Response<CommonSuccessRes<List<MeokMapResDTO>>>
 
     @GET("/api/users/{userId}/meok-feed")
     suspend fun getUserFeed(
         @Header(ACCESS_TOKEN) accessToken: String,
         @Path("userId") userId: String
-    ):Response<CommonSuccessRes<MeokFeedResDTO>>
+    ): Response<CommonSuccessRes<MeokFeedResDTO>>
 }

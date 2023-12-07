@@ -40,7 +40,10 @@ class UserRepositoryImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun getUserMap(header: String, userId: String): Flow<Resource<MeokMapResDTO>> {
+    override suspend fun getUserMap(
+        header: String,
+        userId: String
+    ): Flow<Resource<List<MeokMapResDTO>>> {
         return flow {
             emit(userRemoteData.getUserMap(header, userId))
         }.flowOn(Dispatchers.IO)
