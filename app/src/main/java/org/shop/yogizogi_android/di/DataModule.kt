@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import org.shop.yogizogi_android.repository.AuthRepository
 import org.shop.yogizogi_android.repository.AuthRepositoryImpl
+import org.shop.yogizogi_android.repository.StoreRepository
+import org.shop.yogizogi_android.repository.StoreRepositoryImpl
 import org.shop.yogizogi_android.repository.UserRepository
 import org.shop.yogizogi_android.repository.UserRepositoryImpl
 
@@ -18,4 +20,7 @@ interface DataModule {
 
     @Binds
     fun provideUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository
+
+    @Binds
+    fun provideStoreRepository(storeRepositoryImpl: StoreRepositoryImpl): StoreRepository
 }

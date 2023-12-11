@@ -4,7 +4,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
 import org.shop.yogizogi_android.databinding.FragmentInitialBinding
 import org.shop.yogizogi_android.ui.base.BaseFragment
-import org.shop.yogizogi_android.ui.view.auth.loginbottomsheet.LoginBottomSheetFragment
+import org.shop.yogizogi_android.ui.view.auth.initial.loginbottomsheet.LoginBottomSheetFragment
 import org.shop.yogizogi_android.utils.toInvisible
 import org.shop.yogizogi_android.utils.toVisible
 

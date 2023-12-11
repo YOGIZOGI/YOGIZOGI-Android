@@ -1,5 +1,7 @@
 package org.shop.yogizogi_android.data.model.local
 
+import java.io.Serializable
+
 data class StoreReview(
     val nickname: String,
     val imgList: List<String>,
@@ -11,5 +13,5 @@ data class StoreReview(
     val sweetPrefer: Int,
     val saltyWell: Int,
     val saltyPrefer: Int,
-    val reviewContent: String
-)
+    val reviewContent: String?
+) : Serializable

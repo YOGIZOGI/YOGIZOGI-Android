@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.remote.datasource.AuthRemoteData
-import org.shop.yogizogi_android.data.model.remote.request.LogInReqDTO
-import org.shop.yogizogi_android.data.model.remote.request.SignUpReqDTO
-import org.shop.yogizogi_android.data.model.remote.response.DupCheckResDTO
-import org.shop.yogizogi_android.data.model.remote.response.LogInResDTO
-import org.shop.yogizogi_android.data.model.remote.response.SignUpResDTO
-import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeCheckResDTO
-import org.shop.yogizogi_android.data.model.remote.response.VerifyCodeSendResDTO
+import org.shop.yogizogi_android.data.model.remote.request.unauth.LogInReqDTO
+import org.shop.yogizogi_android.data.model.remote.request.unauth.SignUpReqDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.DupCheckResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.LogInResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.SignUpResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.VerifyCodeCheckResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.VerifyCodeSendResDTO
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(private val authRemoteData: AuthRemoteData) :

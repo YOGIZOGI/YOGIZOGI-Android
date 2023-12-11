@@ -1,11 +1,17 @@
 package org.shop.yogizogi_android.ui.view.main.home.storereviews
 
+import android.content.Context
 import android.util.Log
+import androidx.activity.addCallback
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.R
+import org.shop.yogizogi_android.data.Resource
 import org.shop.yogizogi_android.data.model.local.StoreReview
+import org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO
 import org.shop.yogizogi_android.databinding.FragmentStoreReviewBinding
 import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.StoreReviewAdapter
@@ -99,17 +105,53 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
         )
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            findNavController().popBackStack()
+        }
+    }
+
     override fun initView() {
-        val navArgs = navArgs.storeInfo
+        val navArgs = navArgs
+        if (navArgs.storeInfo != null) {
+            binding.tvStoreName.text = navArgs.storeInfo?.restaurantDetails?.name
+        } else {
+            binding.tvStoreName.text = navArgs.storeReview?.nickname
+        }
         Log.d("StoreReviewFrag-navArgs", navArgs.toString())
-        binding.tvStoreName.text = navArgs?.storeName
         initAdapter()
+        initList()
         initBackBtn()
         initInfoBtn()
     }
 
     override fun initAfterBinding() {
+        observeData()
+    }
 
+    private fun observeData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.storeInfoProcess.collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        playAnimation(binding.lottieLoading)
+                    }
+
+                    is Resource.Success -> {
+                        stopAnimation(binding.lottieLoading)
+                        navigateToStoreInfo(result.data)
+                    }
+
+                    is Resource.Error -> {
+                        stopAnimation(binding.lottieLoading)
+                    }
+
+                    null -> {}
+                }
+            }
+        }
     }
 
     private fun initAdapter() {
@@ -123,7 +165,17 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
                 bottom = resources.getDimension(R.dimen.item_space_start).roundToInt()
             )
         )
-        storeReviewAdapter.submitList(storeReviewList)
+    }
+
+    private fun initList() {
+        val args = navArgs.storeReview
+        if (args != null) {
+            Log.d("StoreReviewFragment Args", "navArgs 존재함!")
+            storeReviewAdapter.submitList(arrayListOf(args))
+        } else {
+            Log.d("StoreReviewFragment Args", "navArgs 존재 안 함!")
+            storeReviewAdapter.submitList(storeReviewList)
+        }
     }
 
     private fun initBackBtn() {
@@ -134,11 +186,17 @@ class StoreReviewFragment : BaseFragment<FragmentStoreReviewBinding, HomeViewMod
 
     private fun initInfoBtn() {
         binding.btnStoreInfo.setOnClickListener {
-            navigateToStoreInfo()
+            // TODO 임시 코드!
+//            viewModel.getStoreInfo("11ee94cb-c19d-a4d1-8b1c-597b5b7cf2dd")
+            viewModel.getStoreInfo(navArgs.storeInfo!!.id)
         }
     }
 
-    private fun navigateToStoreInfo() {
-        findNavController().navigate(StoreReviewFragmentDirections.actionStoreReviewFragmentToStoreInfoFragment())
+    private fun navigateToStoreInfo(storeDetail: SpecificStoreResDTO) {
+        findNavController().navigate(
+            StoreReviewFragmentDirections.actionStoreReviewFragmentToStoreInfoFragment(
+                storeDetail
+            )
+        )
     }
 }

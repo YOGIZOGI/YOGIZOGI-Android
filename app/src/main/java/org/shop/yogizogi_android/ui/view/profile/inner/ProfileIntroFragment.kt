@@ -84,7 +84,6 @@ class ProfileIntroFragment : BaseFragment<FragmentProfileIntroBinding, ProfileVi
         }
     }
 
-    // TODO btnNext 요청 보내고 성공시 navigate
     private fun navigateToProfileTasteFrag() {
         val nickname = navArgs.nickname
         findNavController().navigate(

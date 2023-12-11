@@ -1,11 +1,14 @@
 package org.shop.yogizogi_android.ui.view.main.home.feed
 
+import android.content.Context
 import android.util.Log
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
-import org.shop.yogizogi_android.data.model.local.MainFeed
+import org.shop.yogizogi_android.data.model.remote.response.auth.FeedList
+import org.shop.yogizogi_android.data.model.remote.response.auth.SpecificStoreResDTO
 import org.shop.yogizogi_android.databinding.FragmentFeedBinding
 import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.MainFeedAdapter
@@ -22,30 +25,31 @@ class FeedFragment : BaseFragment<FragmentFeedBinding, HomeViewModel>(
     private val navArgs: FeedFragmentArgs by navArgs()
     private lateinit var feedAdapter: MainFeedAdapter
 
-    private val mainFeedList by lazy {
-        arrayListOf<MainFeed>(
-            MainFeed(null, resources.getString(R.string.mood_date)),
-            MainFeed(null, resources.getString(R.string.mood_free)),
-            MainFeed(null, resources.getString(R.string.mood_sum)),
-            MainFeed(null, resources.getString(R.string.mood_nopo)),
-            MainFeed(null, resources.getString(R.string.mood_group)),
-            MainFeed(null, resources.getString(R.string.mood_parent)),
-            MainFeed(null, resources.getString(R.string.mood_light)),
-            MainFeed(null, resources.getString(R.string.mood_solo)),
-            MainFeed(null, resources.getString(R.string.mood_marry)),
-            MainFeed(null, resources.getString(R.string.mood_study))
-        )
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            viewModel.initMoodStoreProcess()
+            findNavController().popBackStack()
+        }
     }
 
     override fun initView() {
+        val feedList = navArgs.feedList
         val searchText = navArgs.searchText ?: "null"
         val mood = navArgs.mood
+
         Log.d("FeedFrag", "검색어: $searchText, 선택한 분위기: $mood")
         initAdapter()
+        initFeedList(feedList!!)
     }
 
     override fun initAfterBinding() {
 
+    }
+
+    private fun initFeedList(feedList: FeedList) {
+        feedAdapter.submitList(feedList.feedList)
     }
 
     private fun initAdapter() {
@@ -59,17 +63,16 @@ class FeedFragment : BaseFragment<FragmentFeedBinding, HomeViewModel>(
                 bottom = resources.getDimension(R.dimen.item_space_start).roundToInt()
             )
         )
-        feedAdapter.submitList(mainFeedList)
     }
 
-    override fun onItemClick(item: MainFeed) {
+    override fun onItemClick(item: SpecificStoreResDTO) {
         navigateToStoreReviewFragment(item)
     }
 
-    private fun navigateToStoreReviewFragment(item: MainFeed) {
+    private fun navigateToStoreReviewFragment(item: SpecificStoreResDTO) {
         findNavController().navigate(
             FeedFragmentDirections.actionFeedFragmentToStoreReviewFragment(
-                item
+                item, null
             )
         )
     }

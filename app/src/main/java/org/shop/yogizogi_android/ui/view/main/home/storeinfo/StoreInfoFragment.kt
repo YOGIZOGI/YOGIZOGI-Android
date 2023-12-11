@@ -1,9 +1,11 @@
 package org.shop.yogizogi_android.ui.view.main.home.storeinfo
 
+import android.content.Context
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import org.shop.yogizogi_android.R
-import org.shop.yogizogi_android.data.model.local.StoreInfoMenu
 import org.shop.yogizogi_android.databinding.FragmentStoreInfoBinding
 import org.shop.yogizogi_android.ui.adapter.ItemDecoration
 import org.shop.yogizogi_android.ui.adapter.StoreInfoVPAdapter
@@ -17,76 +19,85 @@ class StoreInfoFragment : BaseFragment<FragmentStoreInfoBinding, HomeViewModel>(
     HomeViewModel::class.java,
     R.layout.fragment_store_info
 ) {
+    private val navArgs: StoreInfoFragmentArgs by navArgs()
     private lateinit var storeInfoVPAdapter: StoreInfoVPAdapter
     private lateinit var storeMenuAdapter: StoreMenuAdapter
 
-    private val imgList by lazy {
-        arrayListOf(
-            "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-            "https://cdn.dealbada.com/data/editor/1704/e8bc3ff4a802bec4c500fcdca76f75b2_1491903567_2258.jpg",
-            "https://cdn.dealbada.com/data/editor/1704/e8bc3ff4a802bec4c500fcdca76f75b2_1491903567_2258.jpg"
-        )
-    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
-    private val menuList by lazy {
-        arrayListOf<StoreInfoMenu>(
-            StoreInfoMenu(
-                "https://cdn.dealbada.com/data/editor/1704/e8bc3ff4a802bec4c500fcdca76f75b2_1491903567_2258.jpg",
-                "큐브 스테이크 덮밥",
-                "12,000원"
-            ),
-            StoreInfoMenu(
-                "https://cdn.dealbada.com/data/editor/1704/e8bc3ff4a802bec4c500fcdca76f75b2_1491903567_2258.jpg",
-                "큐브 스테이크 덮밥",
-                "16,000원"
-            ),
-            StoreInfoMenu(
-                "https://cdn.dealbada.com/data/editor/1704/e8bc3ff4a802bec4c500fcdca76f75b2_1491903567_2258.jpg",
-                "큐브 스테이크 덮밥",
-                "12,000원"
-            ),
-            StoreInfoMenu(
-                "https://cdn.dealbada.com/data/editor/1704/e8bc3ff4a802bec4c500fcdca76f75b2_1491903567_2258.jpg",
-                "큐브 스테이크 덮밥",
-                "11,000원"
-            ),
-            StoreInfoMenu(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "큐브 스테이크 덮밥",
-                "14,000원"
-            ),
-            StoreInfoMenu(
-                "https://cdn.dealbada.com/data/editor/1704/e8bc3ff4a802bec4c500fcdca76f75b2_1491903567_2258.jpg",
-                "큐브 스테이크 덮밥",
-                "13,800원"
-            ),
-            StoreInfoMenu(
-                "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "큐브 스테이크 덮밥",
-                "19,000원"
-            ),
-            StoreInfoMenu(
-                "https://cdn.dealbada.com/data/editor/1704/e8bc3ff4a802bec4c500fcdca76f75b2_1491903567_2258.jpg",
-                "큐브 스테이크 덮밥",
-                "12,500원"
-            ),
-            StoreInfoMenu(
-                "https://cdn.dealbada.com/data/editor/1704/e8bc3ff4a802bec4c500fcdca76f75b2_1491903567_2258.jpg",
-                "큐브 스테이크 덮밥",
-                "13,500원"
-            )
-        )
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            viewModel.initStoreInfoProcess()
+            findNavController().popBackStack()
+        }
     }
 
     override fun initView() {
         initBackBtn()
         initAdapter()
-        storeInfoVPAdapter = StoreInfoVPAdapter(imgList)
-        binding.vpStoreImage.adapter = storeInfoVPAdapter
+        initStoreDetail()
+        initCreateReviewBtn()
+        initCheckLocBtn()
+        initAddBookMark()
     }
 
     override fun initAfterBinding() {
 
+    }
+
+    private fun initStoreDetail() {
+        val storeDetail = navArgs.storeDetail
+        if (storeDetail != null) {
+            with(binding) {
+                tvTitleStoreName.text = storeDetail.restaurantDetails.name
+                tvStoreAddress.text = storeDetail.restaurantDetails.address
+                tvStoreNumber.text = storeDetail.restaurantDetails.tel
+
+                val imgList by lazy {
+                    arrayListOf(
+                        storeDetail.restaurantDetails.imageUrl,
+                        "https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+                        "https://cdn.dealbada.com/data/editor/1704/e8bc3ff4a802bec4c500fcdca76f75b2_1491903567_2258.jpg"
+                    )
+                }
+                storeInfoVPAdapter = StoreInfoVPAdapter(imgList)
+                vpStoreImage.adapter = storeInfoVPAdapter
+
+                storeMenuAdapter.submitList(storeDetail.menus)
+            }
+        }
+    }
+
+    private fun initAddBookMark() {
+        binding.ivIsbookmarked.setOnClickListener {
+            if (it.isSelected) {
+                it.isSelected = false
+                navArgs.storeDetail?.let { restaurantId ->
+                    viewModel.deleteMapRestaurants(
+                        restaurantId.id
+                    )
+                }
+            } else {
+                it.isSelected = true
+                navArgs.storeDetail?.let { restaurantId -> viewModel.addMapRestaurants(restaurantId.id) }
+            }
+        }
+    }
+
+    private fun initCreateReviewBtn() {
+        binding.ivWriteReview.setOnClickListener {
+            findNavController().navigate(StoreInfoFragmentDirections.actionStoreInfoFragmentToCreateReviewFragment())
+        }
+    }
+
+    private fun initCheckLocBtn() {
+        binding.btnCheckLoc.setOnClickListener {
+            findNavController().navigate(
+                StoreInfoFragmentDirections.actionStoreInfoFragmentToMapFragment(
+                    navArgs.storeDetail
+                )
+            )
+        }
     }
 
     private fun initAdapter() {
@@ -100,11 +111,11 @@ class StoreInfoFragment : BaseFragment<FragmentStoreInfoBinding, HomeViewModel>(
                 bottom = resources.getDimension(R.dimen.item_space_start).roundToInt()
             )
         )
-        storeMenuAdapter.submitList(menuList)
     }
 
     private fun initBackBtn() {
         binding.btnBack.setOnClickListener {
+            viewModel.initStoreInfoProcess()
             findNavController().popBackStack()
         }
     }

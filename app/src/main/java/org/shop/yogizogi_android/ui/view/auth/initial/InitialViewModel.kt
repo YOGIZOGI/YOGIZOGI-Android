@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.shop.yogizogi_android.data.Resource
-import org.shop.yogizogi_android.data.model.remote.response.LogInResDTO
+import org.shop.yogizogi_android.data.model.remote.response.unauth.LogInResDTO
 import org.shop.yogizogi_android.repository.AuthRepository
 import org.shop.yogizogi_android.repository.UserDataStore
 import org.shop.yogizogi_android.ui.base.BaseViewModel
@@ -34,9 +34,10 @@ class InitialViewModel @Inject constructor(
 
     fun login() {
         viewModelScope.launch {
-            Log.d("로그인 정보","${_phoneNumber.value}, ${_password.value}")
+            Log.d("로그인 정보", "${_phoneNumber.value}, ${_password.value}")
             _logInProcess.value = Resource.Loading()
             coroutineIOScope.launch {
+                // TODO 추후 기본 로그인 삭제
                 authRepository.login(_phoneNumber.value, _password.value).collect {
                     _logInProcess.value = it
                 }

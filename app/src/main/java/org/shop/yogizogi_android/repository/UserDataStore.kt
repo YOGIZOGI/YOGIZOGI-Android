@@ -2,8 +2,8 @@ package org.shop.yogizogi_android.repository
 
 import androidx.datastore.core.DataStore
 import org.shop.yogizogi_android.data.model.UserPreference
-import org.shop.yogizogi_android.data.model.remote.response.LogInResDTO
-import org.shop.yogizogi_android.data.model.remote.response.toPreference
+import org.shop.yogizogi_android.data.model.remote.response.unauth.LogInResDTO
+import org.shop.yogizogi_android.data.toPreference
 import javax.inject.Inject
 import javax.inject.Singleton
 

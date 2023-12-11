@@ -21,8 +21,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_review_user_profile"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                app:srcCompat="@drawable/drawable_star_isclicked"
+                app:srcCompat="@drawable/selector_star_isclicked"
                 app:layout_constraintBottom_toBottomOf="@id/iv_review_user_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/iv_review_user_profile" />
