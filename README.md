@@ -2,7 +2,7 @@
   YOGIZOGI-Android
 </h1>
 <p align="center">
-  요기죠기 Repository
+  요기죠기
 </p>
 
 <p align="center">
@@ -17,7 +17,7 @@
   - ViewModel
   - Navigation
   - Room
-  - DataBinding, LiveData, StateFlow
+  - StateFlow
  
 
 - **Dependency Injection**
@@ -25,7 +25,7 @@
 - Repository Pattern
 
 
-- Glide
+- Picasso
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit)
 - Coroutine Flow
 - [Material View Pager Dots Indicator](https://github.com/tommybuonomo/dotsindicator)
