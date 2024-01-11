@@ -43,6 +43,7 @@ android {
 dependencies {
     // Dagger-Hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     ksp("com.google.dagger:hilt-compiler:$hiltVersion")
 
     // Room DB
@@ -60,10 +61,10 @@ dependencies {
     // Gson
     implementation("com.squareup.retrofit2:converter-gson:$gsonVersion")
 
-    // Retrofit
+    // Retrofit2
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
 
-    // okHttp
+    // okHttp3
     implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
     implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
 
