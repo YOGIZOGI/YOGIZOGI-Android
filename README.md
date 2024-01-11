@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-<img src="" width="260" height="520"/>
+<img src="/README-images/YoGiZoGi_ver1.gif" width="260" height="520"/>
 </p>
 
 # Tech stack & Open-source libraries
